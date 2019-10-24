@@ -1,0 +1,1272 @@
+﻿html {
+    font-family: Helvetica, sans-serif;
+}
+
+#salaryFile {
+    background: green;
+    width: 50px;
+}
+
+.btn-nav-panel {
+    background: #222;
+    width: 60px;
+    height: 60px;
+    color: transparent;
+    transition: 0.5s;
+    text-align: center;
+    line-height: 60px;
+    margin-bottom: 10px;
+}
+.btn-nav-text{
+    pointer-events:none
+}
+
+.btn-nav-panel:first {
+    margin-top: 110px;
+}
+
+.btn-nav-image {
+    background: #222;
+    width: 60px;
+    display: inline-block;
+    position: fixed;
+    transition: 0.5s;
+    left: 0px;
+}
+
+.btn-nav-image img {
+    width: 50px;
+}
+
+
+
+.btn-nav-panel:hover {
+    color: white;
+    width: 240px;
+    padding-left: 80px;
+    background-color: #333;
+}
+
+.btn-nav-panel:hover .btn-nav-image {
+    background-color: #333;
+}
+
+.table-striped td {
+    padding: 4px;
+}
+
+.auth_body {
+    background: #aaa;
+}
+
+.auth_form, .register-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: #333;
+    left: 0;
+    background: white;
+    margin: auto;
+    width: 400px;
+    height: 360px;
+    padding: 20px;
+    border-radius: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.register-form {
+    height: 460px;
+}
+
+.row {
+    margin-left: 0;
+}
+
+.btn-user {
+    color: white;
+    height: 40px;
+    width: 40px;
+    background: dodgerblue;
+    border-radius: 100%;
+    border: none;
+}
+
+#nav-panel {
+    padding-top: 60px;
+    position: fixed;
+    display: inline-block;
+    width: 60px;
+    background: #222;
+    height: 100vh;
+    color: white;
+    z-index: 99;
+}
+
+#title {
+    padding-left: 80px;
+    text-decoration: none;
+    color: white;
+}
+
+#title:hover {
+    color: red;
+}
+
+#content {
+    background: #ddd;
+    margin-top: 60px;
+    top: 60px;
+    display: inline-block;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    margin-left: 60px;
+}
+
+.button-add {
+    height: 60px;
+    width: 60px;
+    background: rgb(55, 170, 55);
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0px 9px 28px -9px rgba(0, 0, 0, 0.75);
+    background-image: url("/HR/images/plus.png");
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.button-add:focus, .btn-del-vacation:focus {
+    outline: 0;
+}
+
+.button-add:hover {
+    background: rgb(11, 201, 11);
+    background-image: url("/HR/images/plus.png");
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.category-id {
+    width: 2%;
+    text-align: center;
+}
+
+.category-id div {
+    margin-top: 5px;
+    height: 30px;
+    width: 30px;
+    color: dodgerblue;
+    border: 2px solid dodgerblue;
+    border-radius: 15px;
+    line-height: 26px;
+    font-weight: bold;
+}
+
+.category-personal {
+    width: 16%;
+}
+
+.category-personalData {
+    width: 18%
+}
+
+.category-career {
+    width: 13%;
+}
+
+.category-passport {
+    width: 10%;
+}
+
+.category-children {
+    width: 15%;
+}
+
+.category-HHM {
+    width: 20%
+}
+
+.mail-card-G17, .mail-card-HHM {
+    color: white;
+    background: #4F78A0;
+    padding: 5px;
+    padding-left: 10px;
+    width: 300px;
+    white-space: nowrap;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 100;
+}
+
+.mail-card-HHM {
+    color: white;
+    background: #4F78A0;
+}
+
+.deleteButton, .editButton, .vacationButton, .sickButton {
+    background: #da3931;
+    background-image: url("/HR/images/delete_employee.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    color: transparent;
+    border: 1px solid #da3931;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    transition: 0.2s;
+}
+
+.deleteButton:hover, .editButton:hover, .vacationButton:hover, .sickButton:hover {
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19);
+}
+
+.deleteButton {
+    width: 50px;
+    height: 50px;
+}
+
+.searchbar {
+    width: 420px;
+    background: white;
+    font-size: 14pt;
+    height: 30px;
+    line-height: 60px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 15px;
+}
+
+.searchbar:focus {
+    box-shadow: 0px 0px 12px 2px lightblue;
+}
+
+.searchbar:focus {
+    outline: none;
+}
+
+.editButton {
+    background: rgb(243, 146, 75);
+    border: 1px solid rgb(243, 146, 75);
+    background-image: url("/HR/images/edit_employee.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+.vacationButton {
+    background-image: url("/HR/images/Vacations.svg");
+    background-position: center;
+    background-color: #036eda;
+    background-size: 42px;
+    border: 1px solid #036eda;
+}
+
+.sickButton {
+    background-image: url("/HR/images/SickList.svg");
+    background-position: bottom center;
+    background-size: 42px;
+    background-color: rgb(230, 83, 11);
+}
+
+.buttonImage {
+    display: block;
+    width: 40px;
+    height: 42px;
+    margin-top: 12px;
+    margin-left: 6px;
+    position: absolute;
+}
+
+#container {
+    transition: 1s;
+}
+
+.employee-card {
+    background: #fff;
+    padding-top: 15px;
+    padding-right: 10px;
+    width: 100%;
+}
+
+.employee-separator {
+    height: 2px;
+    background: linear-gradient(to left, #4F78A0, rgb(110, 164, 219), #4F78A0)
+}
+
+.employee-id {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16pt;
+    vertical-align: top;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    margin-left: -5px;
+    margin-top: -5px;
+    background: rgb(3, 110, 218);
+    border-radius: 10px;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.employee-status-maternity, .employee-status-retired, .employee-status-work {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+    background: radial-gradient(circle, rgba(101, 171, 59, 1) 0%, rgb(29, 122, 24) 100%);
+    border-radius: 10px;
+    border: 4px solid #eee;
+    /*float: right;*/
+}
+
+.employee-status-retired {
+    background: radial-gradient(circle, rgb(255, 85, 85) 0%, rgb(255, 0, 0) 100%);
+}
+
+.employee-status-maternity {
+    background: radial-gradient(circle, rgb(255, 146, 4) 0%, rgb(252, 146, 8) 100%);
+}
+
+.employee-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background: dodgerblue;
+}
+
+.employee-main {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.employee-name {
+    color: white;
+    width: 300px;
+    height: 70px;
+    padding: 5px;
+    text-align: left;
+    background: #23588C;
+    display: inline-block;
+    border-radius: 10px;
+    border:0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*transition: box-shadow .2s ease, transform .5s ease, margin-top .2s ease;*/
+    cursor: pointer;
+}
+
+.employee-name:hover {
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.35), 0 12px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.employee-controls {
+    width: auto;
+}
+
+.employee-controls button {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-right: 5px;
+    padding: 0;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.employee-table th {
+    font-weight: 100;
+    background-color: red;
+}
+
+.table-dark td {
+    background-color: #4F78A0;
+    border-color: #ccc;
+}
+
+.table .thead-dark th {
+    background-color: rgb(29, 70, 110);
+    border-color: rgb(29, 70, 110);
+}
+
+.main-personal-data {
+    padding: 0px;
+    margin-left: 10px;
+    color: white;
+    background: #4F78A0;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bio-header {
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: #23588C;
+    margin: 0;
+}
+
+.separator-personal, .separator-work, .separator-pass, .separator-children, .separator-visit {
+    height: 1px;
+}
+
+.separator-personal {
+    background: linear-gradient(to left, rgb(12, 199, 12), rgb(27, 248, 82));
+}
+
+.separator-work {
+    background: linear-gradient(to left, lightcoral, orange);
+}
+
+.separator-pass {
+    background: linear-gradient(to left, rgb(201, 243, 50), rgb(200, 255, 0));
+}
+
+.separator-children {
+    background: linear-gradient(to left, rgb(89, 212, 250), rgb(83, 172, 255));
+}
+
+.separator-visit {
+    background: linear-gradient(to left, rgb(253, 95, 95), rgb(253, 61, 77));
+}
+
+.main-personal-data .row {
+    padding: 5px 0px;
+    border-bottom: 1px solid #bbb;
+    width: 100%;
+}
+
+.bio-title {
+    padding-left: 10px;
+}
+
+.bio-data {
+    overflow-wrap: nowrap;
+    display: inline-block;
+}
+
+.input1 {
+    display: none;
+}
+
+.input-label-select, .input-label-upload {
+    background: transparent;
+    color: white;
+    width: 100px;
+    height: 40px;
+    border: 1px solid dodgerblue;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+    display: table-cell;
+}
+
+.input-label-select:hover, .input-label-upload:hover {
+    background: dodgerblue;
+}
+
+.input-label-select {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    line-height: 38px;
+    /*float: left;*/
+}
+
+.input-label-upload {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.input2 {
+    display: none;
+}
+
+.input-label-text {
+    margin-top: 10px;
+    display: inline-block;
+    background: white;
+    width: 340px;
+    height: 40px;
+    vertical-align: middle;
+    line-height: 38px;
+    border-radius: 5px;
+}
+
+.input-buttons {
+    display: inline-block;
+}
+
+#header {
+    margin: 0;
+    height: 60px;
+    background: #222;
+    color: white;
+    font-size: 24pt;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 60px;
+}
+
+#header-main {
+    width: 100%;
+    margin: 0;
+    height: 60px;
+    background: #222;
+    color: white;
+    font-size: 24pt;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 60px;
+    position: fixed;
+    z-index: 100;
+}
+
+#personal-menu {
+    text-align: center;
+    background: #ccc;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#personal-data {
+    background: #999;
+    text-align: left;
+}
+
+.personal-image {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.personal-image img {
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+}
+
+.personal-image button {
+    margin: auto;
+    display: block;
+    margin-top: 20px;
+    background: dodgerblue
+}
+
+.personal-image img {
+    height: 240px;
+    border-radius: 100%;
+}
+
+.personal-name {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.personal-details {
+    display: inline-block;
+}
+
+.personal-lastname {
+    display: inline-block;
+}
+
+a.personal-categories-btn {
+    text-decoration: none;
+    line-height: 40px;
+}
+
+.personal-categories-btn {
+    width: 98%;
+    height: 40px;
+    text-align: center;
+    font-size: 12pt;
+    background: #444;
+    color: white;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: 0;
+    transition: 0.5s;
+    display: block;
+}
+
+.personal-categories-btn:hover {
+    background: #666;
+    color: white
+}
+
+.personal-bio {
+    background: #333;
+    margin-left: -15px;
+}
+
+.bio-description {
+    width: 35%;
+    min-width: min-content;
+    height: 40px;
+    margin: 5px;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 10px;
+    background: #555;
+    color: white;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.bio-description, .bio-value-duration, .no-vacations-label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.bio-value {
+    width: 60%;
+    height: 40px;
+    margin-top: 5px;
+    line-height: 40px;
+    font-size: 16px;
+    padding-left: 10px;
+    background: white;
+    border: none;
+    border-radius: 5px !important;
+    display: inline-block;
+}
+
+input.bio-value {
+    cursor: pointer;
+}
+
+.bio-value-duration {
+    width: 80%;
+    margin: 0 auto;
+    height: 40px;
+    margin-top: 5px;
+    line-height: 40px;
+    font-size: 20px;
+    color: rgb(50, 50, 50);
+    text-align: center;
+    font-weight: 400;
+    font-style: italic;
+    border-style: hidden hidden solid hidden;
+    border-width: 2px;
+    border-color: white;
+}
+
+.bio-value-duration:hover {
+    cursor: default;
+}
+
+/* bootstrap styles override */
+
+.bio-value-datepicker input.form-control {
+    border: 0;
+    box-shadow: none;
+    outline: 0 none;
+    transition: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.notFound {
+    width: 50%;
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.create-body {
+    background: #ddd;
+    padding-right: 40px;
+    padding-top: 15px;
+    height: 110vh;
+}
+
+.create-personal, .create-personal-short {
+    width: 100%;
+    min-width: 360px;
+    height: auto;
+    vertical-align: top;
+    background: #ccc;
+    display: inline-block;
+    margin: 5px 10px 10px 0px;
+    box-shadow: 10px 10px 46px -10px rgba(0, 0, 0, 0.75);
+}
+
+.create-personal-vacation {
+    width: 100%;
+    min-width: 360px;
+    height: auto;
+    vertical-align: top;
+    background: #ccc;
+    display: inline-block;
+    margin: 10px 10px 5px 5px;
+}
+
+#vacations-scroll>.create-personal-vacation:first-child {
+    margin-top: 0px;
+}
+
+.create-personal-short {
+    height: auto;
+}
+
+.create-personal-header {
+    width: 100%;
+    height: 40px;
+    color: white;
+    font-size: 18pt;
+    padding-left: 15px;
+    background: dodgerblue;
+}
+
+.vacationMonthHeader {
+    text-align: center;
+}
+
+.vacationMonth, .vacationMonth-work, .vacationMonth-rest, .vacationMonthTotal {
+    color: white;
+    width: 5%;
+    min-width: 60px;
+    ;
+    text-align: center;
+    display: table-cell;
+    line-height: 50px;
+    border: 1px solid #ccc;
+}
+
+.vacationMonth-work {
+    background: lightblue;
+}
+
+.vacationMonth-rest {
+    background: lightcoral;
+    color: white;
+}
+
+.vacationMonthTotal {
+    width: 4%;
+    background: #23A6D5;
+    text-align: center;
+}
+
+.vacation-bucket {
+    display: inline;
+    background: lightcoral;
+    transition: 1s;
+    background-image: url("/HR/images/delete.png");
+    background-position: center;
+    float:left;
+}
+
+.calendar-year {
+    display: block;
+    margin: 0 auto 20px auto;
+    max-width: 1100px;
+}
+
+.calendar-month {
+    width: 10%;
+    min-width: 260px;
+    height: 230px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    display: inline-block;
+    background: #333;
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+    vertical-align: top;
+}
+
+.calendar-month h1 {
+    background: dodgerblue;
+    font-size: 16pt;
+    margin-top: 0px;
+}
+
+.calendar-day, .calendar-day-header, .calendar-day-weekend, .calendar-day-vacation, .calendar-day-sick, .calendar-day-weekend-vacation , .calendar-day-holiday-vacation{
+    display: inline-block;
+    width: 11%;
+    height: 20px;
+    /* background: rgb(16, 102, 16); */
+    margin-right: 3px;
+    margin-top: 3px;
+    border-radius: 4px;
+    transition: 0.5s;
+    cursor: pointer;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+
+
+.tooltip-text {
+    width: 100px;
+    height: 20px;
+    line-height: 18px;
+    font-size: 12px;
+    visibility: hidden;
+    margin-top: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: whitesmoke;
+    color: black;
+    text-align: center;
+    border-radius: 0px;
+    border: 1px solid black;
+    position: absolute;
+    z-index: 1;
+}
+
+.deleteButton:hover .tooltip-text {
+    visibility: visible;
+}
+
+/* .calendar-day,
+.calendar-day-header,
+.calendar-day-weekend,
+.calendar-day-vacation:hover .toolTip-content{
+    visibility: visible;
+    opacity: 1;
+    transition: .25s all ease;
+    transition-delay: 0s;
+} */
+
+.calendar-day:hover {
+    background: #19a719;
+}
+
+.calendar-day-header {
+    background: rgb(11, 100, 96);
+    margin-bottom: 10px;
+}
+
+.calendar-day-weekend {
+    /*background: #c54e46;
+    */
+    color: rgb(238, 90, 90);
+}
+
+.calendar-day-weekend:hover {
+    background: white;
+}
+
+.calendar-day-vacation, .calendar-day-sick, .calendar-day-weekend-vacation , .calendar-day-holiday-vacation{
+    background: #219b21;
+    line-height: 18px;
+    border: 1px solid lightgreen
+}
+
+.calendar-day-weekend-vacation{
+    background: #333;
+}
+
+.calendar-day-holiday-vacation{
+    color: rgb(238, 90, 90);
+    background: #333;
+}
+
+.calendar-day-sick {
+    background: rgb(172, 61, 187);
+    border: 1px solid rgb(190, 62, 163);
+}
+
+.reference-text {
+    text-decoration: none;
+    color: white;
+}
+
+.reference-text:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.table td {
+    vertical-align: top;
+}
+
+.toolTip {
+    height: 30px;
+    width: auto;
+    padding-left: 7px;
+    padding-right: 7px;
+    visibility: hidden;
+    background: dodgerblue;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+}
+
+#btn-add {
+    background: transparent;
+    border: 1px solid #99ced3;
+    color: white;
+    transition: 1s;
+}
+
+#btn-save-vacation {
+    background-image: urL("/HR/images/save.png");
+    background-size: 65%
+}
+
+#btn-add:hover {
+    background: #99ced3;
+    border: 1px solid #99ced3;
+    color: #222;
+}
+
+#btn-cancel {
+    background: transparent;
+    border: 1px solid #edb5bf;
+    color: white;
+    transition: 1s;
+}
+
+#btn-cancel:hover {
+    background: #edb5bf;
+    border: 1px solid #edb5bf;
+    color: #222;
+}
+
+.btn-del-vacation {
+    height: 100%;
+    width: 60px;
+    background: transparent;
+    background-image: url("/HR/images/delete.png");
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    box-shadow: 10px 10px 46px -10px rgba(0, 0, 0, 0.75);
+}
+
+.vacation-label:hover .vacation-number {
+    height: 0px;
+}
+
+.vacation-label:hover .vacation-bucket {
+    height: 150px;
+}
+
+.vacation-number, .vacation-bucket {
+    width: 60px;
+    height: 150px;
+    background: dodgerblue;
+    text-align: center;
+    line-height: 150px;
+    color: white;
+    font-size: 26pt;
+    overflow-y: hidden;
+    transition: 0.8s;
+}
+
+.vacation-bucket {
+    /*float: left;*/
+    height: 0px;
+    background-image: url("/HR/images/delete.png");
+    background: rgb(190, 75, 75);
+}
+
+.btn-del-vacation:hover {
+    background-color: rgb(240, 60, 60);
+}
+
+#vacations-scroll {
+    overflow: auto;
+    padding: .5rem;
+    height: 21rem;
+    min-height: 18vh;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    background: #ccc;
+    box-shadow: 10px 10px 46px -10px rgba(0, 0, 0, 0.75);
+    margin-bottom: 1em;
+}
+
+#vacations-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+#personal-main {
+    height: 85vh;
+    background: #5F6366;
+}
+
+#personal-details {
+    height: auto;
+    padding: 0;
+    background: #ccc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#personal-details-header {
+    margin-bottom: 20px;
+}
+
+.no-vacations-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px auto;
+    padding: 0 0 1em 0;
+    height: 100%;
+    min-height: 18vh;
+    font-size: 3.5em;
+    font-weight: 300;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    text-shadow: 1px 2px 7px rgba(0, 0, 0, 0.3);
+    /* background: black; */
+    /* background-color: #7e7e7e; */
+    /* color: transparent;
+    text-shadow: 1px 2px 3px white;
+    -webkit-background-clip: text;
+       -moz-background-clip: text;
+            background-clip: text; */
+}
+
+.pdf-header-main, .pdf-header, .pdf-header-preview {
+    color: white;
+    background: #23588C;
+    text-align: center;
+    line-height: 60px;
+    font-size: 16pt;
+    height: 60px;
+    /*margin-bottom: 15px*/
+}
+
+.pdf-header {
+    background: #23588C;
+    height: 40px;
+    line-height: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 0;
+}
+
+.pdf-parameter-card {
+    margin: 0px 15px 15px 15px;
+    vertical-align: top;  
+    background:seashell;
+    border-radius:10px;
+    padding-bottom: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pdf-parameter-card-employee {
+    padding: 10px;
+    background:whitesmoke;
+    height: 44vh;
+    overflow-y: scroll;  
+    padding-bottom: 10px; 
+    margin-top:0px;
+    margin-bottom: 0px; 
+}
+
+.pdf-selection-card {
+    height: 30px;
+    background: #4F78A0;
+    margin: 5px;
+    color: white;
+    border-radius: 5px;
+}
+
+.pdf-preview-container{
+    width:100%;
+    display:inline-block;
+    height:785px;
+    background: #777;
+    overflow-y: scroll;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pdf-header-preview{
+    vertical-align: top;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.pdf-preview {
+    display: block;
+    width:200mm;
+    background: white;
+    margin:20px 0;
+    padding:20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:12pt;
+}
+
+
+
+.pdf-checkbox {
+    display: inline-block;
+    width: 24px;
+    padding-left: 10px;
+}
+
+.pdf-value {
+    display: inline-block;
+    line-height: 30px
+}
+
+.pdf-button {
+    width: 100%;
+    margin: 0;
+    padding: 3px;
+}
+
+.pdf-print {
+    width: 100%;
+    margin: 15px 15px 0 0;
+}
+
+.print-employee {
+    border: 1px solid black;
+    width: 100%;
+}
+
+.print-id, .print-career, .print-personal, .print-pass, .print-children, .print-visit {
+    display: inline-block;
+   /* height: auto;*/
+    margin: 0;
+    vertical-align: top;
+    /*border:1px solid #333;*/
+    border-left: 1px solid black;
+}
+
+.print-id div, .print-career div, .print-personal div, .print-pass div, .print-children div, .print-visit div{
+    border-bottom: 1px solid #ccc;
+}
+
+
+.print-id {
+    border-right: 1px solid black;
+}
+
+.print-children {
+   /* border:1px solid black;*/
+   border-top:1px solid black;
+    margin-left: 0px;
+}
+
+.print-children .row {
+    margin: 0;
+}
+
+.print-children .row .col-md-4 {
+    margin: 0;
+    padding: 2px;
+}
+
+.print-visit {
+    border-right: 0px;
+    border-top: 1px solid black;
+    margin: 0px;
+}
+
+.print-visit .row {
+    margin: 0;
+}
+
+.print-visit .row .col-md-2, .print-visit .row .col-md-3 {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.row.pdf-print-data{
+    
+}
+
+.row.pdf-print-data .col-md-2, .row.pdf-print-data .col-md-3{
+    background:lightgreen;
+    padding:0;
+    border:1px solid darkgray;
+}
+
+/*-----Animated Background-----*/
+
+.login-body {
+    width: 100wh;
+    height: 100vh;
+    color: #fff;
+    background: linear-gradient(45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 300% 100%;
+    -webkit-animation: Gradient 20s ease infinite;
+    -moz-animation: Gradient 20s ease infinite;
+    animation: Gradient 20s ease infinite;
+}
+
+/* bootstrap datepicker custom */
+
+/* .datepicker table tr td.active.active{
+    background: dodgerblue;
+    color:white;
+} */
+
+.empty-body {
+    background-color: #ccc;
+}
+
+@-webkit-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
