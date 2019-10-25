@@ -7,8 +7,13 @@ include "application/models/SwissVisit.php";
 
 class Controller_Main extends Controller
 {
+
+    
+
     public function action_index()
+    
     {        
+        unset($_SESSION['employeeID']);
         ($_SESSION['employeePhotoSrc'] = null);      
             
         if (isset($_SESSION['loggedin'])) {
@@ -103,6 +108,7 @@ class Controller_Main extends Controller
             if ($queryChildren = $pdo->prepare($sqlChildren)) {
                 if ($queryChildren->execute()) {
                     while ($rowChild = $queryChildren->fetch()) {
+                         
                         $child = new Child;
                         $child->idParent = $rowChild['idEmployee'];
                         $child->ChildName = $rowChild['ChildName'];
@@ -132,9 +138,11 @@ class Controller_Main extends Controller
             }
            
             if ($query = $pdo->prepare($sql)) {
-
                 if ($query->execute()) {
                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                        /* echo("<pre>");
+                        print_r ($row);
+                        echo("</pre>"); */ 
                         $employee = new Employee;
                         $employee->Id = $row['id'];
                         $employee->Name = $row['Name'];

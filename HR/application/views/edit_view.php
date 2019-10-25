@@ -1,18 +1,22 @@
 <div class="create-body">
-      <form action="/HR/uploadPhoto" method="post" enctype="multipart/form-data">
+      <!-- <form action="/HR/update" method="post" enctype="multipart/form-data">
             <input class="input1" id="imageUpload" type="file" name="fileToUpload">
             <input type="hidden" name="id" value=<?php echo ($this->employeeId); ?>>
             <input class="input2" id="imageButton" type="submit" value="Upload Image" name="photo">
-      </form>
+      </form> -->
       <form action="/HR/uploadpassport" method="post" enctype="multipart/form-data">
             <input class="input1" id="passportUpload" type="file" name="passportToUpload">
             <input class="input2" id="passportButton" type="submit" value="Upload Passport" name="passport">
       </form>
-      <form action="/HR/update" method="post">
+      <form action="/HR/update" method="post" enctype="multipart/form-data">
+            <input class="input1" id="imageUpload" type="file" name="fileToUpload">
+            <input type="hidden" name="id" value=<?php echo ($this->employeeId); ?>>
+            <input class="input2" id="imageButton" type="submit" value="Upload Image" name="photo">
             <div class="row">
                   <div class="col-md-3">
                         <div id="personal-main" class="create-personal">
                               <div class="create-personal-header">Mitarbeiter</div>
+
 
                               <div class="personal-image">
                                     <?php if($this->employeeId!= '') {?>
@@ -60,7 +64,7 @@
                                     </datalist>
                               </div>
 
-                              <input type="submit" id="btn-add" class="personal-categories-btn" value="Speichern">
+                              <input type="submit" id="btn-add" name="SaveButton" class="personal-categories-btn" value="Speichern">
                               <a id="btn-cancel" class="personal-categories-btn" href="/HR/main">Abbrechen</a>
                         </div>
                   </div>
@@ -279,17 +283,17 @@
                                           <div class="create-personal-header">Kinder</div>
                                           <div>
                                                 <div class="bio-description">Kinder Name</div>
-                                                <input type="text" name="ChildName2" class="bio-value"
+                                                <input type="text" name="ChildName3" class="bio-value"
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->Children[2]->ChildName;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Kinder Vorame</div>
-                                                <input type="text" name="ChildLastName2" class="bio-value"
+                                                <input type="text" name="ChildLastName3" class="bio-value"
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->Children[2]->ChildLastName;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Geburtsdatum</div>
-                                                <input type="date" name="ChildBirthday2" class="bio-value"
+                                                <input type="date" name="ChildBirthday3" class="bio-value"
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->Children[2]->ChildBirthday;}else{echo '';} ?>>
                                           </div>
                                     </div>
@@ -340,6 +344,7 @@
                                           </div>
                                     </div>
                                     <?php endforeach?>
+                                    <?php endif; ?>
                                     <?php endif; ?>
                               </div>
                               <button id="btnAddVisit" type="button" class="btn btn-success">Neues Reisen</button>

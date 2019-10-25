@@ -91,7 +91,7 @@ class Controller_UploadPassport extends Controller
                 $this->view->user_photo = "image/user.png";
                 $this->view->upload_err = '';
             }
-           $this->view->generate('create_view.php', 'template_view.php');
+           $this->view->generate('edit_view.php', 'template_view.php');
         } 
     }
 }

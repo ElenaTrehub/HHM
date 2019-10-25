@@ -23,6 +23,7 @@ class Employee
     public $Pass_LastName;
     public $Pass_Number;
     public $Pass_Expired;
+    public $Pass_Photo;
 
     public $Children = array();
 

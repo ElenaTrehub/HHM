@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="btn-nav-panel">
-                              <a class="btn-nav-image" href="/HR/create">
+                              <a class="btn-nav-image" href="/HR/edit">
                                     <img src="/HR/images/add_employee.svg" alt="" />
                               </a>
                               <div class="btn-nav-text">Hinzufügen</div>

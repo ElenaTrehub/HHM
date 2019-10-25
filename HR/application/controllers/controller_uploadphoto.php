@@ -7,10 +7,6 @@ class Controller_UploadPhoto extends Controller
         $user_photo = "image/user.png";
         $target_dir = "employeePhoto/";
         $upload_err = "";
-        if (isset($_POST["id"])){
-            $idEmployee = $_POST["id"];
-            echo ($idEmployee);
-        }
 
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
@@ -57,6 +53,21 @@ class Controller_UploadPhoto extends Controller
             }
         }
 
+
+
+        if ($_POST["id"] != ''){
+            $idEmployee = $_POST["id"];
+            echo ($idEmployee);
+
+            $empPhoto = "UPDATE `Employee` SET Photo = $user_photo WHERE id = $idEmployee";
+            $empPhoto = $pdo->prepare($empPhoto);
+            $empPhoto->execute();
+        }
+        else{
+            
+        }
+        
+
         $_SESSION['employeePhotoSrc'] = "employeePhoto/" . ($_FILES["fileToUpload"]["name"]);
         
         if (isset($idEmployee)) {
@@ -79,7 +90,7 @@ class Controller_UploadPhoto extends Controller
                 $this->view->passport_upload_err = '';
                 $this->view->user_passport_name = '';
             }
-            $this->view->generate('create_view.php', 'template_view.php');
+            $this->view->generate('edit_view.php', 'template_view.php');
         }
     }
 }
