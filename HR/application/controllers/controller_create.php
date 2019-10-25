@@ -221,12 +221,12 @@ class Controller_Create extends Controller
         }
 
  
-        $this->view->user_photo = $user_photo;
-        $this->view->user_passport = $user_passport;
-        $this->view->user_passport_name = $user_passport_name;
+        //$this->view->user_photo = $user_photo;
+        //$this->view->user_passport = $user_passport;
+        //$this->view->user_passport_name = $user_passport_name;
         $this->view->upload_err = "";
         $this->view->passport_upload_err ="";
-        $this->view->generate('create_view.php', 'template_view.php');
+        $this->view->generate('edit_view.php', 'template_view.php');
         
     }
 }

@@ -1,10 +1,13 @@
 <div class="create-body">
       <form action="/HR/uploadPhoto" method="post" enctype="multipart/form-data">
             <input class="input1" id="imageUpload" type="file" name="fileToUpload">
-            <input type="hidden" name="id" value=<?php echo ($this->employee->Id); ?>>
+            <input type="hidden" name="id" value=<?php echo ($this->employeeId); ?>>
             <input class="input2" id="imageButton" type="submit" value="Upload Image" name="photo">
       </form>
-
+      <form action="/HR/uploadpassport" method="post" enctype="multipart/form-data">
+            <input class="input1" id="passportUpload" type="file" name="passportToUpload">
+            <input class="input2" id="passportButton" type="submit" value="Upload Passport" name="passport">
+      </form>
       <form action="/HR/update" method="post">
             <div class="row">
                   <div class="col-md-3">
@@ -12,14 +15,21 @@
                               <div class="create-personal-header">Mitarbeiter</div>
 
                               <div class="personal-image">
-                                    <img src=<?php echo $this->employee->Photo; ?>
+                                    <?php if($this->employeeId!= '') {?>
+                                          <img src=<?php echo $this->employee->Photo; ?>
                                           onerror="this.onerror=null;this.src='images/user.png';">
+                                    <?php }
+                                    else{
+                                     ?>
+                                          <img src='images/user.png'>
+                                    <?php }
+                                     ?>
                                     <label id="fileNameLabel" class="input-label-text">Foto ausw?hlen</label>
                                     <div>
                                           <label for=""><?php echo $this->upload_err; ?></label>
                                     </div>
 
-                                    <input type="hidden" name="Photo" value=<?php echo $this->employee->Photo; ?>>
+                                    <input type="hidden" name="Photo" value=<?php if($this->employeeId!= ''){echo $this->employee->Photo;}else{echo '';} ?>>
 
                                     <div class="input-buttons">
                                           <label class="input-label-select" for="imageUpload">Durchsuche</label>
@@ -29,20 +39,20 @@
 
                               <div>
                                     <div class="bio-description">Name</div>
-                                    <input type="hidden" name="id" value=<?php echo ($this->employee->Id); ?>>
+                                    <input type="hidden" name="id" value=<?php echo ($this->employeeId); ?>>
                                     <input type="text" name="Name" class="bio-value"
-                                          value=<?php echo ($this->employee->Name); ?>>
+                                          value=<?php if($this->employeeId!= ''){echo $this->employee->Name;}else{echo '';} ?>>
                               </div>
 
                               <div>
                                     <div class="bio-description">Vorname</div>
                                     <input type="text" name="LastName" class="bio-value"
-                                          value=<?php echo ($this->employee->LastName); ?>>
+                                          value=<?php if($this->employeeId!= ''){echo $this->employee->LastName;}else{echo '';} ?>>
                               </div>
 
                               <div>
                                     <div class="bio-description">Arbeitsstatus</div>                                   
-                                    <input list="WorkStatus" type="text" name="Status" class="bio-value" value="<?php echo($this->employee->Status)?>">
+                                    <input list="WorkStatus" type="text" name="Status" class="bio-value" value="<?php if($this->employeeId!= ''){echo $this->employee->Status;}else{echo '';} ?>">
                                     <datalist id="WorkStatus">
                                           <option value="Arbeitet"></option>
                                           <option value="Ausgetreten"></option>
@@ -65,12 +75,12 @@
                                           <div>
                                                 <div class="bio-description">Geburtsdatum</div>
                                                 <input type="date" name="BirthDate" class="bio-value"
-                                                      value=<?php echo $this->employee->BirthDate; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->BirthDate;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Zivilstand</div>
                                                 <input list="CivilStand" name="CivilState" class="bio-value"
-                                                      value=<?php echo $this->employee->CivilState; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->CivilState;}else{echo '';} ?>>
                                                 <datalist id="CivilStand">
                                                       <option value="Ledig">
                                                       <option value="Verheiratet">
@@ -82,22 +92,22 @@
                                           <div>                                                
                                                 <div class="bio-description">Wohnadresse</div>
                                                 <input type="text" name="Address" class="bio-value"
-                                                      value="<?php print htmlentities($this->employee->Address) ?>">
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Address;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">PLZ</div>
                                                 <input type="text" name="PLZ" class="bio-value"
-                                                      value=<?php echo $this->employee->PLZ; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->PLZ;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Ort</div>
                                                 <input type="text" name="Place" class="bio-value"
-                                                      value="<?php echo $this->employee->Place; ?>">
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Place;}else{echo '';} ?>">
                                           </div>
                                           <div>
                                                 <div class="bio-description">Telefonnummer</div>
                                                 <input type="tel" name="Phone" class="bio-value"
-                                                      value=<?php echo $this->employee->Phone; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Phone;}else{echo '';} ?>>
                                           </div>
                                     </div>
 
@@ -106,24 +116,69 @@
                                           <div>
                                                 <div class="bio-description">Pass Name</div>
                                                 <input type="text" name="Pass_Name" class="bio-value"
-                                                      value=<?php echo $this->employee->Pass_Name; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Pass_Name;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Pass Vorname</div>
                                                 <input type="text" name="Pass_LastName" class="bio-value"
-                                                      value=<?php echo $this->employee->Pass_LastName; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Pass_LastName;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Pass Nummer</div>
                                                 <input type="text" name="Pass_Number" class="bio-value"
-                                                      value="<?php echo $this->employee->Pass_Number; ?>">
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Pass_Number;}else{echo '';} ?>">
                                           </div>
                                           <div>
                                                 <div class="bio-description">GÃ¼ltigkeit:</div>
                                                 <input type="date" name="Pass_Expired" class="bio-value"
-                                                      value="<?php echo $this->employee->Pass_Expired; ?>">
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Pass_Expired;}else{echo '';} ?>">
+                                          </div>
+
+                                          <div class="personal-image">
+                                                <?php if($this->employeeId!='') {
+                                                      if($this->employee->Pass_Photo!=''){?>
+                                                            <img src="images/passport.jpg"
+                                                            onerror="this.onerror=null;this.src='images/user.png';">
+                                                      <?php }
+                                                      else{
+                                                      ?>
+                                                      <img src="images/default-passport.jpg">
+                                                      <?php }
+                                                      ?>
+                                                <?php }
+                                                else{
+                                                ?>
+                                                      <img src="images/default-passport.jpg">
+                                                <?php }
+                                                ?>
+                                                <?php if($this->employeeId!='') {
+                                                      if($this->employee->Pass_Photo!=''){?>
+                                                            <a href="<?php echo $this->employee->Pass_Photo; ?>" target="_blank">Dokument öffnen</a>
+                                                      <?php } ?>
+                                                <?php } ?>
+                                                <label id="passportNameLabel" class="input-label-text">Foto auswählen</label>
+                                                <div>
+                                                      <label for=""><?php echo $this->passport_upload_err; ?></label>
+                                                </div>
+
+                                                <input type="hidden" name="Pass_Photo" value=<?php if($this->employeeId!='') {
+                                                      if($this->employee->Pass_Photo!=''){
+                                                            echo $this->employee->Pass_Photo;
+                                                      }
+                                                }
+                                                ?>>
+                                                <div class="input-buttons">
+                                                      <label class="input-label-select" for="passportUpload">Durchsuche</label>
+                                                      <label  class="input-label-upload" for="passportButton">Hochladen</label>
+                                                </div>
                                           </div>
                                     </div>
+
+
+
+
+
+
 
                                     <div class="create-personal-short">
                                           <div class="create-personal-header">Karriere</div>
@@ -132,22 +187,22 @@
 
                                                 <div class="bio-description">Eintrittsdatum</div>
                                                 <input type="date" name="CareerStart" class="bio-value"
-                                                      value=<?php echo $this->employee->StartDate; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->StartDate;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Kommentar</div>
                                                 <input type="text" name="Comment" class="bio-value"
-                                                      value="<?php echo $this->employee->Comment; ?>">
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Comment;}else{echo '';} ?>">
                                           </div>
                                           <div>
                                                 <div class="bio-description">Position</div>
                                                 <input type="text" name="Position" class="bio-value"
-                                                      value="<?php echo $this->employee->Position; ?>">
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Position;}else{echo '';} ?>">
                                           </div>
                                           <div>
                                                 <div class="bio-description">Lohn</div>
                                                 <input type="text" name="Salary" class="bio-value"
-                                                      value="<?php echo $this->employee->Salary; ?>">
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Salary;}else{echo '';} ?>">
                                           </div>
                                     </div>
 
@@ -160,12 +215,12 @@
                                           <div>
                                                 <div class="bio-description">G17 E-Mail</div>
                                                 <input type="mail" name="G17_email" class="bio-value"
-                                                      value="<?php echo $this->employee->G17_email; ?>">
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->G17_email;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">G17 KÃ¼rzel</div>
                                                 <input type="text" name="G17_initials" class="bio-value"
-                                                      value=<?php echo $this->employee->G17_initials; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->G17_initials;}else{echo '';} ?>>
                                           </div>
                                     </div>
 
@@ -174,12 +229,12 @@
                                           <div>
                                                 <div class="bio-description">HHM E-Mail</div>
                                                 <input type="text" name="HHM_email" class="bio-value"
-                                                      value=<?php echo $this->employee->HHM_email; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->HHM_email;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">HHM KÃ¼rzel</div>
                                                 <input type="text" name="HHM_initials" class="bio-value"
-                                                      value=<?php echo $this->employee->HHM_initials; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->HHM_initials;}else{echo '';} ?>>
                                           </div>
                                     </div>
 
@@ -188,17 +243,17 @@
                                           <div>
                                                 <div class="bio-description">Kinder Name</div>
                                                 <input type="text" name="ChildName1" class="bio-value"
-                                                      value=<?php echo $this->employee->Children[0]->ChildName; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Children[0]->ChildName;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Kinder Vorname</div>
                                                 <input type="text" name="ChildLastName1" class="bio-value"
-                                                      value=<?php echo $this->employee->Children[0]->ChildLastName; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Children[0]->ChildLastName;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Geburtsdatum</div>
                                                 <input type="date" name="ChildBirthday1" class="bio-value"
-                                                      value=<?php echo $this->employee->Children[0]->ChildBirthday; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Children[0]->ChildBirthday;}else{echo '';} ?>>
                                           </div>
 
                                     </div>
@@ -207,35 +262,35 @@
                                           <div>
                                                 <div class="bio-description">Kinder Name</div>
                                                 <input type="text" name="ChildName2" class="bio-value"
-                                                      value=<?php echo $this->employee->Children[1]->ChildName; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Children[1]->ChildName;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Kinder Vorame</div>
                                                 <input type="text" name="ChildLastName2" class="bio-value"
-                                                      value=<?php echo $this->employee->Children[1]->ChildLastName; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Children[1]->ChildLastName;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Geburtsdatum</div>
                                                 <input type="date" name="ChildBirthday2" class="bio-value"
-                                                      value=<?php echo $this->employee->Children[1]->ChildBirthday; ?>>
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Children[1]->ChildBirthday;}else{echo '';} ?>>
                                           </div>
                                     </div>
                                     <div class="create-personal">
                                           <div class="create-personal-header">Kinder</div>
                                           <div>
                                                 <div class="bio-description">Kinder Name</div>
-                                                <input type="text" name="ChildName3" class="bio-value"
-                                                      value=<?php echo $this->employee->Children[2]->ChildName; ?>>
+                                                <input type="text" name="ChildName2" class="bio-value"
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Children[2]->ChildName;}else{echo '';} ?>>
                                           </div>
                                           <div>
-                                                <div class="bio-description">Kinder Vorname</div>
-                                                <input type="text" name="ChildLastName3" class="bio-value"
-                                                      value=<?php echo $this->employee->Children[2]->ChildLastName; ?>>
+                                                <div class="bio-description">Kinder Vorame</div>
+                                                <input type="text" name="ChildLastName2" class="bio-value"
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Children[2]->ChildLastName;}else{echo '';} ?>>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Geburtsdatum</div>
-                                                <input type="date" name="ChildBirthday3" class="bio-value"
-                                                      value=<?php echo $this->employee->Children[2]->ChildBirthday; ?>>
+                                                <input type="date" name="ChildBirthday2" class="bio-value"
+                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Children[2]->ChildBirthday;}else{echo '';} ?>>
                                           </div>
                                     </div>
                               </div>
@@ -243,6 +298,7 @@
                               <div class="col-md-4">
                               <div id="visitPlaceholder"> 
                                     <?php $visitCounter = 0?>
+                                    <?php if ($this->employeeId!= '') : ?>
                                     <?php if (isset($this->employee->SwissVisit[0])) : ?>
                                     <?php foreach($this->employee->SwissVisit as $visit):?>
                                     <?php $visitCounter++?>

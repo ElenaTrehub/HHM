@@ -15,9 +15,12 @@ class Controller_Edit extends Controller
         if (isset($_POST['idEmployee'])){
             $id = $_POST['idEmployee'];                    
         }
-        else{
+        else if (isset($_SESSION['employeePhoto'])){
             $id = $_SESSION['employeePhoto'];  
             $userPhoto = isset($_SESSION['employeePhotoSrc']) ? $_SESSION['employeePhotoSrc'] : "HR/images/user.png";    
+        }
+        else{
+            $id = 0;
         }
 
         $childArray = array();
@@ -125,7 +128,7 @@ class Controller_Edit extends Controller
                 }
             }
         }
-
+        $this->view->employeeId = $id;
         $this->view->upload_err = "";              
         //$this->view->user_photo = ""  ;     
         $this->view->generate('edit_view.php', 'template_view.php');
