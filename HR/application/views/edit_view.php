@@ -4,15 +4,18 @@
             <input type="hidden" name="id" value=<?php echo ($this->employeeId); ?>>
             <input class="input2" id="imageButton" type="submit" value="Upload Image" name="photo">
       </form> -->
-      <form action="/HR/uploadpassport" method="post" enctype="multipart/form-data">
+     <!--  <form action="/HR/uploadpassport" method="post" enctype="multipart/form-data">
             <input class="input1" id="passportUpload" type="file" name="passportToUpload">
             <input class="input2" id="passportButton" type="submit" value="Upload Passport" name="passport">
-      </form>
+      </form> -->
       <form action="/HR/update" method="post" enctype="multipart/form-data">
 
             <input class="input1" id="imageUpload" type="file" name="fileToUpload">
             <input type="hidden" name="id" value=<?php echo ($this->employeeId); ?>>
             <input class="input2" id="imageButton" type="submit" value="Upload Image" name="photo">
+
+            <input class="input1" id="passportUpload" type="file" name="passportToUpload">
+            <input class="input2" id="passportButton" type="submit" value="Upload Passport" name="passport">
 
             <div class="row">
                   <div class="col-md-3">
@@ -151,7 +154,7 @@
                                                 <?php if($this->employeeId!='') {
                                                       if($this->employee->Pass_Photo!=''){?>
                                                             <img src="images/passport.jpg"
-                                                            onerror="this.onerror=null;this.src='images/user.png';">
+                                                            onerror="this.onerror=null;this.src='images/default-passport.jpg';">
                                                       <?php }
                                                       else{
                                                       ?>

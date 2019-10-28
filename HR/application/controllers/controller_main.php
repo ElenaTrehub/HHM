@@ -169,6 +169,7 @@ class Controller_Main extends Controller
                         $employee->Pass_LastName = $row['PassLastName'];
                         $employee->Pass_Number = $row['Number'];
                         $employee->Pass_Expired = $row['Valid'];
+                        $employee->Pass_Photo = $row['PhotoPassport'];
 
                         foreach ($childArray as $child) {
                             if ($row['id'] == $child->idParent && $child->ChildName != "") {

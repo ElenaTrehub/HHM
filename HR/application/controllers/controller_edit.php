@@ -44,7 +44,7 @@ class Controller_Edit extends Controller
                 }
             }
     
-            $sqlVisit = "SELECT * FROM SwissVisit where SwissVisit.idEmployee = :id";
+            $sqlVisit = "SELECT * FROM SwissVisit where SwissVisit.idEmployee = :id ORDER BY StartDate";
             if ($queryVisit = $pdo->prepare($sqlVisit)){
                 $queryVisit->bindParam(":id", $id, PDO::PARAM_STR);
     

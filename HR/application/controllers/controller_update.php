@@ -64,13 +64,74 @@ class Controller_Update extends Controller
 
 
             $Photo = $user_photo;
-        }
+        }//Photo
         
+
+
+        if (isset($_POST["passport"])){
+
+            $user_passport = "images/default-passport.jpg";
+        
+            $target_dir = "documentPhoto/passport/";
+            $upload_err = "";
+    
+            $target_file = $target_dir.basename($_FILES["passportToUpload"]["name"]);
+    
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    
+            // Check if image file is a actual image or fake image
+            if (isset($_POST["passport"]) && strlen($_FILES["passportToUpload"]["name"]) > 0) {
+                $check = filesize($_FILES["passportToUpload"]["tmp_name"]);
+                
+                if ($check !== false) {
+                    //echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    $upload_err = "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+    
+            // Check if file already exists
+             if (file_exists($target_file)) {
+                $user_passport = "documentPhoto/passport/" . ($_FILES["passportToUpload"]["name"]);
+                $upload_err = "Document already exists.";
+                $uploadOk = 0;
+            }
+    
+            // Allow certain file formats
+            if ($imageFileType != "pdf") {
+                $upload_err = "Sorry, only PDF files are allowed.";
+                $uploadOk = 0;
+            }
+            
+            if ($uploadOk == 0) {
+                //$upload_err = "Photo already exists.";
+                // if everything is ok, try to upload file
+                $upload_err = "Sorry, there was an error uploading your file.";
+                $user_passport = "images/default-passport.jpg";
+            } else {
+                if (move_uploaded_file($_FILES["passportToUpload"]["tmp_name"], $target_file)) {
+                    //header("location: /create");
+                    
+                    $user_passport = "documentPhoto/passport/" . ($_FILES["passportToUpload"]["name"]);
+                } else {
+                    $upload_err = "Sorry, there was an error uploading your file.";
+                    $user_passport = "images/default-passport.jpg";
+                }
+            }
+            $Pass_Photo = $user_passport;
+
+        }//Passport
+
+
+
 
         /* echo ("<pre>");
         var_dump($_POST);
-        echo ("<pre>");
- */
+        echo ("<pre>"); */
+ 
         if (isset($_POST['Name'])) {
             $Name = $_POST['Name'];
             $LastName = $_POST["LastName"];
@@ -92,7 +153,13 @@ class Controller_Update extends Controller
             $Pass_LastName = $_POST["Pass_LastName"];
             $Pass_Number = $_POST["Pass_Number"];
             $Pass_Expired = $_POST["Pass_Expired"];
-            $Pass_Photo = $_POST["Pass_Photo"];
+
+            if ($_POST["Pass_Photo"] !='' && isset($_POST["passport"]) == false) {
+
+                $Pass_Photo = $_POST["Pass_Photo"];
+            }
+
+            
 
             $CareerStart = $_POST["CareerStart"];
             $Position = $_POST["Position"];
@@ -339,7 +406,7 @@ class Controller_Update extends Controller
             UPDATE `hhmeweme_hrDev`.`Employee` SET `Name`= :Name, `LastName` = :LastName, `Photo`=:Photo WHERE `id` =:id;
             UPDATE `hhmeweme_hrDev`.`PersonalData` SET `BirthDate`= :BirthDate, `CivilState`=:CivilState , `Address`=:Address , `PLZ`= :PLZ, `Place` = :Place, `Phone`= :Phone WHERE `idEmployee` =:id ;
             UPDATE `hhmeweme_hrDev`.`Career` SET `Position`=:Position, `Comment`=:Comment, `CareerStart` = :CareerStart, `Salary` = :Salary, `Status`=:Status WHERE `idEmployee` =:id;
-            UPDATE `hhmeweme_hrDev`.`ForeignPassport` SET `PassName`=:Pass_Name, `PassLastName` = :Pass_LastName, `Number`=:Pass_Number, `Valid`=:Pass_Expired WHERE `idEmployee`=:id;
+            UPDATE `hhmeweme_hrDev`.`ForeignPassport` SET `PassName`=:Pass_Name, `PassLastName` = :Pass_LastName, `Number`=:Pass_Number, `Valid`=:Pass_Expired, `PhotoPassport`=:Pass_Photo WHERE `idEmployee`=:id;
             UPDATE `hhmeweme_hrDev`.`G17` SET `G17_E-Mail`=:G17_email, `G17_initials`=:G17_initials WHERE `idEmployee`=:id;
             UPDATE `hhmeweme_hrDev`.`HHM` SET `HHM_E-Mail`=:HHM_email,  `HHM_initials`=:HHM_initials WHERE `idEmployee`=:id;
             UPDATE `hhmeweme_hrDev`.`Children` SET `ChildName`=:ChildName1, `ChildLastName`=:ChildLastName1, `Birth`=:ChildBirthday1 WHERE `idEmployee`=:id and `idChildren`=:idChild1;
@@ -375,6 +442,7 @@ class Controller_Update extends Controller
             $query->bindParam(":Pass_LastName", $Pass_LastName, PDO::PARAM_STR);
             $query->bindParam(":Pass_Number", $Pass_Number, PDO::PARAM_STR);
             $query->bindParam(":Pass_Expired", $Pass_Expired, PDO::PARAM_STR);
+            $query->bindParam(":Pass_Photo", $Pass_Photo, PDO::PARAM_STR);
 
             $query->bindParam(":G17_email", $G17_email, PDO::PARAM_STR);
             $query->bindParam(":G17_initials", $G17_initials, PDO::PARAM_STR);

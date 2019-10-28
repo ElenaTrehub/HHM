@@ -178,6 +178,13 @@
                         <?php print htmlentities(date("d-m-Y", strtotime($employee->Pass_Expired))); ?>
                   </div>
             </div>
+            <?php if($employee->Pass_Photo!=''){?>
+                  <div class="row">
+                        <a class="row-passport" href="<?php echo $employee->Pass_Photo; ?>" target="_blank"><img style="width: 70px;  margin: 20px" src="images/maine-passport.png"></a>
+                  </div>
+            <?php } ?>
+
+
       </div>
 
       <div class="col-md main-personal-data">
@@ -227,7 +234,7 @@
                         <th>Gruppe</th>
                   </thead>
                   <tbody>
-                        <?php foreach ($employee->SwissVisit as $visit) : { ?>
+                        <?php $vis = array_reverse($employee->SwissVisit); foreach ($vis as $visit) : { ?>
                         <tr>
                               <td>
                                     <div style="white-space: nowrap">
