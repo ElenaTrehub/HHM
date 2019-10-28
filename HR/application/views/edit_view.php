@@ -9,9 +9,11 @@
             <input class="input2" id="passportButton" type="submit" value="Upload Passport" name="passport">
       </form>
       <form action="/HR/update" method="post" enctype="multipart/form-data">
+
             <input class="input1" id="imageUpload" type="file" name="fileToUpload">
             <input type="hidden" name="id" value=<?php echo ($this->employeeId); ?>>
             <input class="input2" id="imageButton" type="submit" value="Upload Image" name="photo">
+
             <div class="row">
                   <div class="col-md-3">
                         <div id="personal-main" class="create-personal">
@@ -19,15 +21,22 @@
 
 
                               <div class="personal-image">
-                                    <?php if($this->employeeId!= '') {?>
-                                          <img src=<?php echo $this->employee->Photo; ?>
-                                          onerror="this.onerror=null;this.src='images/user.png';">
+                                    <?php if($this->employeeId!='') {
+                                          if($this->employee->Photo!=''){?>
+                                                <img src=<?php echo $this->employee->Photo; ?>
+                                                onerror="this.onerror=null;this.src='images/user.png';">
+                                          <?php }
+                                          else{
+                                          ?>
+                                          <img src='images/user.png'>
+                                          <?php }
+                                          ?>
                                     <?php }
                                     else{
-                                     ?>
+                                    ?>
                                           <img src='images/user.png'>
                                     <?php }
-                                     ?>
+                                    ?>
                                     <label id="fileNameLabel" class="input-label-text">Foto ausw?hlen</label>
                                     <div>
                                           <label for=""><?php echo $this->upload_err; ?></label>

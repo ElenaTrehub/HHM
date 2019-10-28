@@ -11,7 +11,7 @@ class Controller_Edit extends Controller
         require_once "config.php";
         //echo($_SESSION['employeePhotoSrc']);
 
-        $userPhoto = "HR/images/user.png";
+        //$userPhoto = "HR/images/user.png";
         if (isset($_POST['idEmployee'])){
             $id = $_POST['idEmployee'];                    
         }
@@ -82,8 +82,9 @@ class Controller_Edit extends Controller
                         $employee->Id = $row['id'];
                         $employee->Name = $row['Name'];
                         $employee->LastName = $row['LastName'];
-                        $employee->Photo = isset($_SESSION['employeePhotoSrc']) ? $_SESSION['employeePhotoSrc'] : $row['Photo'];
-    
+                        //$employee->Photo = isset($_SESSION['employeePhotoSrc']) ? $_SESSION['employeePhotoSrc'] : $row['Photo'];
+                        $employee->Photo = $row['Photo'];
+
                         //-----Personal Data
                         $employee->BirthDate = $row['BirthDate'];
                         $employee->CivilState = $row['CivilState'];

@@ -67,13 +67,15 @@ class Controller_Update extends Controller
         }
         
 
-
-
+        /* echo ("<pre>");
+        var_dump($_POST);
+        echo ("<pre>");
+ */
         if (isset($_POST['Name'])) {
             $Name = $_POST['Name'];
             $LastName = $_POST["LastName"];
             
-            if ($_POST["Photo"] !='') {
+            if ($_POST["Photo"] !='' && isset($_POST["photo"]) == false) {
 
                 $Photo = $_POST["Photo"];
             }
@@ -257,14 +259,13 @@ class Controller_Update extends Controller
         else{
             if(isset($_POST['id'])){
                 $id = $_POST['id'];
+                $_SESSION['employeeID'] = $id;
             }
             else{
                 $id = $_SESSION['employeeID'];
             }
 
-            echo ("<pre>");
-            print_r($_POST);
-            echo ("<pre>");
+            
 
            $childArray = array();
 
