@@ -28,8 +28,18 @@
 
 <body>
       <div id="header-main" class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                   <a id="title" href="/HR/main">HHM Mitarbeiter</a>
+            </div>
+            <div class="col-md-2">
+                  <select class="form-control filter" onchange="window.location.href=this.options[this.selectedIndex].value" id="exampleFormControlSelect1">
+                        <option>Mitarbeiter sortieren</option>
+                        <option value="/HR/main/all">Alle Mitarbeiter</option>
+                        <option value="/HR/main/work">Arbeitet</option>
+                        <option value="/HR/main/retired">Ausgetreten</option>
+                        <option value="/HR/main/maternity">Mutterschaftsurlaub</option>
+                  </select>
+                  
             </div>
             <div class="col-md-4">
                   <input class="searchbar" type="search" placeholder="Suche">
@@ -51,15 +61,23 @@
       <div class="row" style="width: 100%">
             <div>
                   <div id="nav-panel">
-
-                        <div class="btn-nav-panel">
-                              <a class="btn-nav-image" href="/HR/main">
-                                    <img src="/HR/images/all_employee.svg" alt="">
-                              </a>
-                              <div class="btn-nav-text">Alle Mitarbeiter</div>
-                        </div>
-
-                        <div class="btn-nav-panel">
+                        <form action="/HR/main/city" method="post">
+                              <div class="btn-nav-panel">
+                                    <a class="btn-nav-image" href="/HR/main">
+                                          <img src="/HR/images/all_employee.svg" alt="">
+                                    </a>
+                                    <div class="btn-nav-text"><ul>
+                                          <?php if (isset($this->cities[0])){
+                                                foreach($this->cities as $city){
+                                                      print '<li><button type="submit" name="cityID" value=' . $city->idCity . '>' . $city->titleCity . '</button></li>';
+                                                }
+                                          } ?>
+                                          <!-- <li><a>Kiev</a></li>
+                                          <li><a>Dnjepr</a></li> -->
+                                    </ul></div>
+                              </div>
+                        </form>
+                        <!-- <div class="btn-nav-panel">
                               <a class="btn-nav-image" href="/HR/main/work">
                                     <img src="/HR/images/Work.svg" alt="">
                               </a>
@@ -78,7 +96,7 @@
                                     <img src="/HR/images/Maternity.svg" alt="">
                               </a>
                               <div class="btn-nav-text">Mutterschaftsurlaub</div>
-                        </div>
+                        </div> -->
 
                         <div class="btn-nav-panel">
                               <a class="btn-nav-image" href="/HR/sicklist">

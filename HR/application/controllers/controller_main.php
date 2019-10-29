@@ -3,20 +3,23 @@ session_start();
 
 include "application/models/Employee.php";
 include "application/models/Child.php";
+include "application/models/City.php";
 include "application/models/SwissVisit.php";
 
 class Controller_Main extends Controller
 {
-
+    
     
 
     public function action_index()
     
     {        
+        
         unset($_SESSION['employeeID']);
         ($_SESSION['employeePhotoSrc'] = null);      
             
         if (isset($_SESSION['loggedin'])) {
+            $_SESSION['cityID'] = null;
 
             $sql = "SELECT * FROM Employee             
             LEFT JOIN PersonalData      ON Employee.id = PersonalData.idEmployee
@@ -25,7 +28,10 @@ class Controller_Main extends Controller
             LEFT JOIN G17               ON Employee.id = G17.idEmployee
             LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
 
-            $this->view->list = $this->getData($sql);
+            $res = $this->getData($sql);
+            
+            $this->view->list = $res->emp;
+            $this->view->cities = $res->cities;
             $this->view->generate('main_view.php', 'template_view.php');
         } else {
             header('Location: /HR/login');
@@ -38,15 +44,32 @@ class Controller_Main extends Controller
             
         if (isset($_SESSION['loggedin'])) {
 
-            $sql = "SELECT * FROM Employee             
-            LEFT JOIN PersonalData      ON Employee.id = PersonalData.idEmployee
-            JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Arbeitet'
-            LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
-            LEFT JOIN G17               ON Employee.id = G17.idEmployee
-            LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            if($_SESSION['cityID']!=null){
+
+                $id = $_SESSION['cityID'];
+
+                $sql = "SELECT * FROM Employee             
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Arbeitet'
+                LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
+                LEFT JOIN G17               ON Employee.id = G17.idEmployee
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            }
+            else{
+                $sql = "SELECT * FROM Employee             
+                LEFT JOIN PersonalData      ON Employee.id = PersonalData.idEmployee
+                JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Arbeitet'
+                LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
+                LEFT JOIN G17               ON Employee.id = G17.idEmployee
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            }
+            
 
 
-            $this->view->list = $this->getData($sql);
+            $res = $this->getData($sql);
+            
+            $this->view->list = $res->emp;
+            $this->view->cities = $res->cities;
             $this->view->generate('main_view.php', 'template_view.php');
         } else {
             header('Location: /HR/login');
@@ -59,15 +82,31 @@ class Controller_Main extends Controller
             
         if (isset($_SESSION['loggedin'])) {
 
-            $sql = "SELECT * FROM Employee             
-            LEFT JOIN PersonalData      ON Employee.id = PersonalData.idEmployee
-            JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Ausgetreten'
-            LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
-            LEFT JOIN G17               ON Employee.id = G17.idEmployee
-            LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            if($_SESSION['cityID']!=null){
+
+                $id = $_SESSION['cityID'];
 
 
-            $this->view->list = $this->getData($sql);
+                $sql = "SELECT * FROM Employee             
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Ausgetreten'
+                LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
+                LEFT JOIN G17               ON Employee.id = G17.idEmployee
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            }
+            else{
+                $sql = "SELECT * FROM Employee             
+                LEFT JOIN PersonalData      ON Employee.id = PersonalData.idEmployee
+                JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Ausgetreten'
+                LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
+                LEFT JOIN G17               ON Employee.id = G17.idEmployee
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            }
+
+            $res = $this->getData($sql);
+                        
+            $this->view->list = $res->emp;
+            $this->view->cities = $res->cities;
             $this->view->generate('main_view.php', 'template_view.php');
         } else {
             header('Location: /HR/login');
@@ -80,14 +119,31 @@ class Controller_Main extends Controller
             
         if (isset($_SESSION['loggedin'])) {
 
-            $sql = "SELECT * FROM Employee             
-            LEFT JOIN PersonalData      ON Employee.id = PersonalData.idEmployee
-            JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Mutterschlafsurlaub'
-            LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
-            LEFT JOIN G17               ON Employee.id = G17.idEmployee
-            LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
 
-            $this->view->list = $this->getData($sql);
+            if($_SESSION['cityID']!=null){
+
+                $id = $_SESSION['cityID'];
+
+                $sql = "SELECT * FROM Employee             
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Mutterschlafsurlaub'
+                LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
+                LEFT JOIN G17               ON Employee.id = G17.idEmployee
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            }
+            else{
+                $sql = "SELECT * FROM Employee             
+                LEFT JOIN PersonalData      ON Employee.id = PersonalData.idEmployee
+                JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Mutterschlafsurlaub'
+                LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
+                LEFT JOIN G17               ON Employee.id = G17.idEmployee
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            }
+
+            $res = $this->getData($sql);
+                        
+            $this->view->list = $res->emp;
+            $this->view->cities = $res->cities;
             $this->view->generate('main_view.php', 'template_view.php');
         } else {
             header('Location: /HR/login');
@@ -95,6 +151,76 @@ class Controller_Main extends Controller
 
     }
 
+    public function action_all()
+    {
+        ($_SESSION['employeePhotoSrc'] = null);      
+            
+        if (isset($_SESSION['loggedin'])) {
+
+
+            if($_SESSION['cityID']!=null){
+
+                $id = $_SESSION['cityID'];
+
+                $sql = "SELECT * FROM Employee             
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                LEFT JOIN Career            ON Employee.id = Career.idEmployee
+                LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
+                LEFT JOIN G17               ON Employee.id = G17.idEmployee
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            }
+            else{
+                $sql = "SELECT * FROM Employee             
+                LEFT JOIN PersonalData      ON Employee.id = PersonalData.idEmployee
+                JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Mutterschlafsurlaub'
+                LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
+                LEFT JOIN G17               ON Employee.id = G17.idEmployee
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            }
+
+            $res = $this->getData($sql);
+                        
+            $this->view->list = $res->emp;
+            $this->view->cities = $res->cities;
+            $this->view->generate('main_view.php', 'template_view.php');
+        } else {
+            header('Location: /HR/login');
+        }
+
+    }
+    public function action_city()
+    {
+        ($_SESSION['employeePhotoSrc'] = null);      
+        
+        if (isset($_SESSION['loggedin'])) {
+           /* echo ("<pre>");
+        var_dump($_POST);
+        echo ("<pre>");  */
+            if(isset($_POST['cityID'])){
+
+                $id = $_POST['cityID'];
+                $_SESSION['cityID'] = $id;
+
+                $sql = "SELECT * FROM Employee             
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                LEFT JOIN Career                 ON Employee.id = Career.idEmployee
+                LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
+                LEFT JOIN G17               ON Employee.id = G17.idEmployee
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+    
+                $res = $this->getData($sql);
+                            
+                $this->view->list = $res->emp;
+                $this->view->cities = $res->cities;
+                $this->view->generate('main_view.php', 'template_view.php');
+            }
+
+            
+        } else {
+            header('Location: /HR/login');
+        }
+
+    }
     private function getData($sql){
         ($_SESSION['employeePhotoSrc'] = null);
         require_once "config.php";
@@ -136,7 +262,22 @@ class Controller_Main extends Controller
                     }
                 }
             }
-           
+            $cites = array();
+
+            $sqlCity = "SELECT * FROM Cites";
+            if($queryCites = $pdo->prepare($sqlCity)){
+                if ($queryCites->execute()) {
+                    while ($rowCity = $queryCites->fetch()) {
+                        $city = new City;
+                        $city->idCity = $rowCity['cityID'];
+                        $city->titleCity = $rowCity['cityTitle'];
+    
+                        $cites[] = $city;
+                    }
+                }
+    
+            }
+
             if ($query = $pdo->prepare($sql)) {
                 if ($query->execute()) {
                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
@@ -154,7 +295,18 @@ class Controller_Main extends Controller
                         $employee->CivilState = $row['CivilState'];
                         $employee->Address = $row['Address'];
                         $employee->PLZ = $row['PLZ'];
-                        $employee->Place = $row['Place'];
+                        $PlaceID = $row['Place'];
+
+                        foreach($cites as $city){
+                            if($city->idCity == $PlaceID){
+                                $employee->Place = $city->titleCity;
+                                break;
+                            }
+                            else{
+                                $employee->Place = "";
+                            }
+                        }
+
                         $employee->Phone = $row['Phone'];
 
                         //-----Career
@@ -197,7 +349,10 @@ class Controller_Main extends Controller
             //echo('<pre>');print_r($empArray);echo('<pre>');
 
         }
-        return $empArray;
+        $obj = new stdClass();
+        $obj->emp = $empArray;
+        $obj->cities = $cites;
+        return $obj;
     }
 
    

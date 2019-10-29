@@ -7,7 +7,7 @@ class Route
         $action_name = 'index';
 
         $routes = explode('/', $_SERVER['REQUEST_URI']);
-
+        
         if (!empty($routes[2])) {
             //echo ("<br>First level: ");
             //echo ($routes[2]);

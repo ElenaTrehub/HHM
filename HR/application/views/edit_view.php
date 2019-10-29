@@ -18,7 +18,7 @@
             <input class="input2" id="passportButton" type="submit" value="Upload Passport" name="passport">
 
             <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-3" style="top: 0">
                         <div id="personal-main" class="create-personal">
                               <div class="create-personal-header">Mitarbeiter</div>
 
@@ -40,7 +40,7 @@
                                           <img src='images/user.png'>
                                     <?php }
                                     ?>
-                                    <label id="fileNameLabel" class="input-label-text">Foto ausw?hlen</label>
+                                    <label id="fileNameLabel" class="input-label-text">Foto auswählen</label>
                                     <div>
                                           <label for=""><?php echo $this->upload_err; ?></label>
                                     </div>
@@ -84,16 +84,16 @@
                   <div id="personal-details" class="col-md-9">
                         <div id="personal-details-header" class="create-personal-header">Details</div>
                         <div class="row">
-                              <div class="col-md-4">
+                              <div class="col-md-6">
                                     <div class="create-personal">
                                           <div class="create-personal-header">Personal</div>
 
-                                          <div>
+                                          <div class="create-personal-content">
                                                 <div class="bio-description">Geburtsdatum</div>
                                                 <input type="date" name="BirthDate" class="bio-value"
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->BirthDate;}else{echo '';} ?>>
                                           </div>
-                                          <div>
+                                          <div> 
                                                 <div class="bio-description">Zivilstand</div>
                                                 <input list="CivilStand" name="CivilState" class="bio-value"
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->CivilState;}else{echo '';} ?>>
@@ -117,8 +117,23 @@
                                           </div>
                                           <div>
                                                 <div class="bio-description">Ort</div>
-                                                <input type="text" name="Place" class="bio-value"
-                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Place;}else{echo '';} ?>">
+                                                <input list="Cities" name="Place" class="bio-value"
+                                                      value="<?php if($this->employeeId!= ''){
+                                                            foreach($this->cities as $city){
+                                                                  if($city->idCity == $this->employee->Place){
+                                                                        echo $city->titleCity;
+                                                                  }
+                                                            }
+                                                            
+                                                      }else{echo '';} 
+                                                      ?>">
+                                                      <datalist id="Cities">
+                                                            <?php if (isset($this->cities[0])){
+                                                                  foreach($this->cities as $city){
+                                                                        print '<option data-value=' . $city->idCity . '>' . $city->titleCity . '</option>';
+                                                                  }
+                                                            } ?>
+                                                      </datalist>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Telefonnummer</div>
@@ -126,76 +141,6 @@
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->Phone;}else{echo '';} ?>>
                                           </div>
                                     </div>
-
-                                    <div class="create-personal">
-                                          <div class="create-personal-header">Reisepass</div>
-                                          <div>
-                                                <div class="bio-description">Pass Name</div>
-                                                <input type="text" name="Pass_Name" class="bio-value"
-                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Pass_Name;}else{echo '';} ?>>
-                                          </div>
-                                          <div>
-                                                <div class="bio-description">Pass Vorname</div>
-                                                <input type="text" name="Pass_LastName" class="bio-value"
-                                                      value=<?php if($this->employeeId!= ''){echo $this->employee->Pass_LastName;}else{echo '';} ?>>
-                                          </div>
-                                          <div>
-                                                <div class="bio-description">Pass Nummer</div>
-                                                <input type="text" name="Pass_Number" class="bio-value"
-                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Pass_Number;}else{echo '';} ?>">
-                                          </div>
-                                          <div>
-                                                <div class="bio-description">Gültigkeit:</div>
-                                                <input type="date" name="Pass_Expired" class="bio-value"
-                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Pass_Expired;}else{echo '';} ?>">
-                                          </div>
-
-                                          <div class="personal-image">
-                                                <?php if($this->employeeId!='') {
-                                                      if($this->employee->Pass_Photo!=''){?>
-                                                            <img src="images/passport.jpg"
-                                                            onerror="this.onerror=null;this.src='images/default-passport.jpg';">
-                                                      <?php }
-                                                      else{
-                                                      ?>
-                                                      <img src="images/default-passport.jpg">
-                                                      <?php }
-                                                      ?>
-                                                <?php }
-                                                else{
-                                                ?>
-                                                      <img src="images/default-passport.jpg">
-                                                <?php }
-                                                ?>
-                                                <?php if($this->employeeId!='') {
-                                                      if($this->employee->Pass_Photo!=''){?>
-                                                            <a href="<?php echo $this->employee->Pass_Photo; ?>" target="_blank">Dokument �ffnen</a>
-                                                      <?php } ?>
-                                                <?php } ?>
-                                                <label id="passportNameLabel" class="input-label-text">Foto ausw�hlen</label>
-                                                <div>
-                                                      <label for=""><?php echo $this->passport_upload_err; ?></label>
-                                                </div>
-
-                                                <input type="hidden" name="Pass_Photo" value=<?php if($this->employeeId!='') {
-                                                      if($this->employee->Pass_Photo!=''){
-                                                            echo $this->employee->Pass_Photo;
-                                                      }
-                                                }
-                                                ?>>
-                                                <div class="input-buttons">
-                                                      <label class="input-label-select" for="passportUpload">Durchsuche</label>
-                                                      <label  class="input-label-upload" for="passportButton">Hochladen</label>
-                                                </div>
-                                          </div>
-                                    </div>
-
-
-
-
-
-
-
                                     <div class="create-personal-short">
                                           <div class="create-personal-header">Karriere</div>
                                           <div>
@@ -222,11 +167,87 @@
                                           </div>
                                     </div>
 
+                                    
+
+                                    
+                                    
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-6">
+
+                                    <div class="create-personal">
+                                                <div class="create-personal-header">Reisepass</div>
+                                                <div>
+                                                      <div class="bio-description">Pass Name</div>
+                                                      <input type="text" name="Pass_Name" class="bio-value"
+                                                            value=<?php if($this->employeeId!= ''){echo $this->employee->Pass_Name;}else{echo '';} ?>>
+                                                </div>
+                                                <div>
+                                                      <div class="bio-description">Pass Vorname</div>
+                                                      <input type="text" name="Pass_LastName" class="bio-value"
+                                                            value=<?php if($this->employeeId!= ''){echo $this->employee->Pass_LastName;}else{echo '';} ?>>
+                                                </div>
+                                                <div>
+                                                      <div class="bio-description">Pass Nummer</div>
+                                                      <input type="text" name="Pass_Number" class="bio-value"
+                                                            value="<?php if($this->employeeId!= ''){echo $this->employee->Pass_Number;}else{echo '';} ?>">
+                                                </div>
+                                                <div>
+                                                      <div class="bio-description">Gültigkeit:</div>
+                                                      <input type="date" name="Pass_Expired" class="bio-value"
+                                                            value="<?php if($this->employeeId!= ''){echo $this->employee->Pass_Expired;}else{echo '';} ?>">
+                                                </div>
+
+                                                <div class="passport-image">
+                                                      <?php if($this->employeeId!='') {
+                                                            if($this->employee->Pass_Photo!=''){?>
+                                                                  <img src="images/passport.jpg"
+                                                                  onerror="this.onerror=null;this.src='images/default-passport.jpg';">
+                                                            <?php }
+                                                            else{
+                                                            ?>
+                                                            <img src="images/default-passport.jpg">
+                                                            <?php }
+                                                            ?>
+                                                      <?php }
+                                                      else{
+                                                      ?>
+                                                            <img src="images/default-passport.jpg">
+                                                      <?php }
+                                                      ?>
+                                                      <?php if($this->employeeId!='') {
+                                                            if($this->employee->Pass_Photo!=''){?>
+                                                            <div>
+                                                                  <a href="<?php echo $this->employee->Pass_Photo; ?>" target="_blank">Dokument öffnen</a>
+                                                            </div>
+                                                            <?php } ?>
+                                                      <?php } ?>
+                                                      <label id="passportNameLabel" class="input-label-text">Foto auswählen</label>
+                                                      <div>
+                                                            <label for=""><?php echo $this->passport_upload_err; ?></label>
+                                                      </div>
+
+                                                      <input type="hidden" name="Pass_Photo" value=<?php if($this->employeeId!='') {
+                                                            if($this->employee->Pass_Photo!=''){
+                                                                  echo $this->employee->Pass_Photo;
+                                                            }
+                                                      }
+                                                      ?>>
+                                                      <div class="input-buttons">
+                                                            <label class="input-label-select2" for="passportUpload">Durchsuche</label>
+                                                            <label  class="input-label-upload2" for="passportButton">Hochladen</label>
+                                                      </div>
+                                                </div>
+                                    </div>
+                                    
+                              </div>
+                        </div>
 
 
-                                    <div class="create-personal-short">
+
+                        <div class="row">
+                              <div class="col-md-6">
+
+                              <div class="create-personal-short">
                                           <div class="create-personal-header">G17</div>
                                           <div>
                                                 <div class="bio-description">G17 E-Mail</div>
@@ -239,8 +260,9 @@
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->G17_initials;}else{echo '';} ?>>
                                           </div>
                                     </div>
-
-                                    <div class="create-personal-short">
+                              </div>
+                              <div class="col-md-6">
+                              <div class="create-personal-short">
                                           <div class="create-personal-header">HHM</div>
                                           <div>
                                                 <div class="bio-description">HHM E-Mail</div>
@@ -253,6 +275,11 @@
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->HHM_initials;}else{echo '';} ?>>
                                           </div>
                                     </div>
+                              </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                              <div class="col-md-6">
 
                                     <div class="create-personal">
                                           <div class="create-personal-header">Kinder</div>
@@ -311,7 +338,7 @@
                                     </div>
                               </div>
 
-                              <div class="col-md-4">
+                              <div class="col-md-6">
                               <div id="visitPlaceholder"> 
                                     <?php $visitCounter = 0?>
                                     <?php if ($this->employeeId!= '') : ?>
@@ -321,7 +348,7 @@
                                     <div class="create-personal-short">
                                           <div class="create-personal-header"><div style="margin-bottom:15px; display:inline-block">
                                           Schweiz-Aufenthalte</div>
-                                          <button id="btnVisitRemove" class="btn btn-danger" type="button" onclick="DeleteVisit(this)" style="height:30px; line-height:10px; vertical-align:middle;  margin-left:80px; display:inline-block">Entfernen</button>
+                                          <button id="btnVisitRemove" class="btn btn-danger" type="button" onclick="DeleteVisit(this)" style="height:30px; line-height:10px; margin-top:5px; margin-right:15px; display:inline-block; float:right">Entfernen</button>
                                           </div>
                                           <div>
                                                 <div class="bio-description">Reisebeginn</div>
@@ -370,7 +397,7 @@
 
 <div id="visitTemplate" class="create-personal-short" style="visibility:hidden">
       <div class="create-personal-header">Schweiz-Aufenthalte
-            <button id="btnVisitRemove" class="btn btn-danger" type="button" onclick="DeleteVisit(this)" style="height:30px; line-height:10px; margin-left:80px; display:inline-block">Entfernen</button>
+            <button id="btnVisitRemove" class="btn btn-danger" type="button" onclick="DeleteVisit(this)" style="height:30px; line-height:10px; margin-top:5px; margin-right:15px; display:inline-block; float:right">Entfernen</button>
       </div>
       <div>
             <div class="bio-description">Reisebeginn</div>
@@ -398,5 +425,4 @@
       </div>
 </div>
 
-<script src="js/employeeCreate.js">
-</script>
+<script src="js/employeeCreate.js"></script>

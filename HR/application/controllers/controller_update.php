@@ -1,5 +1,6 @@
 <?php
 include "application/models/Child.php";
+include "application/models/City.php";
 include "application/models/SwissVisit.php";
 
 class Controller_Update extends Controller
@@ -109,8 +110,7 @@ class Controller_Update extends Controller
             if ($uploadOk == 0) {
                 //$upload_err = "Photo already exists.";
                 // if everything is ok, try to upload file
-                $upload_err = "Sorry, there was an error uploading your file.";
-                $user_passport = "images/default-passport.jpg";
+                
             } else {
                 if (move_uploaded_file($_FILES["passportToUpload"]["tmp_name"], $target_file)) {
                     //header("location: /create");
@@ -126,12 +126,30 @@ class Controller_Update extends Controller
         }//Passport
 
 
+        $cites = array();
 
+        $sqlCity = "SELECT * FROM Cites";
+        if($queryCites = $pdo->prepare($sqlCity)){
+            if ($queryCites->execute()) {
+                while ($rowCity = $queryCites->fetch()) {
+                    $city = new City;
+                    $city->idCity = $rowCity['cityID'];
+                    $city->titleCity = $rowCity['cityTitle'];
 
-        /* echo ("<pre>");
+                    $cites[] = $city;
+                }
+            }
+
+        }
+
+       /* echo ("<pre>");
         var_dump($_POST);
         echo ("<pre>"); */
- 
+
+
+
+            
+
         if (isset($_POST['Name'])) {
             $Name = $_POST['Name'];
             $LastName = $_POST["LastName"];
@@ -146,7 +164,36 @@ class Controller_Update extends Controller
             $CivilState = $_POST["CivilState"];
             $Address = $_POST["Address"];
             $PLZ = $_POST["PLZ"];
-            $Place = $_POST["Place"];
+
+            $PlaceEmploee = $_POST["Place"];
+
+
+            $Place = "";
+            if($PlaceEmploee!=""){
+                foreach($cites as $city){
+                    
+                    if($city->titleCity == $PlaceEmploee){
+                        $Place = $city->idCity;
+                        break;
+                    }
+                    else{
+                        $Place = "";
+                    }
+                }
+            }
+            else{
+                $Place = "";
+            }
+     /* echo ("<pre>");
+            var_dump($_POST);
+            var_dump($cites);
+            var_dump($Place);
+            var_dump($_POST);
+            echo ("<pre>"); 
+ */
+
+
+            
             $Phone = $_POST["Phone"];
 
             $Pass_Name = $_POST["Pass_Name"];

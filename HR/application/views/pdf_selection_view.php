@@ -122,7 +122,11 @@
                                                       src=<?php print htmlentities($employee->Photo); ?>>
                                           </div>
 
-                                          <?php print htmlentities($counter++ . ". " . $employee->Name . " " . $employee->LastName) ?>
+                                          <?php print htmlentities($counter++ . ". " . $employee->Name . " " . $employee->LastName) ?><br><hr>
+                                          <?php print htmlentities("G17 E-Mail:" . " " . $employee->G17_email) ?><br>
+                                          <?php print htmlentities("G17 Kürzel:" . " " . $employee->G17_initials) ?><br><hr>
+                                          <?php print htmlentities("HHM E-Mail:" . " " . $employee->HHM_email) ?><br>
+                                          <?php print htmlentities("HHM Kürzel:" . " " . $employee->HHM_initials) ?>
                                     </div>
                                     <div style="text-align:center">
                                           <?php print htmlentities($employee->Position) ?>

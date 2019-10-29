@@ -1,6 +1,7 @@
 <?php
 include "application/models/Employee.php";
 include "application/models/Child.php";
+include "application/models/City.php";
 include "application/models/SwissVisit.php";
 
 class Controller_Edit extends Controller
@@ -22,6 +23,22 @@ class Controller_Edit extends Controller
         else{
             $id = '';
         }
+        $cites = array();
+
+        $sqlCity = "SELECT * FROM Cites";
+        if($queryCites = $pdo->prepare($sqlCity)){
+            if ($queryCites->execute()) {
+                while ($rowCity = $queryCites->fetch()) {
+                    $city = new City;
+                    $city->idCity = $rowCity['cityID'];
+                    $city->titleCity = $rowCity['cityTitle'];
+
+                    $cites[] = $city;
+                }
+            }
+
+        }
+
         if($id != ''){
             $childArray = array();
             $visitArray = array();
@@ -131,7 +148,7 @@ class Controller_Edit extends Controller
                 }
             }
         }
-        
+        $this->view->cities = $cites;
         $this->view->employeeId = $id;
         $this->view->upload_err = "";   
         $this->view->passport_upload_err = "";           

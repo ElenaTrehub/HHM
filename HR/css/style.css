@@ -1,4 +1,4 @@
-﻿html {
+html {
     font-family: Helvetica, sans-serif;
 }
 
@@ -18,7 +18,7 @@
     margin-bottom: 10px;
 }
 .btn-nav-text{
-    pointer-events:none
+    
 }
 
 .btn-nav-panel:first {
@@ -37,9 +37,30 @@
 .btn-nav-image img {
     width: 50px;
 }
-
-
-
+.btn-nav-text ul{
+    margin-left: 20px;
+}
+.btn-nav-text ul li{
+    list-style: none;
+    cursor: pointer;
+    margin-left: -80px;
+    background-color: #222;
+    text-align: left;
+}
+.btn-nav-text ul li button{
+    background-color: #222;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+.btn-nav-text ul li:hover {
+    background-color: #333;
+    cursor: pointer;
+}
+.btn-nav-text ul li:hover button{
+    background-color: #333;
+    cursor: pointer;
+}
 .btn-nav-panel:hover {
     color: white;
     width: 240px;
@@ -51,6 +72,8 @@
     background-color: #333;
 }
 
+
+}
 .table-striped td {
     padding: 4px;
 }
@@ -231,7 +254,9 @@
     width: 50px;
     height: 50px;
 }
-
+.filter{
+    margin-top: 15px;
+}
 .searchbar {
     width: 420px;
     background: white;
@@ -477,15 +502,31 @@
 .input-label-select:hover, .input-label-upload:hover {
     background: dodgerblue;
 }
+.input-label-select2, .input-label-upload2 {
+    background: #666;
+    color: white;
+    width: 100px;
+    height: 40px;
+    border: 1px solid dodgerblue;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+    display: table-cell;
+}
 
-.input-label-select {
+.input-label-select2:hover, .input-label-upload2:hover {
+    background: dodgerblue;
+}
+.input-label-select, .input-label-select2 {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     line-height: 38px;
     /*float: left;*/
 }
 
-.input-label-upload {
+.input-label-upload, .input-label-upload2 {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
@@ -573,6 +614,26 @@
     border-radius: 100%;
 }
 
+
+.passport-image {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.passport-image img {
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+}
+
+.passport-image img {
+    height: 173px;
+    border-radius: 100%;
+}
+
 .personal-name {
     display: inline-block;
     margin-bottom: 10px;
@@ -580,6 +641,7 @@
 
 .personal-details {
     display: inline-block;
+    
 }
 
 .personal-lastname {
@@ -700,7 +762,7 @@ input.bio-value {
     background: #ddd;
     padding-right: 40px;
     padding-top: 15px;
-    height: 110vh;
+
 }
 
 .create-personal, .create-personal-short {
@@ -1019,9 +1081,12 @@ input.bio-value {
     height: auto;
     padding: 0;
     background: #ccc;
+    margin-top: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
+#personal-details .row{
+    padding-right: 20px;
+}
 #personal-details-header {
     margin-bottom: 20px;
 }
