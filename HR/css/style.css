@@ -255,7 +255,9 @@ html {
     height: 50px;
 }
 .filter{
-    margin-top: 15px;
+    margin-top: 20px;
+    height: 31px;
+    padding: 0;
 }
 .searchbar {
     width: 420px;

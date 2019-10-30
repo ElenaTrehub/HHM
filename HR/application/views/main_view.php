@@ -180,7 +180,7 @@
             </div>
             <?php if($employee->Pass_Photo!=''){?>
                   <div class="row">
-                        <a class="row-passport" href="/HR/<?php echo($employee->Pass_Photo); ?>" target="_blank"><img style="width: 70px;  margin: 20px" src="http://localhost:3000/HR/images/maine-passport.png"></a>
+                        <a class="row-passport" href="/HR/<?php echo($employee->Pass_Photo); ?>" target="_blank"><img style="width: 70px;  margin: 20px" src="/HR/images/maine-passport.png"></a>
                   </div>
             <?php } ?>
 
