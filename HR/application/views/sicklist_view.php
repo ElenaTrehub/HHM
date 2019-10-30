@@ -6,7 +6,7 @@
                   <th>Zusammen</th>
                   <th>Januar</th>
                   <th>Februar</th>
-                  <th>MÃƒÂ¤rz</th>
+                  <th>März</th>
                   <th>April</th>
                   <th>Mai</th>
                   <th>Juni</th>
