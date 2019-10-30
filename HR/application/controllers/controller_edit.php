@@ -25,12 +25,12 @@ class Controller_Edit extends Controller
         }
         $cites = array();
 
-        $sqlCity = "SELECT * FROM Cites";
+        $sqlCity = "SELECT * FROM Cities";
         if($queryCites = $pdo->prepare($sqlCity)){
             if ($queryCites->execute()) {
                 while ($rowCity = $queryCites->fetch()) {
                     $city = new City;
-                    $city->idCity = $rowCity['cityID'];
+                    $city->idCity = $rowCity['idCity'];
                     $city->titleCity = $rowCity['cityTitle'];
 
                     $cites[] = $city;
@@ -85,10 +85,10 @@ class Controller_Edit extends Controller
                 LEFT JOIN PersonalData ON Employee.id = PersonalData.idEmployee
                 LEFT JOIN Career ON Employee.id = Career.idEmployee
                 LEFT JOIN ForeignPassport ON Employee.id = ForeignPassport.idEmployee
-    
                 LEFT JOIN G17 ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM ON Employee.id = HHM.idEmployee
                 LEFT JOIN SwissVisit ON Employee.id = SwissVisit.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
                 WHERE Employee.id = :id";
     
             if ($query = $pdo->prepare($sql)) {
@@ -107,7 +107,9 @@ class Controller_Edit extends Controller
                         $employee->CivilState = $row['CivilState'];
                         $employee->Address = $row['Address'];
                         $employee->PLZ = $row['PLZ'];
-                        $employee->Place = $row['Place'];
+
+                        $employee->Place = $row['cityTitle'];
+                        //$employee->Place = $row['Place'];
                         $employee->Phone = $row['Phone'];
     
                         //-----Career                    
