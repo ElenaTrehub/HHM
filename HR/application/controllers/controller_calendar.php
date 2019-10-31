@@ -103,7 +103,7 @@ class Controller_Calendar extends Controller
 
     public function getYear($year, $employee)
     {
-        $Month   = array("Januar", "Februar", "MÃƒÂ¤rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
+        $Month   = array("Januar", "Februar", "MÃƒÆ’Ã‚Â¤rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember");
         $WeekDay = array("MO", "DI", "MI", "DO", "FR", "SA", "SO");
 
         $caledarYear  = array();

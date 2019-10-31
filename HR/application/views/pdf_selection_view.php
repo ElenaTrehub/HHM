@@ -118,8 +118,9 @@
                                     <div style="text-align:center">
                                           <div>
                                                 <img class="employee-photo"
-                                                      style=" margin-top:15px; margin-left:auto; margin-right:auto; display: block"
-                                                      src=<?php print htmlentities($employee->Photo); ?>>
+                                                      style=" margin-top:15px; margin-left:auto; margin-right:auto; display: block" src=<?php echo $employee->Photo; ?>>           
+                              
+       
                                           </div>
 
                                           <?php print htmlentities($counter++ . ". " . $employee->Name . " " . $employee->LastName) ?><br><hr>

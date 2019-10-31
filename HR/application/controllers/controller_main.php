@@ -26,7 +26,8 @@ class Controller_Main extends Controller
             LEFT JOIN Career            ON Employee.id = Career.idEmployee
             LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
             LEFT JOIN G17               ON Employee.id = G17.idEmployee
-            LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+            LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+            LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
 
             $res = $this->getData($sql);
             
@@ -49,11 +50,12 @@ class Controller_Main extends Controller
                 $id = $_SESSION['cityID'];
 
                 $sql = "SELECT * FROM Employee             
-                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.idCity = $id
                 JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Arbeitet'
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
-                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
             }
             else{
                 $sql = "SELECT * FROM Employee             
@@ -61,7 +63,8 @@ class Controller_Main extends Controller
                 JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Arbeitet'
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
-                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
             }
             
 
@@ -88,11 +91,12 @@ class Controller_Main extends Controller
 
 
                 $sql = "SELECT * FROM Employee             
-                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.idCity = $id
                 JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Ausgetreten'
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
-                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
             }
             else{
                 $sql = "SELECT * FROM Employee             
@@ -100,7 +104,8 @@ class Controller_Main extends Controller
                 JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Ausgetreten'
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
-                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
             }
 
             $res = $this->getData($sql);
@@ -125,11 +130,12 @@ class Controller_Main extends Controller
                 $id = $_SESSION['cityID'];
 
                 $sql = "SELECT * FROM Employee             
-                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.idCity = $id
                 JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Mutterschlafsurlaub'
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
-                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
             }
             else{
                 $sql = "SELECT * FROM Employee             
@@ -137,7 +143,8 @@ class Controller_Main extends Controller
                 JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Mutterschlafsurlaub'
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
-                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
             }
 
             $res = $this->getData($sql);
@@ -163,11 +170,12 @@ class Controller_Main extends Controller
                 $id = $_SESSION['cityID'];
 
                 $sql = "SELECT * FROM Employee             
-                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.idCity = $id
                 LEFT JOIN Career            ON Employee.id = Career.idEmployee
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
-                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
             }
             else{
                 $sql = "SELECT * FROM Employee             
@@ -175,7 +183,8 @@ class Controller_Main extends Controller
                 JOIN Career            ON Employee.id = Career.idEmployee AND Career.Status='Mutterschlafsurlaub'
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
-                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
             }
 
             $res = $this->getData($sql);
@@ -202,11 +211,12 @@ class Controller_Main extends Controller
                 $_SESSION['cityID'] = $id;
 
                 $sql = "SELECT * FROM Employee             
-                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.Place = $id
+                JOIN PersonalData      ON Employee.id = PersonalData.idEmployee AND PersonalData.idCity = $id
                 LEFT JOIN Career                 ON Employee.id = Career.idEmployee
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
-                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee";
+                LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
     
                 $res = $this->getData($sql);
                             
@@ -264,12 +274,12 @@ class Controller_Main extends Controller
             }
             $cites = array();
 
-            $sqlCity = "SELECT * FROM Cites";
+            $sqlCity = "SELECT * FROM Cities";
             if($queryCites = $pdo->prepare($sqlCity)){
                 if ($queryCites->execute()) {
                     while ($rowCity = $queryCites->fetch()) {
                         $city = new City;
-                        $city->idCity = $rowCity['cityID'];
+                        $city->idCity = $rowCity['idCity'];
                         $city->titleCity = $rowCity['cityTitle'];
     
                         $cites[] = $city;
@@ -295,7 +305,8 @@ class Controller_Main extends Controller
                         $employee->CivilState = $row['CivilState'];
                         $employee->Address = $row['Address'];
                         $employee->PLZ = $row['PLZ'];
-                        $PlaceID = $row['Place'];
+                        $employee->Place = $row['cityTitle'];
+                        /* $PlaceID = $row['Place'];
 
                         foreach($cites as $city){
                             if($city->idCity == $PlaceID){
@@ -306,7 +317,7 @@ class Controller_Main extends Controller
                                 $employee->Place = "";
                             }
                         }
-
+ */
                         $employee->Phone = $row['Phone'];
 
                         //-----Career

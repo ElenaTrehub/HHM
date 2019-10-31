@@ -118,13 +118,8 @@
                                           <div>
                                                 <div class="bio-description">Ort</div>
                                                 <input list="Cities" name="Place" class="bio-value"
-                                                      value="<?php if($this->employeeId!= ''){
-                                                            foreach($this->cities as $city){
-                                                                  if($city->idCity == $this->employee->Place){
-                                                                        echo $city->titleCity;
-                                                                  }
-                                                            }
-                                                            
+                                                      value="<?php if($this->employeeId!= ''){      
+                                                            echo $this->employee->Place; 
                                                       }else{echo '';} 
                                                       ?>">
                                                       <datalist id="Cities">
