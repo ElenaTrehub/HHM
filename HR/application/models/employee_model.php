@@ -74,7 +74,7 @@ class Employee_Model extends Model{
                                     $employee->Id = $row['id'];
                                     $employee->Name = $row['Name'];
                                     $employee->LastName = $row['LastName'];
-                                    $employee->Photo = strlen($row['Photo']) == 0 ? "/images/user.png" : "/HR/" . $row['Photo'];
+                                    $employee->Photo = strlen($row['Photo']) == 0 ? "/HR/images/user.png" : "/HR/" . $row['Photo'];
                                     
                                     //-----Personal Data
                                     $employee->BirthDate = $row['BirthDate'];

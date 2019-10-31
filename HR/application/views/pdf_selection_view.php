@@ -117,15 +117,9 @@
                               <div style="width: 20%;  display:inline-block; height:auto">
                                     <div style="text-align:center">
                                           <div>
-                                          <?php if($employee->Photo!=''){?>
                                                 <img class="employee-photo"
                                                       style=" margin-top:15px; margin-left:auto; margin-right:auto; display: block" src=<?php echo $employee->Photo; ?>>           
-                                          <?php }
-                                          else{
-                                          ?>
-                                                <img class="employee-photo" style=" margin-top:15px; margin-left:auto; margin-right:auto; display: block" src="/HR/images/user.png" >
-                                          <?php }
-                                          ?>
+                              
        
                                           </div>
 
