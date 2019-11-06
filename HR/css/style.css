@@ -222,7 +222,18 @@ html {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 100;
 }
-
+.project-card{
+    color: white;
+    background: #4F78A0;
+    padding: 5px;
+    padding-left: 10px;
+    width: 500px;
+    white-space: nowrap;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 100;
+}
 .mail-card-HHM {
     color: white;
     background: #4F78A0;
@@ -251,6 +262,64 @@ html {
 }
 
 .deleteButton {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+.deleteProjectButton {
+    background: #da3931;
+    background-image: url("/HR/images/delete_project.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    color: transparent;
+    border: 1px solid #da3931;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    transition: 0.2s;
+}
+
+.deleteProjectButton:hover {
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+.deleteProjectButton {
+    width: 50px;
+    height: 50px;
+}
+
+.deleteClientButton {
+    background: #da3931;
+    background-image: url("/HR/images/delete_client.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    color: transparent;
+    border: 1px solid #da3931;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    transition: 0.2s;
+}
+
+.deleteClientButton:hover {
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+.deleteClientButton {
     width: 50px;
     height: 50px;
 }
@@ -394,7 +463,26 @@ html {
 .employee-name:hover {
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.35), 0 12px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.project-name {
+    color: white;
+    width: 500px;
+    height: 70px;
+    padding: 5px;
+    text-align: left;
+    background: #23588C;
+    display: inline-block;
+    border-radius: 10px;
+    border:0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*transition: box-shadow .2s ease, transform .5s ease, margin-top .2s ease;*/
+    cursor: pointer;
+    transition: all 1s ease-in;
 
+}
+
+.project-name:hover {
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.35), 0 12px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .employee-controls {
     width: auto;
 }
@@ -766,7 +854,17 @@ input.bio-value {
     padding-top: 15px;
 
 }
+.create-body2 {
+    background: #ddd;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 15px;
 
+}
+.button-container{
+    width: 30%;
+    margin-left: 35%;
+}
 .create-personal, .create-personal-short {
     width: 100%;
     min-width: 360px;

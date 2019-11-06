@@ -5,6 +5,7 @@ class Controller_Login extends Controller
 {
     public function action_index()
     {
+       
         require_once "config.php";
         $name = "";
         $password = "";

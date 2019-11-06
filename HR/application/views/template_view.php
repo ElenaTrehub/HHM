@@ -116,7 +116,7 @@
                               <a class="btn-nav-image" href="/HR/edit">
                                     <img src="/HR/images/add_employee.svg" alt="" />
                               </a>
-                              <div class="btn-nav-text">HinzufÃƒÂ¼gen</div>
+                              <div class="btn-nav-text">Hinzufügen</div>
                         </div>
 
                         <div class="btn-nav-panel" >
@@ -133,8 +133,30 @@
                               <div class="btn-nav-text">Lohn</div>
                               <!-- <input type="file" hidden id="salaryFile" , name="Salary">-->
                         </div>
-
-
+                        <div class="btn-nav-panel" >
+                              <a class="btn-nav-image" href="/HR/ProjectList">
+                                    <img src="/HR/images/projects.svg" style="width:42px;">
+                              </a>
+                              <div class="btn-nav-text">Projekts</div>
+                        </div>
+                        <div class="btn-nav-panel" >
+                              <a class="btn-nav-image" href="/HR/EditProject">
+                                    <img src="/HR/images/add_project.svg" style="width:42px;">
+                              </a>
+                              <div class="btn-nav-text">Hinzufügen projekt</div>
+                        </div>
+                        <div class="btn-nav-panel" >
+                              <a class="btn-nav-image" href="/HR/ClientList">
+                                    <img src="/HR/images/clients1.svg" style="width:42px;">
+                              </a>
+                              <div class="btn-nav-text">Kunden</div>
+                        </div>
+                        <div class="btn-nav-panel" >
+                              <a class="btn-nav-image" href="/HR/EditClient">
+                                    <img src="/HR/images/add_client.svg" style="width:42px;">
+                              </a>
+                              <div class="btn-nav-text">Kunden hinzufügen</div>
+                        </div>
                   </div>
             </div>
             <div id="content">

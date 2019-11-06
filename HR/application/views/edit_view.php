@@ -75,7 +75,21 @@
                                           <option value="Mutterschlafsurlaub"></option>
                                     </datalist>
                               </div>
-
+                              <div>
+                                    <div class="bio-description">Roles</div>
+                                          <input list="Roles" name="Role" class="bio-value"
+                                                value="<?php if($this->employeeId!= ''){      
+                                                      echo $this->employee->Role; 
+                                                }else{echo '';} 
+                                                ?>">
+                                                <datalist id="Roles">
+                                                      <?php if (isset($this->roles[0])){
+                                                            foreach($this->roles as $role){
+                                                                  print '<option data-value=' . $role->idRole . '>' . $role->RoleTitle . '</option>';
+                                                            }
+                                                      } ?>
+                                                </datalist>
+                                          </div>
                               <input type="submit" id="btn-add" name="SaveButton" class="personal-categories-btn" value="Speichern">
                               <a id="btn-cancel" class="personal-categories-btn" href="/HR/main">Abbrechen</a>
                         </div>

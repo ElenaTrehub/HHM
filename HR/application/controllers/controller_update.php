@@ -2,6 +2,7 @@
 include "application/models/Child.php";
 include "application/models/City.php";
 include "application/models/SwissVisit.php";
+include "application/models/model_role.php";
 
 class Controller_Update extends Controller
 {
@@ -9,6 +10,7 @@ class Controller_Update extends Controller
     {
         session_start();
         require_once "config.php";
+        $this->PDO = $pdo;
         
         $Photo = '';
       
@@ -127,26 +129,16 @@ class Controller_Update extends Controller
 
 
         $cites = array();
-
-        $sqlCity = "SELECT * FROM Cities";
-        if($queryCites = $pdo->prepare($sqlCity)){
-            if ($queryCites->execute()) {
-                while ($rowCity = $queryCites->fetch()) {
-                    $city = new City;
-                    $city->idCity = $rowCity['idCity'];
-                    $city->titleCity = $rowCity['cityTitle'];
-
-                    $cites[] = $city;
-                }
-            }
-
-        }
+        $city = new City_Model($this->PDO);
+        $cites = $city->GetAllCities();
 
        /* echo ("<pre>");
         var_dump($_POST);
         echo ("<pre>"); */
 
-
+        $roles = array();
+        $role = new Role_Model($this->PDO);
+        $roles = $role->GetAllRoles();
 
             
 
@@ -164,6 +156,25 @@ class Controller_Update extends Controller
             $CivilState = $_POST["CivilState"];
             $Address = $_POST["Address"];
             $PLZ = $_POST["PLZ"];
+
+            
+            $RoleEmployee = $_POST["Role"];
+            $Role = trim($RoleEmployee);
+            $idRole = 1;
+
+            if($Role!=""){
+                foreach($roles as $role){
+                    
+                    if($role->RoleTitle == $Role){
+                        $idRole = $role->idRole;
+                        break;
+                    }
+                    
+                }
+            }
+
+
+
 
             $PlaceEmploee = $_POST["Place"];
 
@@ -250,7 +261,7 @@ class Controller_Update extends Controller
         if($_POST['id'] == "" && isset($_SESSION['employeeID']) == false){
             $id = 0;
             $sql_GetLastId = "SELECT id FROM Employee ORDER BY id DESC LIMIT 1";
-            $querySelect = $pdo->prepare($sql_GetLastId);
+            $querySelect = $this->PDO->prepare($sql_GetLastId);
 
             if ($querySelect->execute()) {
                 $row = $querySelect->fetch();
@@ -262,7 +273,7 @@ class Controller_Update extends Controller
             
             
             try {
-                $pdo->beginTransaction();
+                $this->PDO->beginTransaction();
 
                 if(count($Visit)>0){
                     $VisitArray = array_chunk($Visit, 6);
@@ -285,14 +296,15 @@ class Controller_Update extends Controller
                  
                
                 
-                $sqlUser = $pdo->prepare("INSERT INTO `Employee` VALUES (:id, :Name, :LastName, :Photo)");
+                $sqlUser = $this->PDO->prepare("INSERT INTO `Employee` VALUES (:id, :Name, :LastName, :Photo, :idRole)");
                 $sqlUser->bindParam(":id", $id, PDO::PARAM_INT);
                 $sqlUser->bindParam(":Name", $Name, PDO::PARAM_STR);
                 $sqlUser->bindParam(":LastName", $LastName, PDO::PARAM_STR);
                 $sqlUser->bindParam(":Photo", $Photo, PDO::PARAM_STR);
+                $sqlUser->bindParam(":idRole", $idRole, PDO::PARAM_INT);
                 $sqlUser->execute();
                
-                $PersonalData = $pdo->prepare("INSERT INTO `PersonalData` VALUES( DEFAULT, :idEmployeePersonal , :BirthDate, :CivilState, :Address, :PLZ, :Phone, :idCity)");
+                $PersonalData = $this->PDO->prepare("INSERT INTO `PersonalData` VALUES( DEFAULT, :idEmployeePersonal , :BirthDate, :CivilState, :Address, :PLZ, :Phone, :idCity)");
                 $PersonalData->bindParam(":idEmployeePersonal", $id, PDO::PARAM_INT);
                 $PersonalData->bindParam(":BirthDate", $BirthDate, PDO::PARAM_STR);
                 $PersonalData->bindParam(":CivilState", $CivilState, PDO::PARAM_STR);
@@ -303,7 +315,7 @@ class Controller_Update extends Controller
                 $PersonalData->execute(); 
               
                
-                $Career = $pdo->prepare("INSERT INTO `Career` VALUES( DEFAULT, :idEmployee, :Position, :CareerStart, :Comment,  :Salary, :Status, 20)");
+                $Career = $this->PDO->prepare("INSERT INTO `Career` VALUES( DEFAULT, :idEmployee, :Position, :CareerStart, :Comment,  :Salary, :Status, 20)");
                 $Career->bindParam(":idEmployee", $id, PDO::PARAM_INT);
                 $Career->bindParam(":Comment", $Comment, PDO::PARAM_STR);
                 $Career->bindParam(":Position", $Position, PDO::PARAM_STR);
@@ -312,7 +324,7 @@ class Controller_Update extends Controller
                 $Career->bindParam(":Status", $Status, PDO::PARAM_STR);
                 $Career->execute();
                 
-                $ForeignPassport = $pdo->prepare("INSERT INTO `ForeignPassport` VALUES( DEFAULT  , :idPass, :Pass_Name, :Pass_LastName, :Pass_Number, :Pass_Expired, :Pass_Photo)");
+                $ForeignPassport = $this->PDO->prepare("INSERT INTO `ForeignPassport` VALUES( DEFAULT  , :idPass, :Pass_Name, :Pass_LastName, :Pass_Number, :Pass_Expired, :Pass_Photo)");
                 $ForeignPassport->bindParam(":idPass", $id, PDO::PARAM_INT);
                 $ForeignPassport->bindParam(":Pass_Name", $Pass_Name, PDO::PARAM_STR);
                 $ForeignPassport->bindParam(":Pass_LastName", $Pass_LastName, PDO::PARAM_STR);
@@ -322,47 +334,47 @@ class Controller_Update extends Controller
                 $ForeignPassport->execute();
 
 
-                $G17 = $pdo->prepare("INSERT INTO `G17` VALUES( DEFAULT, :G17_email, :G17_initials, :idG17)");
+                $G17 = $this->PDO->prepare("INSERT INTO `G17` VALUES( DEFAULT, :G17_email, :G17_initials, :idG17)");
                 $G17->bindParam(":idG17", $id, PDO::PARAM_INT);
                 $G17->bindParam(":G17_email", $G17_email, PDO::PARAM_STR);
                 $G17->bindParam(":G17_initials", $G17_initials, PDO::PARAM_STR);
                 $G17->execute();
 
-                $HHM = $pdo->prepare("INSERT INTO `HHM` VALUES( DEFAULT, :HHM_email, :HHM_initials, :idHHM)");
+                $HHM = $this->PDO->prepare("INSERT INTO `HHM` VALUES( DEFAULT, :HHM_email, :HHM_initials, :idHHM)");
                 $HHM->bindParam(":idHHM", $id, PDO::PARAM_INT);
                 $HHM->bindParam(":HHM_email", $HHM_email, PDO::PARAM_STR);
                 $HHM->bindParam(":HHM_initials", $HHM_initials, PDO::PARAM_STR);
                 $HHM->execute();
 
 
-                $Children = $pdo->prepare("INSERT INTO `Children` VALUES( DEFAULT, :idParent1, :ChildName1, :ChildLastName1, :ChildBirthday1)");
+                $Children = $this->PDO->prepare("INSERT INTO `Children` VALUES( DEFAULT, :idParent1, :ChildName1, :ChildLastName1, :ChildBirthday1)");
                 $Children->bindParam(":idParent1", $id, PDO::PARAM_INT);
                 $Children->bindParam(":ChildName1", $ChildName1, PDO::PARAM_STR);
                 $Children->bindParam(":ChildLastName1", $ChildLastName1, PDO::PARAM_STR);
                 $Children->bindParam(":ChildBirthday1", $ChildBirthday1, PDO::PARAM_STR);
                 $Children->execute();
 
-                $Children = $pdo->prepare("INSERT INTO `Children` VALUES( DEFAULT, :idParent2, :ChildName2, :ChildLastName2, :ChildBirthday2)");
+                $Children = $this->PDO->prepare("INSERT INTO `Children` VALUES( DEFAULT, :idParent2, :ChildName2, :ChildLastName2, :ChildBirthday2)");
                 $Children->bindParam(":idParent2", $id, PDO::PARAM_INT);
 			    $Children->bindParam(":ChildName2", $ChildName2, PDO::PARAM_STR);
                 $Children->bindParam(":ChildLastName2", $ChildLastName2, PDO::PARAM_STR);
                 $Children->bindParam(":ChildBirthday2", $ChildBirthday2, PDO::PARAM_STR);
                 $Children->execute();
 
-                $Children = $pdo->prepare("INSERT INTO `Children` VALUES( DEFAULT, :idParent3, :ChildName3, :ChildLastName3, :ChildBirthday3)");
+                $Children = $this->PDO->prepare("INSERT INTO `Children` VALUES( DEFAULT, :idParent3, :ChildName3, :ChildLastName3, :ChildBirthday3)");
                 $Children->bindParam(":idParent3", $id, PDO::PARAM_INT);
 			    $Children->bindParam(":ChildName3", $ChildName3, PDO::PARAM_STR);
                 $Children->bindParam(":ChildLastName3", $ChildLastName3, PDO::PARAM_STR);
                 $Children->bindParam(":ChildBirthday3", $ChildBirthday3, PDO::PARAM_STR);
                 $Children->execute(); 
 
-                $pdo->commit();
+                $this->PDO->commit();
                 //header('location: /HR/main');
                 
                 $_SESSION['employeeID'] = $id;
             } 
             catch (Exception $e) {
-                $pdo->rollback();
+                $this->PDO->rollback();
             } 
         }
         else{
@@ -379,7 +391,7 @@ class Controller_Update extends Controller
            $childArray = array();
 
             $sqlChildren = "SELECT * FROM Children WHERE Children.idEmployee = $id";
-            if ($queryChildren = $pdo->prepare($sqlChildren)) {
+            if ($queryChildren = $this->PDO->prepare($sqlChildren)) {
                 $queryChildren->bindParam(":id", $id, PDO::PARAM_INT);
 
                 if ($queryChildren->execute()) {
@@ -398,7 +410,7 @@ class Controller_Update extends Controller
             $visitArray = array();
 
             $sqlClearVisit = "DELETE FROM SwissVisit WHERE idEmployee = :id";
-            if ($queryClearVisit = $pdo->prepare($sqlClearVisit)) {
+            if ($queryClearVisit = $this->PDO->prepare($sqlClearVisit)) {
                 $queryClearVisit->bindParam(":id", $id, PDO::PARAM_INT);
                 $queryClearVisit->execute();
             }
@@ -411,7 +423,7 @@ class Controller_Update extends Controller
                 echo ("</pre>");
 
                 $sqlVisit = "INSERT INTO `hhmeweme_hrDev`.`SwissVisit` (`idEmployee`, `StartDate`, `EndDate`, `Location`, `Accommodation`, `Goal`, `Group`) VALUES (:idVisit, :StartDate, :EndDate, :LocationR, :Accommodation, :Goal, :Group);";
-                $queryVisit = $pdo->prepare($sqlVisit);
+                $queryVisit = $this->PDO->prepare($sqlVisit);
 
                 $queryVisit->bindParam(":idVisit", $id, PDO::PARAM_STR);
                 $queryVisit->bindParam(":StartDate",        $VisitArray[$i][0], PDO::PARAM_STR);
@@ -425,7 +437,7 @@ class Controller_Update extends Controller
             }                 
 
             $sqlVisit = "SELECT * FROM SwissVisit where SwissVisit.idEmployee = :id";
-            if ($queryVisit = $pdo->prepare($sqlVisit)) {
+            if ($queryVisit = $this->PDO->prepare($sqlVisit)) {
                 $queryVisit->bindParam(":id", $id, PDO::PARAM_STR);
                 
                 if ($queryVisit->execute()) {
@@ -445,7 +457,7 @@ class Controller_Update extends Controller
             }
 
             $sql = "START TRANSACTION;
-            UPDATE `hhmeweme_hrDev`.`Employee` SET `Name`= :Name, `LastName` = :LastName, `Photo`=:Photo WHERE `id` =:id;
+            UPDATE `hhmeweme_hrDev`.`Employee` SET `Name`= :Name, `LastName` = :LastName, `Photo`=:Photo, `idRole`=:idRole WHERE `id` =:id;
             UPDATE `hhmeweme_hrDev`.`PersonalData` SET `BirthDate`= :BirthDate, `CivilState`=:CivilState , `Address`=:Address , `PLZ`= :PLZ, `idCity` = :idCity, `Phone`= :Phone WHERE `idEmployee` =:id ;
             UPDATE `hhmeweme_hrDev`.`Career` SET `Position`=:Position, `Comment`=:Comment, `CareerStart` = :CareerStart, `Salary` = :Salary, `Status`=:Status WHERE `idEmployee` =:id;
             UPDATE `hhmeweme_hrDev`.`ForeignPassport` SET `PassName`=:Pass_Name, `PassLastName` = :Pass_LastName, `Number`=:Pass_Number, `Valid`=:Pass_Expired, `PhotoPassport`=:Pass_Photo WHERE `idEmployee`=:id;
@@ -457,14 +469,15 @@ class Controller_Update extends Controller
         
             COMMIT;";
 
-            $query = $pdo->prepare($sql);
+            $query = $this->PDO->prepare($sql);
 
 
-            echo("PDO PREPARE!!!!!");
+            //echo("PDO PREPARE!!!!!");
             $query->bindParam(":id", $id, PDO::PARAM_STR);
             $query->bindParam(":Name", $Name, PDO::PARAM_STR);
             $query->bindParam(":LastName", $LastName, PDO::PARAM_STR);
             $query->bindParam(":Photo", $Photo, PDO::PARAM_STR);
+            $query->bindParam(":idRole", $idRole, PDO::PARAM_STR);
 
             //$query->bindParam(":idEmployeePersonal", $id, PDO::PARAM_STR);
             $query->bindParam(":BirthDate", $BirthDate, PDO::PARAM_STR);

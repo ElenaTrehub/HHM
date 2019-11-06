@@ -2,9 +2,6 @@
 session_start();
 
 include "application/models/Employee.php";
-include "application/models/Child.php";
-include "application/models/City.php";
-include "application/models/SwissVisit.php";
 
 class Controller_Main extends Controller
 {
@@ -21,16 +18,17 @@ class Controller_Main extends Controller
         if (isset($_SESSION['loggedin'])) {
             $_SESSION['cityID'] = null;
 
-            $sql = "SELECT * FROM Employee             
+           $sql = "SELECT * FROM Employee             
             LEFT JOIN PersonalData      ON Employee.id = PersonalData.idEmployee
             LEFT JOIN Career            ON Employee.id = Career.idEmployee
             LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
             LEFT JOIN G17               ON Employee.id = G17.idEmployee
             LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-            LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
+            LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+            LEFT JOIN Role ON Role.idRole = Employee.idRole"; 
 
             $res = $this->getData($sql);
-            
+           
             $this->view->list = $res->emp;
             $this->view->cities = $res->cities;
             $this->view->generate('main_view.php', 'template_view.php');
@@ -299,7 +297,7 @@ class Controller_Main extends Controller
                         $employee->Name = $row['Name'];
                         $employee->LastName = $row['LastName'];
                         $employee->Photo = strlen($row['Photo']) == 0 ? "/images/user.png" : "/HR/".$row['Photo'];
-
+                        $employee->Role = $row['RoleTitle'];
                         //-----Personal Data
                         $employee->BirthDate = $row['BirthDate'];
                         $employee->CivilState = $row['CivilState'];

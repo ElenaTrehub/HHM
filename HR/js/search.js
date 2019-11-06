@@ -100,3 +100,20 @@ for (let index = 0; index < $(".status").length; index++) {
                   break;
       }     
 }
+
+for (let index = 0; index < $(".project-name").length; index++) {
+      switch ($(".project-name")[index].dataset.status) {
+            case "Finished":
+                   ($(".project-name")[index].style.background = "#da3931");
+                  break;
+                  case "Current":
+                  ($(".project-name")[index].style.background = "#23588c");
+                  break;
+                  case "New":
+                  ($(".project-name")[index].style.background = "#999999");
+                  break;
+            default:
+                  break;
+      }
+       
+ }
