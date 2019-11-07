@@ -1,4 +1,75 @@
-<?php $counter = 1 ?>
+
+<div  class="col-md-12" style="box-sizing: border-box;">
+            <div class="create-personal" style="position: relative;">
+                  <div style="width: 100%;" class="create-personal-header">
+                        Projects
+                  </div>
+                  <div class="row">
+                        <div class="col-md-2" style="padding: 0;">
+                            <div class="project-list">
+                                    <?php foreach ($this->projectList as $info) : ?>
+                                    <div class="project-calendar" data-id=<?php print htmlentities($info->project->IdProject); ?>>
+                                        <input type="hidden" name="idProject" value=<?php print htmlentities($info->project->IdProject); ?>>
+                                        <?php print htmlentities($info->project->Number); ?>
+                                    </div>
+                                    <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-10" style="padding: 0;">
+                                <div class="project-calendar-year">
+                                    <?php foreach ($this->calendar as $calendar): ?>
+                                            <?php foreach ($calendar->Year as $month): ?>
+                                                        
+                                                        <?php foreach ($month->MonthDays as $week): ?>
+                                                            
+                                                                    <?php foreach ($week as $day): ?>
+                                                                        <div  class="project-cal-day" data-date=<?php echo ($day->Date) ?> data-weekday=<?php echo ($day->WeekDay) ?> data-today=<?php echo ($day->Today) ?> data-holiday=<?php echo ($day->Holiday) ?>>
+                                                                            <div class="year">
+                                                                                <?php echo ($month->Year)?>
+                                                                            </div >
+                                                                            <div class="month">
+                                                                                <?php echo ($month->MonthHeader)?>
+                                                                            </div >
+                                                                            <div class="day">
+                                                                                <?php echo ($day->Date . " " . $day->WeekDayName) ?>
+                                                                            </div >
+                                                                            
+                                                                            
+                                                                        </div>
+                                                                    <?php endforeach?>
+
+                                                        <?php endforeach?>
+                                                    
+                                            <?php endforeach?>
+                                        <?php endforeach?>
+                                        <?php foreach ($this->projectList as $info) : ?>
+                                            <form action="/HR/EditProject" method="post">
+                                                <div class="proj" onclick="this.parentNode.submit()" data-status="<?php print htmlentities($info->project->Status); ?>" data-id=<?php print htmlentities($info->project->IdProject); ?> data-start=<?php echo ($info->project->Start) ?> data-end=<?php echo ($info->project->End) ?>>
+                                                        <input type="hidden" name="idProject" value=<?php print htmlentities($info->project->IdProject); ?>>
+                                                        <?php print htmlentities($info->project->Title); ?>
+                                                </div>
+                                            </form>
+                                         <?php endforeach; ?>
+                                </div>
+                            
+                  
+                        </div>
+                                
+                        </div>
+
+                        
+
+                  </div>
+                  
+            </div>
+            
+</div>
+
+
+
+
+
+<!-- <?php $counter = 1 ?>
 <?php foreach ($this->projectList as $info) : ?>
 <div id="container">
     <div class="row employee-card">
@@ -151,7 +222,7 @@
     <div class="employee-separator"></div>
 </div>
 
-<?php endforeach; ?>
+<?php endforeach; ?> -->
 
 
 
@@ -179,3 +250,4 @@
 </div>
 
 <script src="/HR/js/projectDeleteConfirm.js"></script>
+<script src="/HR/js/project-calendar.js"></script>

@@ -5,9 +5,9 @@ class Controller_Editvacations extends Controller
 {
     public function action_index()
     {
-        echo("<pre>");
+        /* echo("<pre>");
         print_r (array_chunk($_POST, 2, true));
-        echo("</pre>");
+        echo("</pre>"); */
 
         $dataArray  = (array_chunk($_POST, 2, true));
         $idEmployee = $_POST['Id'];

@@ -101,16 +101,16 @@ for (let index = 0; index < $(".status").length; index++) {
       }     
 }
 
-for (let index = 0; index < $(".project-name").length; index++) {
-      switch ($(".project-name")[index].dataset.status) {
+for (let index = 0; index < $(".proj").length; index++) {
+      switch ($(".proj")[index].dataset.status) {
             case "Finished":
-                   ($(".project-name")[index].style.background = "#da3931");
+                   ($(".proj")[index].style.background = "#da3931");
                   break;
                   case "Current":
-                  ($(".project-name")[index].style.background = "#23588c");
+                  ($(".proj")[index].style.background = "#23588c");
                   break;
                   case "New":
-                  ($(".project-name")[index].style.background = "#999999");
+                  ($(".proj")[index].style.background = "#999999");
                   break;
             default:
                   break;
