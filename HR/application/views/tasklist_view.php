@@ -8,11 +8,23 @@
                         <div class="col-md-2" style="padding: 0;">
                             <div class="project-list">
                                 <form action="/HR/edit" method="post">
-                                        <?php foreach ($this->taskList as $task) : ?>
-                                            <div class="project-calendar" onclick="this.parentNode.submit()" data-id=<?php print htmlentities($task->idTask); ?>>
-                                                <input type="hidden" name="idEmployee" value=<?php print htmlentities($task->idEmployee); ?>>
-                                                <?php print htmlentities($task->Employee); ?>
-                                            </div>
+                                        <?php foreach ($this->empList as $emp) : ?>
+                                            <?php foreach ($this->taskList as $task) : ?>
+                                                <?php if($emp->Id == $task->idEmployee && $task->Employee!="" && $task->Employee!="-1"){?>
+                                                    <div class="project-calendar" onclick="this.parentNode.submit()" data-id=<?php print htmlentities($task->idEmployee); ?>>
+                                                        <input type="hidden" name="idEmployee" value=<?php print htmlentities($task->idEmployee); ?>>
+                                                        <?php print htmlentities($task->Employee); ?>
+                                                    </div>
+                                                <?php } ?>
+                                                <?php if($emp->Id == $task->idEmployee && $task->Employee==""){?>
+                                                    <div class="project-calendar-empty" onclick="this.parentNode.submit()" data-id=<?php print htmlentities($task->idEmployee);?> data-emptytaskid=<?php print htmlentities($task->idTask); ?>>
+                                                        <input type="hidden" name="idEmployee" value=<?php print htmlentities($task->idEmployee); ?>>
+                                                    </div>
+                                                <?php } ?>
+                                                
+                                                
+
+                                            <?php endforeach; ?>
                                         <?php endforeach; ?>
                                 </form>
                             </div>
@@ -46,7 +58,7 @@
                                         <?php endforeach?>
                                         <?php foreach ($this->taskList as $task) : ?>
                                             <form action="/HR/EditTask" method="post">
-                                                <div class="task" onclick="this.parentNode.submit()" data-status="<?php print htmlentities($task->StatusTask); ?>" data-id=<?php print htmlentities($task->idTask); ?> data-start=<?php echo ($task->TaskStart) ?> data-end=<?php echo ($task->TaskEnd) ?>>
+                                                <div class="task" onclick="this.parentNode.submit()" data-status="<?php print htmlentities($task->StatusTask); ?>" data-id=<?php print htmlentities($task->idEmployee); ?> data-start=<?php echo ($task->TaskStart) ?> data-end=<?php echo ($task->TaskEnd) ?> data-task=<?php echo ($task->idTask) ?>>
                                                         <input type="hidden" name="idTask" value=<?php print htmlentities($task->idTask); ?>>
                                                         <?php print htmlentities($task->TaskTitle); ?>
                                                 </div>

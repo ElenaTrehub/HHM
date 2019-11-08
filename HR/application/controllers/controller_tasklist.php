@@ -2,6 +2,7 @@
 
 session_start();
 include "application/models/model_task.php";
+include "application/models/Employee.php";
 include "application/models/model_calendarproject.php";
 
 
@@ -15,6 +16,12 @@ class Controller_Tasklist extends Controller{
         if (isset($_POST['idProject'])) {
 
             $idProject = $_POST['idProject'];
+
+            $employees = array();
+            $currentEmployee = new Employee_Model($this->PDO);
+            $employees = $currentEmployee->GetEmployeesFromRroject($idProject);
+            
+
 
             $tasks = array();
 
@@ -44,7 +51,9 @@ class Controller_Tasklist extends Controller{
 
             $calendar = new CalendarProject_Model();
             $currentCalendar = $calendar->CreateCalendar($minStartDate, $maxEndtDate);
-            
+
+            $this->view->empList = $employees;
+
             $this->view->project = $project;
             $this->view->calendar = $currentCalendar;
             $this->view->taskList = $tasks;

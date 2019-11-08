@@ -86,8 +86,9 @@
                             </datalist>
                     </div>
                     <div class="button-container">
-                        <input type="submit" id="btn-add" name="SaveButton" class="personal-categories-btn" value="Speichern">
-                              <a id="btn-cancel" class="personal-categories-btn" href="/HR/main">Abbrechen</a>
+                        <input type="submit" id="btn-project-add" name="SaveButton" class="personal-categories-btn" value="Speichern">
+                              <a id="btn-project-cancel" class="personal-categories-btn" href="/HR/main">Abbrechen</a>
+                              <input data-toggle="modal" value="Löschen" data-target="#bucketModalDelete" id="btn-task-delete" class="personal-categories-btn" >
                     </div>
                     
                 </div>
@@ -95,3 +96,27 @@
         </div>
     </form>
 </div>
+<div class="modal fade" id="bucketModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Drücken Sie Ja, um die Löschung zu bestätigen.
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/HR/deletetask" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="idTask" value=<?php print htmlentities($this->taskId); ?>>
+                    <button type="submit" class="btn btn-danger">Ja</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Abbrechen</button>
+                </div>
+                <div class="modal-footer"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/HR/js/projectDeleteConfirm.js"></script>

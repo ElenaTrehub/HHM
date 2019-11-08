@@ -43,6 +43,9 @@ function initializeCalendar(){
       var project_calendar = document.getElementsByClassName('project-calendar');
       var proj_calendarArray = Array.from(project_calendar);
 
+      var project_calendar_empty = document.getElementsByClassName('project-calendar-empty');
+      var proj_calendar_emptyArray = Array.from(project_calendar_empty);
+
       taskArray.forEach(element => {
 
             const startDay = element.dataset.start;
@@ -54,12 +57,25 @@ function initializeCalendar(){
             left = startBlock.offsetLeft;
 
             const endBlock = dayArray.find(day => day.dataset.today == endDay);
+           
             width = endBlock.offsetLeft + endBlock.offsetWidth - left;
             //height = 40;
 
-            const topBlock = proj_calendarArray.find(proj => proj.dataset.id == element.dataset.id);
-            topPos = topBlock.offsetTop;
-            console.log(topPos);
+            var topPos = 0;
+            const topBlock = proj_calendar_emptyArray.find(proj => (proj.dataset.id == element.dataset.id && proj.dataset.emptytaskid==element.dataset.task));
+            console.log(topBlock);
+            
+            if(typeof topBlock != 'undefined'){
+                  topPos = topBlock.offsetTop;
+            }
+            else{
+                  const topBlock2 = proj_calendarArray.find(proj => proj.dataset.id == element.dataset.id);
+                  topPos = topBlock2.offsetTop;
+                  console.log(topBlock2);
+                  
+            }
+            
+            
             
             element.style.left = `${left}px`;
             element.style.width = `${width}px`;

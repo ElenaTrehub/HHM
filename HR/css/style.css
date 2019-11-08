@@ -960,6 +960,15 @@ input.bio-value {
     box-shadow: 0px 5px 20px -14px rgba(0, 0, 0, 0.95);
     cursor: pointer;
 }
+.project-calendar-empty{
+    height: 50px;
+    background: rgb(108, 122, 122);
+    padding-left: 10px;
+    margin-bottom: 15px;
+    margin-top: -15px;
+    box-shadow: 0px 5px 20px -14px rgba(0, 0, 0, 0.95);
+    cursor: pointer;
+}
 .calendar-year {
     display: block;
     margin: 0 auto 20px auto;
@@ -1179,7 +1188,12 @@ input.bio-value {
     color: white;
     transition: 1s;
 }
-
+#btn-project-add {
+    background: #99ced3;
+    border: 1px solid #99ced3;
+    color: #222;
+    transition: 1s;
+}
 #btn-save-vacation {
     background-image: urL("/HR/images/save.png");
     background-size: 65%
@@ -1190,20 +1204,41 @@ input.bio-value {
     border: 1px solid #99ced3;
     color: #222;
 }
-
+#btn-project-add:hover {
+    box-shadow: 5px 5px 26px -8px rgba(0, 0, 0, 0.75);
+    cursor:pointer;
+}
 #btn-cancel {
     background: transparent;
     border: 1px solid #edb5bf;
     color: white;
     transition: 1s;
 }
-
+#btn-project-cancel {
+    background: #edb5bf;
+    border: 1px solid #edb5bf;
+    color:#222;
+    transition: 1s;
+}
+#btn-project-delete {
+    background: #da3931;
+    border: 1px solid #da3931;
+    color:#222;
+    transition: 1s;
+}
+#btn-project-delete:hover {
+    box-shadow: 5px 5px 26px -8px rgba(0, 0, 0, 0.75);
+    cursor:pointer;
+}
 #btn-cancel:hover {
     background: #edb5bf;
     border: 1px solid #edb5bf;
     color: #222;
 }
-
+#btn-project-cancel:hover {
+    box-shadow: 5px 5px 26px -8px rgba(0, 0, 0, 0.75);
+    cursor:pointer;
+}
 .btn-del-vacation {
     height: 100%;
     width: 60px;

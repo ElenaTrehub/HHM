@@ -190,5 +190,52 @@ class Employee_Model extends Model{
         }
         return $employees;
     }//GetAllEmployeeForTask
+
+    public function GetEmployeesFromRroject($idProject){
+
+        $employees = array();
+
+        $sql = $sql = "SELECT * FROM Task 
+        LEFT JOIN Employee          ON Task.idEmployee = Employee.id
+        LEFT JOIN Career ON Task.idEmployee = Career.idEmployee
+        WHERE Task.idProject = :idProject";
+
+        if ($query = $this->PDO->prepare($sql)) {
+            $query->bindParam(":idProject", $idProject, PDO::PARAM_INT);
+            if ($query->execute()) {
+                while ($row = $query->fetch()) {
+                    $employee = new Employee;
+                    $employee->Id = $row['id'];
+                    $employee->Name = $row['Name'];
+                    $employee->LastName = $row['LastName'];
+                    $employee->Position = $row['Position'];
+
+                    $employees[] = $employee;
+                }
+                    
+            }
+        }
+
+        $employeeList = array();
+        $employeeList[] = $employees[0];
+        usort($employees, array('Employee_Model', 'cmp'));
+
+        for($i=1; $i < count($employees); $i++){
+
+            if($employees[$i]->Id != $employees[$i-1]->Id){
+                
+                $employeeList[] = $employees[$i];
+
+            }
+
+        }
+        
+        return $employeeList;
+        
+    }//GetEmployeesFromRroject
+
+    private static function cmp($a, $b) {
+        return strcmp($a->Id, $b->Id);
+    }
    
 }

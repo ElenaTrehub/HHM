@@ -12,6 +12,7 @@ class Controller_DeleteProject extends Controller
         
         $currentProject = new Project_Model($this->PDO);
         $res = $currentProject->DeleteProject($id);
+        var_dump($res);
         if($res == 1){
             header('location: /HR/projectlist');
         }

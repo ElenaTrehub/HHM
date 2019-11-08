@@ -135,7 +135,7 @@ class Task_Model extends Model{
                     $task->TaskStart = $row['TaskStart'];
                     $task->TaskEnd = $row['TaskEnd'];
                     $task->Employee = $row['Name'] . " " . $row['LastName'] . " - ". $row['Position'];
-                    $task->idEmployee = $row['idEmployee'];
+                    $task->idEmployee = $row['id'];
                     $task->Project = $row['ProjectNumber'];
                     $task->StatusTask = $row['StatusTasksTitle'];
 
@@ -144,7 +144,59 @@ class Task_Model extends Model{
                     
             }
         }
+       
+     
+        usort($tasks, array('Task_Model', 'cmp'));
+        
+        for($i=1; $i < count($tasks); $i++){
+
+            
+            if($tasks[$i]->idEmployee == $tasks[$i-1]->idEmployee){
+               
+                
+                
+                if((strtotime($tasks[$i]->TaskStart) > strtotime($tasks[$i-1]->TaskStart)
+                && strtotime($tasks[$i]->TaskStart) < strtotime($tasks[$i-1]->TaskEnd)) || 
+                (strtotime($tasks[$i]->TaskEnd) > strtotime($tasks[$i-1]->TaskStart) && strtotime($tasks[$i]->TaskEnd) < strtotime($tasks[$i-1]->TaskEnd))
+                || (strtotime($tasks[$i-1]->TaskStart) > strtotime($tasks[$i]->TaskStart)
+                && strtotime($tasks[$i-1]->TaskStart) < strtotime($tasks[$i]->TaskEnd)) || 
+                (strtotime($tasks[$i-1]->TaskEnd) > strtotime($tasks[$i]->TaskStart) && strtotime($tasks[$i-1]->TaskEnd) < strtotime($tasks[$i]->TaskEnd))){
+    
+                    $tasks[$i]->Employee = '';
+    
+                }
+                else{
+                    $tasks[$i]->Employee = '-1';
+                }
+
+                
+
+            }
+        }
+
+       /*  echo("<pre>");
+        var_dump($tasks);
+        echo("</pre>"); */
 
         return $tasks;
     }//GetAllTasksFromProject
+
+    private static function cmp($a, $b) {
+        return strcmp($a->idEmployee, $b->idEmployee);
+    }
+
+    public function DeleteTask($id){
+
+        $sql = "DELETE FROM Task WHERE idTask = :id";
+        $query = $this->PDO->prepare($sql);
+        $query->bindParam(":id", $id, PDO::PARAM_STR);
+       
+        //$query->execute();
+        if ($query->execute()){
+            return 1;
+        }
+
+        return 0;
+    }//DeleteTask
+
 }
