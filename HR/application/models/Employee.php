@@ -164,5 +164,31 @@ class Employee_Model extends Model{
         return $projectManagers;
     }//GetAllProjectManager
 
+    public function GetAllEmployeeForTask(){
+
+        $employees = array();
+
+        $sql = "SELECT * FROM Employee 
+        LEFT JOIN Career ON Employee.id = Career.idEmployee";
+
+        if ($query = $this->PDO->prepare($sql)) {
+            if ($query = $this->PDO->prepare($sql)) {
+            
+                if ($query->execute()) {
+                    while ($row = $query->fetch()) {
+                        $employee = new Employee;
+                        $employee->Id = $row['id'];
+                        $employee->Name = $row['Name'];
+                        $employee->LastName = $row['LastName'];
+                        //$employee->Photo = isset($_SESSION['employeePhotoSrc']) ? $_SESSION['employeePhotoSrc'] : $row['Photo'];
+                        $employee->Position = $row['Position'];
+                       
+                        $employees[] = $employee;
+                    }
+                }
+            }
+        }
+        return $employees;
+    }//GetAllEmployeeForTask
    
 }

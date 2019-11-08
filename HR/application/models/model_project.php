@@ -170,4 +170,35 @@ class Project_Model extends Model{
 
         return 0;
     }//DeleteProject
+
+    public function GetProjectsForTask(){
+
+        $projects = array();
+
+        $sql = "SELECT * FROM Project";
+
+        if($query = $this->PDO->prepare($sql)){
+            if ($query->execute()) {
+                while ($row = $query->fetch()) {
+
+                    $project = new Project;
+                    $project->IdProject = $row['idProject'];
+                    $project->Title = $row['ProjectTitle'];
+                    $project->Start = $row['ProjectStart'];
+                    $project->End = $row['ProjectEnd'];
+                    $project->Destination = $row['ProjectDestination'];
+                    $project->Description = $row['ProjectDescription'];
+                    $project->Number = $row['ProjectNumber'];
+                    
+
+                    
+
+                    $projects[] = $project;
+                }
+            }
+
+        }
+        return $projects;
+        
+    }//GetProjectsForTask
 }

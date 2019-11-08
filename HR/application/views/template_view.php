@@ -146,6 +146,12 @@
                               <div class="btn-nav-text">Hinzufügen projekt</div>
                         </div>
                         <div class="btn-nav-panel" >
+                              <a class="btn-nav-image" href="/HR/EditTask">
+                                    <img src="/HR/images/add_task.svg" style="width:42px;">
+                              </a>
+                              <div class="btn-nav-text">Aufgabe hinzufügen</div>
+                        </div>
+                        <div class="btn-nav-panel" >
                               <a class="btn-nav-image" href="/HR/ClientList">
                                     <img src="/HR/images/clients1.svg" style="width:42px;">
                               </a>

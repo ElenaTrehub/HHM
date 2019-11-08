@@ -117,3 +117,17 @@ for (let index = 0; index < $(".proj").length; index++) {
       }
        
  }
+
+ for (let index = 0; index < $(".task").length; index++) {
+      switch ($(".task")[index].dataset.status) {
+            case "Finished":
+                   ($(".task")[index].style.background = "#999999");
+                  break;
+                  case "Current":
+                  ($(".task")[index].style.background = "#23588c");
+                  break;
+            default:
+                  break;
+      }
+       
+ }

@@ -1,6 +1,3 @@
-// Global variables
-
-
 main();
 
 function main(){
@@ -40,13 +37,13 @@ function initializeCalendar(){
       
       });
       
-      var project = document.getElementsByClassName('proj');
-      var projectArray = Array.from(project);
+      var task = document.getElementsByClassName('task');
+      var taskArray = Array.from(task);
     
       var project_calendar = document.getElementsByClassName('project-calendar');
       var proj_calendarArray = Array.from(project_calendar);
 
-      projectArray.forEach(element => {
+      taskArray.forEach(element => {
 
             const startDay = element.dataset.start;
             const endDay = element.dataset.end;
@@ -63,20 +60,11 @@ function initializeCalendar(){
             const topBlock = proj_calendarArray.find(proj => proj.dataset.id == element.dataset.id);
             topPos = topBlock.offsetTop;
             console.log(topPos);
-
-            //element.style.position = 'absolute';
             
             element.style.left = `${left}px`;
             element.style.width = `${width}px`;
             element.style.top = `${topPos}px`;
-            //element.style.height = `${height}px`;
-
-            //element.style.backgroundColor = '#124587';
             
-            /* if (e.type == "load") {
-                  el.style.backgroundColor = el.dataset.color;
-                  el.style.opacity = 1;
-            } */
       });     
 }
 
