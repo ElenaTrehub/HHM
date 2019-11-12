@@ -87,7 +87,7 @@ class Controller_Calendar extends Controller
                 while ($rowEmployee = $queryEmployee->fetch()) {
                     $employee->Name     = $rowEmployee["Name"];
                     $employee->LastName = $rowEmployee["LastName"];
-                    $employee->Photo    = $rowEmployee["Photo"];
+                    $employee->Photo    = strlen($rowEmployee['Photo']) == 0 ? "/images/user.png" : "/HR/employeePhoto/employee_240/".$rowEmployee['Photo'];
                     $employee->Duration = $rowEmployee["VacationDuration"];
                 }
             }

@@ -57,8 +57,8 @@ class Controller_Update extends Controller
             } else {
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                     //header("location: /create");
-    
-                    $user_photo = "employeePhoto/" . ($_FILES["fileToUpload"]["name"]);
+                    $user_photo = ($_FILES["fileToUpload"]["name"]);
+                    //$user_photo = "employeePhoto/" . ($_FILES["fileToUpload"]["name"]);
                 } else {
                     $upload_err = "Sorry, there was an error uploading your file.";
                     $user_photo = "images/user.png";

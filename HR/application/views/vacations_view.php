@@ -8,7 +8,7 @@
                   <th style="width:150px;">Nicht Zugewiesen</th>
                   <th style="width:100px;">Januar</th>
                   <th style="width:100px;">Februar</th>
-                  <th style="width:100px;">MÃƒÂ¤rz</th>
+                  <th style="width:100px;">März</th>
                   <th style="width:100px;">April</th>
                   <th style="width:100px;">Mai</th>
                   <th style="width:100px;">Juni</th>

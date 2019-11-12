@@ -2,14 +2,15 @@
 session_start();
 
 include "application/models/Employee.php";
-include "application/models/Child.php";
-include "application/models/SwissVisit.php";
-include "application/models/employee_model.php";
+
+//include "application/models/employee_model.php";
 
 class Controller_Pdf extends Controller
 {
       public function action_index()
       {
+            require_once "config.php";
+            $this->PDO = $pdo;
             if (isset($_SESSION['loggedin'])) {
 
 
@@ -18,7 +19,7 @@ class Controller_Pdf extends Controller
                   print_r($empArray);
                   echo ('<pre>');*/
 
-                  $this->model = new Employee_Model;
+                  $this->model = new Employee_Model($this->PDO);
 
                   $this->view->list = $this->model->getAllEmployee();
                   $this->view->generate('pdf_selection_view.php', 'template_view.php');
@@ -34,7 +35,7 @@ class Controller_Pdf extends Controller
             print_r($_POST);
             echo ('<pre>');*/
             
-            $this->model = new Employee_Model;            
+            $this->model = new Employee_Model($this->PDO);            
             $ListEmployee = array();
 
             if (count($_POST['Id']) > 0) {

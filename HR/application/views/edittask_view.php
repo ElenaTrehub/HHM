@@ -88,7 +88,7 @@
                     <div class="button-container">
                         <input type="submit" id="btn-project-add" name="SaveButton" class="personal-categories-btn" value="Speichern">
                               <a id="btn-project-cancel" class="personal-categories-btn" href="/HR/main">Abbrechen</a>
-                              <input data-toggle="modal" value="Löschen" data-target="#bucketModalDelete" id="btn-task-delete" class="personal-categories-btn" >
+                              <input data-toggle="modal" value="Löschen" data-target="#bucketModalDelete" id="btn-project-delete" class="personal-categories-btn" >
                     </div>
                     
                 </div>

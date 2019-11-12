@@ -69,7 +69,7 @@ class Controller_Vacations extends Controller
                     $empVacation->ID = $row['id'];
                     $empVacation->Name = $row['Name'];
                     $empVacation->LastName = $row['LastName'];
-                    $empVacation->Photo = $row['Photo'];
+                    $empVacation->Photo = strlen($row['Photo']) == 0 ? "/HR/images/user.png" : "/HR/employeePhoto/employee_60/".$row['Photo'];
                     $empVacation->Total = $row['VacationDuration'];
 
                     foreach ($vacArray as $vacation) {

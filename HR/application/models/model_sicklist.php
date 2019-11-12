@@ -67,7 +67,12 @@ class SickList_Model extends Model
                     $employee->Id       = $row["id"];
                     $employee->Name     = $row["Name"];
                     $employee->LastName = $row["LastName"];
-                    $employee->Photo    = $row["Photo"];
+                    if ($id == -1) {
+                        $employee->Photo    = strlen($row['Photo']) == 0 ? "/HR/images/user.png" : "/HR/employeePhoto/employee_60/".$row['Photo'];
+                    } else {
+                        $employee->Photo    = strlen($row['Photo']) == 0 ? "/HR/images/user.png" : "/HR/employeePhoto/employee_240/".$row['Photo'];
+                    }
+                    
 
                     $employeeArray[] = $employee;
                 }

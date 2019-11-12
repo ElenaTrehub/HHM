@@ -53,7 +53,8 @@ class Controller_Main extends Controller
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+                LEFT JOIN Role ON Role.idRole = Employee.idRole";
             }
             else{
                 $sql = "SELECT * FROM Employee             
@@ -62,8 +63,8 @@ class Controller_Main extends Controller
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
-            }
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+                LEFT JOIN Role ON Role.idRole = Employee.idRole";            }
             
 
 
@@ -94,7 +95,8 @@ class Controller_Main extends Controller
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+                LEFT JOIN Role ON Role.idRole = Employee.idRole";
             }
             else{
                 $sql = "SELECT * FROM Employee             
@@ -103,7 +105,8 @@ class Controller_Main extends Controller
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+                LEFT JOIN Role ON Role.idRole = Employee.idRole";
             }
 
             $res = $this->getData($sql);
@@ -133,7 +136,8 @@ class Controller_Main extends Controller
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+                LEFT JOIN Role ON Role.idRole = Employee.idRole";
             }
             else{
                 $sql = "SELECT * FROM Employee             
@@ -142,7 +146,8 @@ class Controller_Main extends Controller
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+                LEFT JOIN Role ON Role.idRole = Employee.idRole";
             }
 
             $res = $this->getData($sql);
@@ -173,7 +178,8 @@ class Controller_Main extends Controller
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+                LEFT JOIN Role ON Role.idRole = Employee.idRole";
             }
             else{
                 $sql = "SELECT * FROM Employee             
@@ -182,7 +188,8 @@ class Controller_Main extends Controller
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+                LEFT JOIN Role ON Role.idRole = Employee.idRole";
             }
 
             $res = $this->getData($sql);
@@ -214,7 +221,8 @@ class Controller_Main extends Controller
                 LEFT JOIN ForeignPassport   ON Employee.id = ForeignPassport.idEmployee			
                 LEFT JOIN G17               ON Employee.id = G17.idEmployee
                 LEFT JOIN HHM               ON Employee.id = HHM.idEmployee
-                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity";
+                LEFT JOIN Cities ON Cities.idCity = PersonalData.idCity
+                LEFT JOIN Role ON Role.idRole = Employee.idRole";
     
                 $res = $this->getData($sql);
                             
@@ -296,7 +304,7 @@ class Controller_Main extends Controller
                         $employee->Id = $row['id'];
                         $employee->Name = $row['Name'];
                         $employee->LastName = $row['LastName'];
-                        $employee->Photo = strlen($row['Photo']) == 0 ? "/images/user.png" : "/HR/".$row['Photo'];
+                        $employee->Photo = strlen($row['Photo']) == 0 ? "/images/user.png" : "/HR/employeePhoto/employee_60/".$row['Photo'];
                         $employee->Role = $row['RoleTitle'];
                         //-----Personal Data
                         $employee->BirthDate = $row['BirthDate'];
