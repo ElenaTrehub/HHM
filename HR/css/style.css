@@ -766,6 +766,48 @@ a.personal-categories-btn {
     color: white
 }
 
+.add-employee-btn{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 36px;
+    background: #99ced3;
+    color: white;
+    margin-top: 5px;
+    border: none;
+    vertical-align: middle;
+    border-radius: 20px;
+    outline: 0;
+    transition: 0.5s;
+    display: inline-block;
+}
+
+.add-employee-btn:hover {
+    box-shadow: 5px 5px 16px -5px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+}
+.add-project-btn {
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    font-size: 12pt;
+    background: #99ced3;
+    color: #333;
+
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: 0;
+    transition: 0.5s;
+    display: inline-block;
+}
+
+.add-project-btn:hover {
+    box-shadow: 5px 5px 16px -5px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+}
 .personal-bio {
     background: #333;
     margin-left: -15px;
@@ -797,6 +839,32 @@ a.personal-categories-btn {
     width: 60%;
     height: 40px;
     margin-top: 5px;
+    line-height: 40px;
+    font-size: 16px;
+    padding-left: 10px;
+    background: white;
+    border: none;
+    border-radius: 5px !important;
+    display: inline-block;
+}
+.choose-project {
+    width: 200px;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 20px;
+    line-height: 40px;
+    font-size: 16px;
+    padding-left: 10px;
+    background: white;
+    border: none;
+    border-radius: 5px !important;
+    display: inline-block;
+}
+.choose-employee {
+    width: 400px;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 20px;
     line-height: 40px;
     font-size: 16px;
     padding-left: 10px;
@@ -857,14 +925,15 @@ input.bio-value {
 }
 .create-body2 {
     background: #ddd;
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 20px;
+    padding-left: 20px;
     padding-top: 15px;
 
 }
 .button-container{
-    width: 30%;
-    margin-left: 35%;
+    width: 100%;
+    margin-bottom: 10px;
+    
 }
 .create-personal, .create-personal-short {
     width: 100%;
@@ -1189,6 +1258,7 @@ input.bio-value {
     transition: 1s;
 }
 #btn-project-add {
+    width: 250px;
     background: #99ced3;
     border: 1px solid #99ced3;
     color: #222;
@@ -1215,6 +1285,7 @@ input.bio-value {
     transition: 1s;
 }
 #btn-project-cancel {
+    width: 250px;
     background: #edb5bf;
     border: 1px solid #edb5bf;
     color:#222;

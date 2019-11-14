@@ -201,4 +201,18 @@ class Project_Model extends Model{
         return $projects;
         
     }//GetProjectsForTask
+    public function GetProjectIdFromNumber($number){
+        $sql = "SELECT * FROM Project WHERE ProjectNumber = :number";
+
+        if ($query = $this->PDO->prepare($sql)) {
+            $query->bindParam(":number", $number, PDO::PARAM_STR);
+            if ($query->execute()) {
+                while ($row = $query->fetch()) {
+                    $id = $row['idProject'];
+                }
+            }
+        }
+
+        return $id;
+    }//GetProjectIdFromNumber
 }

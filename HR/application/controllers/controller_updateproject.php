@@ -94,14 +94,8 @@ class Controller_UpdateProject extends Controller
 
                 $res = $currentProject->updateProject($_POST["id"], $Title, $StartDate, $EndDate, $Destination, $Description, $idCurator, $idClient, $Number, $idStatus);
 
-                if($res == 1){
-                    header('location: /HR/projectlist');
-                }
-                else{
-                    header('location: /HR/editproject');
-                }
-
-
+                header('location: /HR/editproject');
+                
             }
         }
     }

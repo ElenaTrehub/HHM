@@ -159,15 +159,25 @@
                                                 </div>
                                           </div>
                                           <div class="col-md print-career">
+                                                Karriere:
                                                 <div>
                                                       Eintrittsdatum:
                                                       <?php print htmlentities(date("d-m-Y", strtotime($employee->StartDate))) ?>
                                                 </div>
                                                 <div>
-                                                      Kommentar: <?php print htmlentities($employee->Comment) ?>
+                                                      Kommentar1: <?php print htmlentities($employee->Comment1) ?>
+                                                </div>
+                                                <div>
+                                                      Kommentar2: <?php print htmlentities($employee->Comment2) ?>
+                                                </div>
+                                                <div>
+                                                      Kommentar3: <?php print htmlentities($employee->Comment3) ?>
                                                 </div>
                                                 <div>
                                                       Position: <?php print htmlentities($employee->Position) ?>
+                                                </div>
+                                                <div>
+                                                      Lohn: <?php print htmlentities($employee->Salary) ?>
                                                 </div>
                                           </div>
                                           <div class="col-md print-pass">

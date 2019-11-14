@@ -20,9 +20,12 @@ class Employee
    
     public $Position;
     public $StartDate;
-    public $Comment;
+    public $Comment1;
+    public $Comment2;
+    public $Comment3;
     public $Salary;
     public $Status;
+    public $Diplom_Photo;
 
     public $Pass_Name;
     public $Pass_LastName;
@@ -95,9 +98,12 @@ class Employee_Model extends Model{
                         //-----Career                    
                         $employee->Position = $row['Position'];
                         $employee->StartDate = $row['CareerStart'];
-                        $employee->Comment = $row['Comment'];                   
+                        $employee->Comment1 = $row['Comment1'];
+                        $employee->Comment2 = $row['Comment2'];
+                        $employee->Comment3 = $row['Comment3'];                   
                         $employee->Salary = $row['Salary'];
                         $employee->Status = $row['Status'];
+                        $employee->Diplom_Photo = $row['PhotoDiplom'];
     
                         //-----Passport
                         $employee->Pass_Name = $row['PassName'];
@@ -152,7 +158,7 @@ class Employee_Model extends Model{
                         $employee->Id = $row['id'];
                         $employee->Name = $row['Name'];
                         $employee->LastName = $row['LastName'];
-                        //$employee->Photo = isset($_SESSION['employeePhotoSrc']) ? $_SESSION['employeePhotoSrc'] : $row['Photo'];
+                        
                         $employee->Photo = strlen($row['Photo']) == 0 ? "/images/user.png" : "/HR/employeePhoto/employee_60/".$row['Photo'];
                         $employee->Role = $row['RoleTitle'];
 
@@ -180,7 +186,7 @@ class Employee_Model extends Model{
                         $employee->Id = $row['id'];
                         $employee->Name = $row['Name'];
                         $employee->LastName = $row['LastName'];
-                        //$employee->Photo = isset($_SESSION['employeePhotoSrc']) ? $_SESSION['employeePhotoSrc'] : $row['Photo'];
+                        $employee->Photo = strlen($row['Photo']) == 0 ? "/images/user.png" : "/HR/employeePhoto/employee_60/".$row['Photo'];
                         $employee->Position = $row['Position'];
                        
                         $employees[] = $employee;
@@ -304,9 +310,12 @@ class Employee_Model extends Model{
                                 //-----Career
                                 $employee->Position = $row['Position'];
                                 $employee->StartDate = $row['CareerStart'];
-                                $employee->Comment = $row['Comment'];
+                                $employee->Comment1 = $row['Comment1'];
+                                $employee->Comment2 = $row['Comment2'];
+                                $employee->Comment3 = $row['Comment3']; 
                                 $employee->Salary = $row['Salary'];
                                 $employee->Status = $row['Status'];
+                                $employee->Diplom_Photo = $row['PhotoDiplom'];
 
                                 //-----Passport
                                 $employee->Pass_Name = $row['PassName'];

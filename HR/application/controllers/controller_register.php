@@ -6,32 +6,57 @@ class Controller_Register extends Controller
     {
         require_once "config.php";
 
-        if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        $username_err = "";
+        $password_err = "";
+        $confirm_password_err = "";
 
-            $user_name = $_POST['username'];
-            $user_password = $_POST['password'];
-            $user_password_confirm  = $_POST['password-confirm'];
+        $user = "";
+        $password = "";
+        $confirm_password = "";
 
-            if ($user_password !== $user_password_confirm){
-                echo("False");
-                $this->view->generate('register_view.php', 'auth_view.php');
-            }
-            else{
-                $password= password_hash($user_password, PASSWORD_DEFAULT);
-            }
 
-            if (!empty($password)){
-                $sql = "INSERT INTO `users` (`id`, `username`, `password`) VALUES (NULL, :userName, :userPassword)";
-
-                if ($query = $pdo->prepare($sql)) {
-                    $query->bindParam(":userName", $user_name, PDO::PARAM_STR);
-                    $query->bindParam(":userPassword", $password, PDO::PARAM_STR);
-                    $query->execute();
-                    header('location: /HR/login');
-                }
-            }           
+        if (!empty($_POST['username'])) {
+            $user = trim($_POST['username']);
+        }
+        if (!empty($_POST['password'])) {
+            $password = trim($_POST['password']);
+        }
+        if (!empty($_POST['password-confirm'])) {
+            $password_confirm = trim($_POST['password-confirm']);
         }
 
+        $email_array = explode("@", $user);
+            $domein = $email_array[1];
+        
+            if($domein =="global17.com" || $domein =="hhm.ch"){
+
+                if ($password !== $password_confirm){
+                    $password_err = "Passwörter stimmen nicht überein!";
+                    $confirm_password_err = "Passwörter stimmen nicht überein!";
+                }
+                else{
+                    $password= password_hash($password, PASSWORD_DEFAULT);
+                }
+                if (!empty($password)){
+                    $sql = "UPDATE `users` SET password = :userPassword WHERE username = :userName";
+    
+                    if ($query = $pdo->prepare($sql)) {
+                        $query->bindParam(":userName", $user, PDO::PARAM_STR);
+                        $query->bindParam(":userPassword", $password, PDO::PARAM_STR);
+                        $query->execute();
+                        header('location: /HR/login');
+                    }
+                }
+                
+            }
+            else{
+                
+                $username_err = "Ungültiger Domainname!";
+            }   
+       
+        $this->view->username_err = $username_err;
+        $this->view->password_err = $password_err;
+        $this->view->confirm_password_err = $confirm_password_err;
         $this->view->generate('register_view.php', 'auth_view.php');
     }
 
@@ -40,6 +65,7 @@ class Controller_Register extends Controller
         $user_name = $_POST['user_name'];
         $email_id  = $_POST['email_id'];
         $count     = $this->model->check_user($user_name, $email_id);
+       
         if ($count > 0) {
             echo 'This User Already Exists';
         } else {

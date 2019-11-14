@@ -140,8 +140,16 @@
                 <div class="col-md bio-data experience">Weniger als ein Jahr.</div>
             </div>
             <div class="row">
-                <div class="col-md-5 bio-title">Kommentar</div>
-                <div class="col-md-7 bio-data"><?php print htmlentities($employee->Comment) ?></div>
+                <div class="col-md-5 bio-title">Kommentar1</div>
+                <div class="col-md-7 bio-data"><?php print htmlentities($employee->Comment1) ?></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 bio-title">Kommentar2</div>
+                <div class="col-md-7 bio-data"><?php print htmlentities($employee->Comment2) ?></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 bio-title">Kommentar3</div>
+                <div class="col-md-7 bio-data"><?php print htmlentities($employee->Comment3) ?></div>
             </div>
             <div class="row">
                 <div class="col-md-5 bio-title">Position</div>

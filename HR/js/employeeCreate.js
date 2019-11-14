@@ -1,5 +1,6 @@
 var upload = document.getElementById("imageUpload");
 var uploadPassport = document.getElementById("passportUpload");
+var uploadDiplom = document.getElementById("diplomUpload");
 //var visitTemplate = document.getElementById("visitTemplate");
 
 
@@ -13,6 +14,11 @@ uploadPassport.onchange = function () {
     var fileName = this.value;
     var index = fileName.lastIndexOf("\\");
     document.getElementById("passportNameLabel").innerText = fileName.substring(index + 1);
+}
+uploadDiplom.onchange = function () {
+    var fileName = this.value;
+    var index = fileName.lastIndexOf("\\");
+    document.getElementById("diplomNameLabel").innerText = fileName.substring(index + 1);
 }
 $("#btnAddVisit").click(function () {
     var listVisit = document.getElementsByClassName("btn btn-danger");

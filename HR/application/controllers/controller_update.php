@@ -13,7 +13,12 @@ class Controller_Update extends Controller
         $this->PDO = $pdo;
         
         $Photo = '';
-      
+        $Diplom_Photo = '';
+
+
+        
+
+
         if (isset($_POST["photo"])){
 
             $user_photo = "image/user.png";
@@ -38,7 +43,8 @@ class Controller_Update extends Controller
     
             // Check if file already exists
             if (file_exists($target_file)) {
-                $user_photo = "employeePhoto/" . ($_FILES["fileToUpload"]["name"]);
+                
+                $user_photo = ($_FILES["fileToUpload"]["name"]);
                 $upload_err = "Foto already exists.";
                 $uploadOk = 0;
             }
@@ -128,13 +134,68 @@ class Controller_Update extends Controller
         }//Passport
 
 
+
+        if (isset($_POST["diplom"])){
+
+            $user_diplom = "images/default-diplom.jpg";
+        
+            $target_dir = "documentPhoto/diplom/";
+            $upload_err = "";
+    
+            $target_file = $target_dir.basename($_FILES["diplomToUpload"]["name"]);
+    
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    
+            // Check if image file is a actual image or fake image
+            if (isset($_POST["diplom"]) && strlen($_FILES["diplomToUpload"]["name"]) > 0) {
+                $check = filesize($_FILES["diplomToUpload"]["tmp_name"]);
+                
+                if ($check !== false) {
+                    //echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    $upload_err = "File is not an image.";
+                    $uploadOk = 0;
+                }
+            }
+    
+            // Check if file already exists
+             if (file_exists($target_file)) {
+                $user_diplom = "documentPhoto/diplom/" . ($_FILES["diplomToUpload"]["name"]);
+                $upload_err = "Document already exists.";
+                $uploadOk = 0;
+            }
+    
+            // Allow certain file formats
+            if ($imageFileType != "pdf") {
+                $upload_err = "Sorry, only PDF files are allowed.";
+                $uploadOk = 0;
+            }
+            
+            if ($uploadOk == 0) {
+                //$upload_err = "Photo already exists.";
+                // if everything is ok, try to upload file
+                
+            } else {
+                if (move_uploaded_file($_FILES["diplomToUpload"]["tmp_name"], $target_file)) {
+                    //header("location: /create");
+                    
+                    $user_diplom = "documentPhoto/diplom/" . ($_FILES["diplomToUpload"]["name"]);
+                } else {
+                    $upload_err = "Sorry, there was an error uploading your file.";
+                    $user_diplom = "images/default-diplom.jpg";
+                }
+            }
+            $Diplom_Photo = $user_diplom;
+
+        }//Diplom
+
         $cites = array();
         $city = new City_Model($this->PDO);
         $cites = $city->GetAllCities();
 
-       /* echo ("<pre>");
-        var_dump($_POST);
-        echo ("<pre>"); */
+        
 
         $roles = array();
         $role = new Role_Model($this->PDO);
@@ -147,10 +208,15 @@ class Controller_Update extends Controller
             $LastName = $_POST["LastName"];
             
             if ($_POST["Photo"] !='' && isset($_POST["photo"]) == false) {
-
-                $Photo = $_POST["Photo"];
+                $path = $_POST["Photo"];
+                $photo = explode('/', $path);
+                //print_r($photo);
+                $Photo = $photo[count($photo) - 1];
             }
             
+            echo ("<pre>");
+        print_r($_POST);
+        echo ("<pre>"); 
 
             $BirthDate = $_POST["BirthDate"];
             $CivilState = $_POST["CivilState"];
@@ -217,7 +283,9 @@ class Controller_Update extends Controller
 
             $CareerStart = $_POST["CareerStart"];
             $Position = $_POST["Position"];
-            $Comment = $_POST["Comment"];
+            $Comment1 = $_POST["Comment1"];
+            $Comment2 = $_POST["Comment2"];
+            $Comment3 = $_POST["Comment3"];
             $Salary = $_POST["Salary"];
             $Status = $_POST["Status"];
 
@@ -315,13 +383,16 @@ class Controller_Update extends Controller
                 $PersonalData->execute(); 
               
                
-                $Career = $this->PDO->prepare("INSERT INTO `Career` VALUES( DEFAULT, :idEmployee, :Position, :CareerStart, :Comment,  :Salary, :Status, 20)");
+                $Career = $this->PDO->prepare("INSERT INTO `Career` VALUES( DEFAULT, :idEmployee, :Position, :CareerStart, :Comment1,  :Salary, :Status, 20, :Comment2, :Comment3, :PhotoDiplom )");
                 $Career->bindParam(":idEmployee", $id, PDO::PARAM_INT);
-                $Career->bindParam(":Comment", $Comment, PDO::PARAM_STR);
+                $Career->bindParam(":Comment1", $Comment1, PDO::PARAM_STR);
+                $Career->bindParam(":Comment2", $Comment2, PDO::PARAM_STR);
+                $Career->bindParam(":Comment3", $Comment3, PDO::PARAM_STR);
                 $Career->bindParam(":Position", $Position, PDO::PARAM_STR);
                 $Career->bindParam(":CareerStart", $CareerStart, PDO::PARAM_STR);
                 $Career->bindParam(":Salary", $Salary, PDO::PARAM_STR);
                 $Career->bindParam(":Status", $Status, PDO::PARAM_STR);
+                $Career->bindParam(":PhotoDiplom", $Diplom_Photo, PDO::PARAM_STR);
                 $Career->execute();
                 
                 $ForeignPassport = $this->PDO->prepare("INSERT INTO `ForeignPassport` VALUES( DEFAULT  , :idPass, :Pass_Name, :Pass_LastName, :Pass_Number, :Pass_Expired, :Pass_Photo)");
@@ -459,7 +530,7 @@ class Controller_Update extends Controller
             $sql = "START TRANSACTION;
             UPDATE `hhmeweme_hrDev`.`Employee` SET `Name`= :Name, `LastName` = :LastName, `Photo`=:Photo, `idRole`=:idRole WHERE `id` =:id;
             UPDATE `hhmeweme_hrDev`.`PersonalData` SET `BirthDate`= :BirthDate, `CivilState`=:CivilState , `Address`=:Address , `PLZ`= :PLZ, `idCity` = :idCity, `Phone`= :Phone WHERE `idEmployee` =:id ;
-            UPDATE `hhmeweme_hrDev`.`Career` SET `Position`=:Position, `Comment`=:Comment, `CareerStart` = :CareerStart, `Salary` = :Salary, `Status`=:Status WHERE `idEmployee` =:id;
+            UPDATE `hhmeweme_hrDev`.`Career` SET `Position`=:Position, `Comment1`=:Comment1, `CareerStart` = :CareerStart, `Salary` = :Salary, `Status`=:Status, `Comment2`=:Comment2, `Comment3`=:Comment3, `PhotoDiplom`= :PhotoDiplom WHERE `idEmployee` =:id;
             UPDATE `hhmeweme_hrDev`.`ForeignPassport` SET `PassName`=:Pass_Name, `PassLastName` = :Pass_LastName, `Number`=:Pass_Number, `Valid`=:Pass_Expired, `PhotoPassport`=:Pass_Photo WHERE `idEmployee`=:id;
             UPDATE `hhmeweme_hrDev`.`G17` SET `G17_E-Mail`=:G17_email, `G17_initials`=:G17_initials WHERE `idEmployee`=:id;
             UPDATE `hhmeweme_hrDev`.`HHM` SET `HHM_E-Mail`=:HHM_email,  `HHM_initials`=:HHM_initials WHERE `idEmployee`=:id;
@@ -488,10 +559,13 @@ class Controller_Update extends Controller
             $query->bindParam(":Phone", $Phone, PDO::PARAM_STR);
 
             $query->bindParam(":Position", $Position, PDO::PARAM_STR);
-            $query->bindParam(":Comment", $Comment, PDO::PARAM_STR);
+            $query->bindParam(":Comment1", $Comment1, PDO::PARAM_STR);
+            $query->bindParam(":Comment2", $Comment2, PDO::PARAM_STR);
+            $query->bindParam(":Comment3", $Comment3, PDO::PARAM_STR);
             $query->bindParam(":CareerStart", $CareerStart, PDO::PARAM_STR);
             $query->bindParam(":Salary", $Salary, PDO::PARAM_STR);
             $query->bindParam(":Status", $Status, PDO::PARAM_STR);
+            $query->bindParam(":PhotoDiplom", $Diplom_Photo, PDO::PARAM_STR);
 
             $query->bindParam(":Pass_Name", $Pass_Name, PDO::PARAM_STR);
             $query->bindParam(":Pass_LastName", $Pass_LastName, PDO::PARAM_STR);
@@ -549,5 +623,5 @@ class Controller_Update extends Controller
 
 
         
-    }
+    } 
 }

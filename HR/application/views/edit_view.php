@@ -17,6 +17,9 @@
             <input class="input1" id="passportUpload" type="file" name="passportToUpload">
             <input class="input2" id="passportButton" type="submit" value="Upload Passport" name="passport">
 
+            <input class="input1" id="diplomUpload" type="file" name="diplomToUpload">
+            <input class="input2" id="diplomButton" type="submit" value="Upload Diplom" name="diplom">
+
             <div class="row">
                   <div class="col-md-3" style="top: 0">
                         <div id="personal-main" class="create-personal">
@@ -160,9 +163,19 @@
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->StartDate;}else{echo '';} ?>>
                                           </div>
                                           <div>
-                                                <div class="bio-description">Kommentar</div>
+                                                <div class="bio-description">Kommentar1</div>
                                                 <input type="text" name="Comment" class="bio-value"
-                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Comment;}else{echo '';} ?>">
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Comment1;}else{echo '';} ?>">
+                                          </div>
+                                          <div>
+                                                <div class="bio-description">Kommentar2</div>
+                                                <input type="text" name="Comment" class="bio-value"
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Comment2;}else{echo '';} ?>">
+                                          </div>
+                                          <div>
+                                                <div class="bio-description">Kommentar3</div>
+                                                <input type="text" name="Comment" class="bio-value"
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Comment3;}else{echo '';} ?>">
                                           </div>
                                           <div>
                                                 <div class="bio-description">Position</div>
@@ -174,6 +187,47 @@
                                                 <input type="text" name="Salary" class="bio-value"
                                                       value="<?php if($this->employeeId!= ''){echo $this->employee->Salary;}else{echo '';} ?>">
                                           </div>
+
+                                          <div class="passport-image">
+                                                      <?php if($this->employeeId!='') {
+                                                            if($this->employee->Diplom_Photo!=''){?>
+                                                                  <img src="images/diplom.jpg"
+                                                                  onerror="this.onerror=null;this.src='images/default-diplom.jpg';">
+                                                            <?php }
+                                                            else{
+                                                            ?>
+                                                            <img src="images/default-diplom.jpg">
+                                                            <?php }
+                                                            ?>
+                                                      <?php }
+                                                      else{
+                                                      ?>
+                                                            <img src="images/default-diplom.jpg">
+                                                      <?php }
+                                                      ?>
+                                                      <?php if($this->employeeId!='') {
+                                                            if($this->employee->Diplom_Photo!=''){?>
+                                                            <div>
+                                                                  <a href="<?php echo $this->employee->Diplom_Photo; ?>" target="_blank">Dokument öffnen</a>
+                                                            </div>
+                                                            <?php } ?>
+                                                      <?php } ?>
+                                                      <label id="diplomNameLabel" class="input-label-text">Foto auswählen</label>
+                                                      <div>
+                                                            <label for=""><?php echo $this->passport_upload_err; ?></label>
+                                                      </div>
+
+                                                      <input type="hidden" name="Diplom_Photo" value=<?php if($this->employeeId!='') {
+                                                            if($this->employee->Diplom_Photo!=''){
+                                                                  echo $this->employee->Diplom_Photo;
+                                                            }
+                                                      }
+                                                      ?>>
+                                                      <div class="input-buttons">
+                                                            <label class="input-label-select2" for="diplomUpload">Durchsuche</label>
+                                                            <label  class="input-label-upload2" for="diplomButton">Hochladen</label>
+                                                      </div>
+                                                </div>
                                     </div>
 
                                     
