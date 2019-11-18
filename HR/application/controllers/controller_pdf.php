@@ -30,10 +30,10 @@ class Controller_Pdf extends Controller
 
       public function action_print()
       {
-            /*
-            echo ('<pre>');
+            
+            /* echo ('<pre>');
             print_r($_POST);
-            echo ('<pre>');*/
+            echo ('<pre>'); */
             
             $this->model = new Employee_Model($this->PDO);            
             $ListEmployee = array();
@@ -44,9 +44,9 @@ class Controller_Pdf extends Controller
                   }
             }
 
-            echo ('<pre>');
+            /* echo ('<pre>');
             print_r($ListEmployee);
-            echo ('<pre>');
+            echo ('<pre>'); */
 
             
             

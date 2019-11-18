@@ -1448,6 +1448,96 @@ input.bio-value {
     margin-top:0px;
     margin-bottom: 0px; 
 }
+.accordion{
+    position: relative;
+}
+
+/* устанавливаем время ожидания перед воспроизведением анимации 
+ * на основе нумерации в дереве элементов
+*/
+.accordion:nth-of-type(1) {
+    animation-delay: 0.5s;
+  }
+  .accordion:nth-of-type(2) {
+    animation-delay: 0.75s;
+  }
+  .accordion:nth-of-type(3) {
+    animation-delay: 1s;
+  }
+  .accordion:nth-of-type(4) {
+    animation-delay: 1.25s;
+  }
+  .accordion:last-of-type {
+    padding-bottom: 0;
+  }
+/* Сформируем  указатель переключения состояния аккордеона */
+.accordion i {
+    position: absolute;
+    transform: translate(-6px, 0);
+    margin-top: 16px;
+  /* расположим указатель на панели заголовка справа */
+    right: 25px;
+  }
+   
+  /* "Рисуем " сам указатель */
+  .accordion i:before, .accordion i:after {
+    content: "";
+    position: absolute;
+    background-color: #eee;
+    width: 3px;
+    height: 9px;
+    top:-5px;
+  }
+  /* Добавляем элемент трансформации указателя при переключении */
+  .accordion i:before {
+    transform: translate(-2px, 0) rotate(45deg);
+  }
+  .accordion i:after {
+    transform: translate(2px, 0) rotate(-45deg);
+  }
+/* Делаем чекбокс скрытым*/
+#accButton {
+    position: absolute;
+    cursor: pointer;
+    width: 50px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    right: 0;
+    top: 0;
+  }
+  /* Когда у флажка установлен checked  
+   * блок с содержанием скрыт
+  */
+  #accButton:checked ~ div.msg {
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translate(0, 50%);
+  }
+  /* А указатель показывает вниз */
+  #accButton:checked ~ i:before {
+    transform: translate(2px, 0) rotate(45deg);
+  }
+  #accButton:checked ~ i:after {
+    transform: translate(-2px, 0) rotate(-45deg);
+  }
+  /*  Устанавливаем эффект перехода
+   * между двумя состояниями указателя 
+  */
+  div.msg, i:before, i:after {
+      transition: all 0.5s ease-in-out;
+  }
+  
+
+
+
+
+
+
+
+
 
 .pdf-selection-card {
     height: 30px;
@@ -1456,7 +1546,21 @@ input.bio-value {
     color: white;
     border-radius: 5px;
 }
-
+.pdf-selection-card-include {
+    height: 30px;
+    background: #23D5AB;
+    margin: 5px;
+    color: white;
+    border-radius: 5px;
+    margin-left: 30px;
+}
+.msg {
+    position: relative;
+    overflow: hidden;
+    max-height: 800px;
+    opacity: 1;
+    transform: translate(0, 0);
+  }
 .pdf-preview-container{
     width:100%;
     display:inline-block;
@@ -1510,19 +1614,28 @@ input.bio-value {
 }
 
 .print-employee {
-    border: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     width: 100%;
 }
 
-.print-id, .print-career, .print-personal, .print-pass, .print-children, .print-visit {
+.print-id, .print-career, .print-personal, 
+.print-pass, .print-children, .print-visit {
     display: inline-block;
    /* height: auto;*/
     margin: 0;
     vertical-align: top;
     /*border:1px solid #333;*/
-    border-left: 1px solid black;
+    /*border-left: 1px solid black;*/
 }
-
+.print-geburtsdatum, .print-zivilstand, .print-wohnadresse, .print-PLZ, .print-ort, .print-tell,
+.print-eintrittsdatum, .print-comment1, .print-comment2, .print-comment3, .print-position, .print-lohn,
+.print-pass_name, .print-vorname, .print-pass_nummer, .print-gultig,
+.print-g17_mail, .print-g17_kurz, .print-hhm_mail, .print-hhm_kurz
+{
+    padding: 0;
+}
 .print-id div, .print-career div, .print-personal div, .print-pass div, .print-children div, .print-visit div{
     border-bottom: 1px solid #ccc;
 }
@@ -1533,9 +1646,10 @@ input.bio-value {
 }
 
 .print-children {
+    width: 100%;
    /* border:1px solid black;*/
-   border-top:1px solid black;
-    margin-left: 0px;
+   /* border-top:1px solid black;  */
+    padding-left: 10px;
 }
 
 .print-children .row {
@@ -1548,9 +1662,10 @@ input.bio-value {
 }
 
 .print-visit {
+    width: 100%;
     border-right: 0px;
-    border-top: 1px solid black;
-    margin: 0px;
+    /* border-top: 1px solid black; */
+    padding-left: 10px;
 }
 
 .print-visit .row {
@@ -1562,9 +1677,14 @@ input.bio-value {
     padding: 0;
     text-align: left;
 }
-
-.row.pdf-print-data{
-    
+.br{
+    border-right: 1px solid #000;
+}
+/* .row.pdf-print-data .el:not(:last-child){
+    border-right: 1px solid #000;
+} */
+.cont .row:not(:first-child){
+    border-top: 1px solid #000;
 }
 
 .row.pdf-print-data .col-md-2, .row.pdf-print-data .col-md-3{
