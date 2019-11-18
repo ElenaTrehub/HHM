@@ -37,6 +37,9 @@ class Controller_Main extends Controller
         }
     }
 
+    
+
+
     public function action_work()
     {
         ($_SESSION['employeePhotoSrc'] = null);      
@@ -369,9 +372,26 @@ class Controller_Main extends Controller
             //echo('<pre>');print_r($empArray);echo('<pre>');
 
         }
+
+        $today_day = date("d");
+        $today_month = date("m");
+        
+        $birth_emp = array();
+
+        foreach($empArray as $emp){
+            $birth_day = (explode("-", $emp->BirthDate))[2];
+            $birth_month = (explode("-", $emp->BirthDate))[1];
+
+            if($birth_day == $today_day && $birth_month == $today_month){
+                $birth_emp[] = $emp;
+            }
+        }
+//var_dump($birth_emp);
+
         $obj = new stdClass();
         $obj->emp = $empArray;
         $obj->cities = $cites;
+        $obj->birthday = $birth_emp;
         return $obj;
     }
 

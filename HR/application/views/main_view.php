@@ -160,6 +160,13 @@
                 <div class="col-md-7 bio-data" id=<?php print htmlentities($employee->Name.$employee->LastName); ?>>
                     <?php print htmlentities($employee->Salary); ?></div>
             </div>
+            <?php if($employee->Diplom_Photo!=''){?>
+            <div class="row">
+                <a class="row-passport" href="/HR/<?php echo($employee->Diplom_Photo); ?>" target="_blank"><img
+                        style="width: 70px;  margin: 20px" src="/HR/images/main-diplom.png"></a>
+            </div>
+            <?php } ?>
+
         </div>
 
         <div class="col-md main-personal-data">
@@ -277,7 +284,9 @@
 </div>
 
 <?php endforeach; ?>
-
+<!-- <div class="birthday">
+   
+</div> -->
 
 
 <div class="modal fade" id="bucketModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

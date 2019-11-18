@@ -301,16 +301,9 @@
                                                       </div>
                                                 </div>
                                     </div>
-                                    
-                              </div>
-                        </div>
+                       
 
-
-
-                        <div class="row">
-                              <div class="col-md-6">
-
-                              <div class="create-personal-short">
+                                    <div class="create-personal-short">
                                           <div class="create-personal-header">G17</div>
                                           <div>
                                                 <div class="bio-description">G17 E-Mail</div>
@@ -323,9 +316,8 @@
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->G17_initials;}else{echo '';} ?>>
                                           </div>
                                     </div>
-                              </div>
-                              <div class="col-md-6">
-                              <div class="create-personal-short">
+                              
+                                    <div class="create-personal-short">
                                           <div class="create-personal-header">HHM</div>
                                           <div>
                                                 <div class="bio-description">HHM E-Mail</div>
@@ -339,7 +331,10 @@
                                           </div>
                                     </div>
                               </div>
+                                          
                         </div>
+                      
+
                         <hr>
                         <div class="row">
                               <div class="col-md-6">
@@ -488,4 +483,4 @@
       </div>
 </div>
 
-<script src="js/employeeCreate.js"></script>
+<script src="js/empCreate.js"></script>

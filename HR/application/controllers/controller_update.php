@@ -14,7 +14,7 @@ class Controller_Update extends Controller
         
         $Photo = '';
         $Diplom_Photo = '';
-
+        $Pass_Photo = '';
 
         
 
@@ -214,9 +214,9 @@ class Controller_Update extends Controller
                 $Photo = $photo[count($photo) - 1];
             }
             
-            echo ("<pre>");
+            /* echo ("<pre>");
         print_r($_POST);
-        echo ("<pre>"); 
+        echo ("<pre>");  */
 
             $BirthDate = $_POST["BirthDate"];
             $CivilState = $_POST["CivilState"];
@@ -279,7 +279,10 @@ class Controller_Update extends Controller
                 $Pass_Photo = $_POST["Pass_Photo"];
             }
 
-            
+            if ($_POST["Diplom_Photo"] !='' && isset($_POST["diplom"]) == false) {
+
+                $Diplom_Photo = $_POST["Diplom_Photo"];
+            }
 
             $CareerStart = $_POST["CareerStart"];
             $Position = $_POST["Position"];
@@ -336,7 +339,7 @@ class Controller_Update extends Controller
                 //echo ($row['id']);
                 //echo intval($row['id']) + 1;
                 $id = intval($row['id']) + 1;
-                echo ($id);
+                //echo ($id);
             }
             
             
@@ -489,10 +492,10 @@ class Controller_Update extends Controller
             $VisitArray = array_chunk($Visit, 6);
 
             for ($i = 0; $i < count($VisitArray); $i++) {
-                echo ("<pre>");
+               /*  echo ("<pre>");
                 print_r($VisitArray[$i]);
                 echo ("</pre>");
-
+ */
                 $sqlVisit = "INSERT INTO `hhmeweme_hrDev`.`SwissVisit` (`idEmployee`, `StartDate`, `EndDate`, `Location`, `Accommodation`, `Goal`, `Group`) VALUES (:idVisit, :StartDate, :EndDate, :LocationR, :Accommodation, :Goal, :Group);";
                 $queryVisit = $this->PDO->prepare($sqlVisit);
 
