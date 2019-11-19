@@ -160,6 +160,19 @@
                 <div class="col-md-7 bio-data" id=<?php print htmlentities($employee->Name.$employee->LastName); ?>>
                     <?php print htmlentities($employee->Salary); ?></div>
             </div>
+            <div class="row">
+                <div class="col-md-5 bio-title">Productive</div>
+                <div class="col-md-7 bio-data"><?php print htmlentities($employee->Productive) ?></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 bio-title">Überstunden</div>
+                <div class="col-md-7 bio-data"><?php print htmlentities($employee->OverTime) ?></div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 bio-title">W.End</div>
+                <div class="col-md-7 bio-data"><?php print htmlentities($employee->W_End) ?></div>
+            </div>
+
             <?php if($employee->Diplom_Photo!=''){?>
             <div class="row">
                 <a class="row-passport" href="/HR/<?php echo($employee->Diplom_Photo); ?>" target="_blank"><img

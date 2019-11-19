@@ -211,6 +211,30 @@
                                                 Lohn  
                                           </div>
                                     </div>
+                                    <div class="pdf-selection-card-include">
+                                          <div class="pdf-checkbox">
+                                                <input type="checkbox" name="Productive" value="1" checked=true>
+                                          </div>
+                                          <div class="pdf-value">
+                                                Productive  
+                                          </div>
+                                    </div>
+                                    <div class="pdf-selection-card-include">
+                                          <div class="pdf-checkbox">
+                                                <input type="checkbox" name="OverTime" value="1" checked=true>
+                                          </div>
+                                          <div class="pdf-value">
+                                                Überstunden  
+                                          </div>
+                                    </div>
+                                    <div class="pdf-selection-card-include">
+                                          <div class="pdf-checkbox">
+                                                <input type="checkbox" name="W_End" value="1" checked=true>
+                                          </div>
+                                          <div class="pdf-value">
+                                                W.End  
+                                          </div>
+                                    </div>
                               </div>
 
 
@@ -392,6 +416,18 @@
                                                 <div class="col-md print-lohn">
                                                       Lohn: <?php print htmlentities($employee->Salary) ?>
                                                 </div>
+                                                <div class="col-md print-productive">
+                                                      Productive: <?php print htmlentities($employee->Productive) ?>
+                                                </div>
+                                                <div class="col-md print-over_time">
+                                                      Überstunden: <?php print htmlentities($employee->OverTime) ?>
+                                                </div>
+                                                <div class="col-md print-w_end">
+                                                      W.End: <?php print htmlentities($employee->W_End) ?>
+                                                </div>
+
+
+
                                           </div>
                                           <div class="col-md print-pass el">
                                                 <div class="col-md print-pass_name">

@@ -26,6 +26,9 @@ class Employee
     public $Salary;
     public $Status;
     public $Diplom_Photo;
+    public $Productive;
+    public $OverTime;
+    public $W_End;
 
     public $Pass_Name;
     public $Pass_LastName;
@@ -104,6 +107,9 @@ class Employee_Model extends Model{
                         $employee->Salary = $row['Salary'];
                         $employee->Status = $row['Status'];
                         $employee->Diplom_Photo = $row['PhotoDiplom'];
+                        $employee->Productive = $row['Productive'];
+                        $employee->OverTime = $row['OverTime'];
+                        $employee->W_End = $row['W_End'];
     
                         //-----Passport
                         $employee->Pass_Name = $row['PassName'];
@@ -316,6 +322,9 @@ class Employee_Model extends Model{
                                 $employee->Salary = $row['Salary'];
                                 $employee->Status = $row['Status'];
                                 $employee->Diplom_Photo = $row['PhotoDiplom'];
+                                $employee->Productive = $row['Productive'];
+                                $employee->OverTime = $row['OverTime'];
+                                $employee->W_End = $row['W_End'];
 
                                 //-----Passport
                                 $employee->Pass_Name = $row['PassName'];

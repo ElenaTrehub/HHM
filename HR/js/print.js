@@ -125,6 +125,15 @@ checkboxes.forEach(element => {
             case "Lohn":
                   element.addEventListener("change", updateLohnData);
                   break;
+            case "Productive":
+                  element.addEventListener("change", updateProductiveData);
+                  break;
+            case "OverTime":
+                  element.addEventListener("change", updateOverTimeData);
+                  break;
+            case "W_End":
+                  element.addEventListener("change", updateWEndData);
+                  break;
 
 
 
@@ -510,9 +519,27 @@ function updateLohnData() {
             $(".col-md.print-lohn").addClass("collapse");
       }
 }
-
-
-
+function updateProductiveData() {
+      if (this.checked) {
+            ($(".col-md.print-productive")).removeClass("collapse");
+      } else {
+            $(".col-md.print-productive").addClass("collapse");
+      }
+}
+function updateOverTimeData() {
+      if (this.checked) {
+            ($(".col-md.print-over_time")).removeClass("collapse");
+      } else {
+            $(".col-md.print-over_time").addClass("collapse");
+      }
+}
+function updateWEndData() {
+      if (this.checked) {
+            ($(".col-md.print-w_end")).removeClass("collapse");
+      } else {
+            $(".col-md.print-w_end").addClass("collapse");
+      }
+}
 
 
 

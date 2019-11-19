@@ -154,7 +154,7 @@
                                           </div>
                                     </div>
                                     <div class="create-personal-short">
-                                          <div class="create-personal-header">Karriere</div>
+                                          <div class="create-personal-header">Arbeit</div>
                                           <div>
                                                
 
@@ -164,17 +164,17 @@
                                           </div>
                                           <div>
                                                 <div class="bio-description">Kommentar1</div>
-                                                <input type="text" name="Comment" class="bio-value"
+                                                <input type="text" name="Comment1" class="bio-value"
                                                       value="<?php if($this->employeeId!= ''){echo $this->employee->Comment1;}else{echo '';} ?>">
                                           </div>
                                           <div>
                                                 <div class="bio-description">Kommentar2</div>
-                                                <input type="text" name="Comment" class="bio-value"
+                                                <input type="text" name="Comment2" class="bio-value"
                                                       value="<?php if($this->employeeId!= ''){echo $this->employee->Comment2;}else{echo '';} ?>">
                                           </div>
                                           <div>
                                                 <div class="bio-description">Kommentar3</div>
-                                                <input type="text" name="Comment" class="bio-value"
+                                                <input type="text" name="Comment3" class="bio-value"
                                                       value="<?php if($this->employeeId!= ''){echo $this->employee->Comment3;}else{echo '';} ?>">
                                           </div>
                                           <div>
@@ -187,6 +187,31 @@
                                                 <input type="text" name="Salary" class="bio-value"
                                                       value="<?php if($this->employeeId!= ''){echo $this->employee->Salary;}else{echo '';} ?>">
                                           </div>
+                                          <div>
+                                                <div class="bio-description">Productive</div>
+                                                <input type="text" name="Productive" class="bio-value"
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->Productive;}else{echo '';} ?>">
+                                          </div>
+                                          <div>
+                                                <div class="bio-description">Überstunden</div>
+                                                <input type="text" name="OverTime" class="bio-value"
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->OverTime;}else{echo '';} ?>">
+                                          </div>
+                                          <div>
+                                                <div class="bio-description">W.End</div>
+                                                <input type="text" name="W_End" class="bio-value"
+                                                      value="<?php if($this->employeeId!= ''){echo $this->employee->W_End;}else{echo '';} ?>">
+                                          </div>
+
+
+
+
+
+
+
+
+
+
 
                                           <div class="passport-image">
                                                       <?php if($this->employeeId!='') {
@@ -338,8 +363,51 @@
                         <hr>
                         <div class="row">
                               <div class="col-md-6">
+                              <div id="childPlaceholder"> 
+                                    <?php $childCounter = 0?>
+                                    <?php if ($this->employeeId!= '') : ?>
+                                    <?php if (isset($this->employee->Children[0])) : ?>
+                                    <?php foreach($this->employee->Children as $child):?>
+                                    <?php $childCounter++?>
+                                    <div class="create-personal-short">
+                                          <div class="create-personal-header"><div style="margin-bottom:15px; display:inline-block">
+                                          Kinder</div>
+                                          <button id="btnVisitRemove" class="btn btn-danger" type="button" onclick="DeleteVisit(this)" style="height:30px; line-height:10px; margin-top:5px; margin-right:15px; display:inline-block; float:right">Entfernen</button>
+                                          </div>
+                                          <div>
+                                                <div class="bio-description">Kinder Name</div>
 
-                                    <div class="create-personal">
+                                                <input type="text" name=<?php print htmlentities("child[ChildName_".$childCounter."]")?> class="bio-value"
+                                                      value=<?php echo $child->ChildName; ?>>
+                                          </div>
+                                          <div>
+                                          <div class="bio-description">Kinder Vorname</div>
+                                                <input type="text" name=<?php print htmlentities("child[ChildLastName_".$childCounter."]")?> class="bio-value"
+                                                      value=<?php echo $child->ChildLastName; ?>>
+                                          </div>
+                                          <div>
+                                          <div class="bio-description">Geburtsdatum</div>
+                                                <input type="date" name=<?php print htmlentities("child[ChildBirthday_".$childCounter."]")?> class="bio-value"
+                                                      value="<?php echo $child->ChildBirthday; ?>">
+                                          </div>
+                                    </div>
+                                    <?php endforeach?>
+                                    <?php endif; ?>
+                                    <?php endif; ?>
+                              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <!-- <div class="create-personal">
                                           <div class="create-personal-header">Kinder</div>
                                           <div>
                                                 <div class="bio-description">Kinder Name</div>
@@ -393,7 +461,10 @@
                                                 <input type="date" name="ChildBirthday3" class="bio-value"
                                                       value=<?php if($this->employeeId!= ''){echo $this->employee->Children[2]->ChildBirthday;}else{echo '';} ?>>
                                           </div>
-                                    </div>
+                                    </div> -->
+
+
+                                    <button id="btnAddChild" type="button" class="btn btn-success">Baby hinzufügen</button>
                               </div>
 
                               <div class="col-md-6">
@@ -445,7 +516,7 @@
                                     <?php endif; ?>
                               </div>
                               <button id="btnAddVisit" type="button" class="btn btn-success">Neues Reisen</button>
-
+                              
                               </div>
                         </div>
                   </div>
@@ -453,7 +524,7 @@
       </form>
 </div>
 
-<div id="visitTemplate" class="create-personal-short" style="visibility:hidden">
+<div id="visitTemplate" class="create-personal-short collapse">
       <div class="create-personal-header">Schweiz-Aufenthalte
             <button id="btnVisitRemove" class="btn btn-danger" type="button" onclick="DeleteVisit(this)" style="height:30px; line-height:10px; margin-top:5px; margin-right:15px; display:inline-block; float:right">Entfernen</button>
       </div>
@@ -482,5 +553,21 @@
             <input type="text" name="visit[VisitGroup_1]" class="bio-value">
       </div>
 </div>
-
+<div id="childTemplate" class="create-personal-child collapse">
+      <div class="create-personal-header">Kinder
+      <button id="btnVisitRemove" class="btn btn-danger" type="button" onclick="DeleteChild(this)" style="height:30px; line-height:10px; margin-top:5px; margin-right:15px; display:inline-block; float:right">Entfernen</button>
+      </div>
+      <div>
+            <div class="bio-description">Kinder Name</div>
+            <input type="text" name="child[ChildName_1]" class="bio-value">
+      </div>
+      <div>
+            <div class="bio-description">Kinder Vorame</div>
+            <input type="text" name="child[ChildLastName_1]" class="bio-value">
+      </div>
+      <div>
+            <div class="bio-description">Geburtsdatum</div>
+            <input type="date" name="child[ChildBirthday_1]" class="bio-value">
+      </div>
+</div>
 <script src="js/empCreate.js"></script>

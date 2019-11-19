@@ -27,7 +27,8 @@ $("#btnAddVisit").click(function () {
     console.log(visitCounter);
 
     var template = $("#visitTemplate").clone();
-    template.css('visibility', 'visible');
+    //console.log(template);
+    template[0].classList.remove("collapse");
     var inputList = template.find("input");
     
     for (let index = 0; index < inputList.length; index++) {
@@ -44,5 +45,33 @@ $("#btnAddVisit").click(function () {
 
 function DeleteVisit(btn) {
     console.log($(btn).closest(".create-personal-short").remove());
+
+}
+
+$("#btnAddChild").click(function () {
+    var listChild = document.getElementsByClassName("btn btn-danger");
+    var childCounter = listChild.length-1;
+    childCounter++;
+    console.log(childCounter);
+
+    var template_child = $("#childTemplate").clone();
+    //console.log(template);
+    template_child[0].classList.remove("collapse");
+    var inputList = template_child.find("input");
+    
+    for (let index = 0; index < inputList.length; index++) {
+
+
+        inputList[index].setAttribute("name", inputList[index].name.substring(0, inputList[index].name.lastIndexOf('_')+1) + childCounter+"]");
+        //inputList[index].name = inputList[index].name + visitCounter;
+        console.log(inputList[index]);
+    }
+
+    $("#childPlaceholder").append(template_child);
+});
+
+
+function DeleteChild(btn) {
+    console.log($(btn).closest(".create-personal-child").remove());
 
 }

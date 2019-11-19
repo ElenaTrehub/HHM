@@ -1506,6 +1506,7 @@ input.bio-value {
     opacity: 0;
     right: 0;
     top: 0;
+    z-index: 5;
   }
   /* Когда у флажка установлен checked  
    * блок с содержанием скрыт
@@ -1564,7 +1565,7 @@ input.bio-value {
 .pdf-preview-container{
     width:100%;
     display:inline-block;
-    height:785px;
+    height:100vh;
     background: #777;
     overflow-y: scroll;
     border-bottom-left-radius: 10px;
@@ -1632,7 +1633,8 @@ input.bio-value {
 .print-geburtsdatum, .print-zivilstand, .print-wohnadresse, .print-PLZ, .print-ort, .print-tell,
 .print-eintrittsdatum, .print-comment1, .print-comment2, .print-comment3, .print-position, .print-lohn,
 .print-pass_name, .print-vorname, .print-pass_nummer, .print-gultig,
-.print-g17_mail, .print-g17_kurz, .print-hhm_mail, .print-hhm_kurz
+.print-g17_mail, .print-g17_kurz, .print-hhm_mail, .print-hhm_kurz,
+.print-productive, .print-over_time, .print-w_end
 {
     padding: 0;
 }

@@ -338,6 +338,9 @@ class Controller_Main extends Controller
                         $employee->Salary = $row['Salary'];
                         $employee->Status = $row['Status'];
                         $employee->Diplom_Photo = $row['PhotoDiplom'];
+                        $employee->Productive = $row['Productive'];
+                        $employee->OverTime = $row['OverTime'];
+                        $employee->W_End = $row['W_End'];
 
                         //-----Passport
                         $employee->Pass_Name = $row['PassName'];
