@@ -210,31 +210,130 @@ for(let i=0; i<print_personal.length; i++){
       }
       else
       if((print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true) && print_personal[i].classList.contains("br")==true){
-            print_personal[i].classList.removeClass("br");
+            print_personal[i].classList.remove("br");
       }
       if(print_pass[i].classList.contains("collapse")==false && print_career[i].classList.contains("br")==false){
             print_career[i].classList.add("br");
       }
       
       if(print_pass[i].classList.contains("collapse")==true){
-            print_career[i].classList.removeClass("br");
+            print_career[i].classList.remove("br");
       }
 }
 
+var print_children = document.getElementsByClassName("print-children");
 
-
-
-
-if(print_career || print_pass!=undefined){
-      $(".col-md.print-personal").addClass("br");
+for(let i=0; i<print_children.length; i++){
+      
+    
+      if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false){
+            print_children[i].classList.add("bt");
+      }
+      if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true){
+            print_children[i].classList.remove("bt");
+      }
+      
 }
+
+var print_visit = document.getElementsByClassName("print-visit");
+
+for(let i=0; i<print_visit.length; i++){
+      
+    
+      if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+            print_visit[i].classList.add("bt");
+      }
+      if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+            print_visit[i].classList.remove("bt");
+      }
+      
+}
+
+
 
 
 function updatePersonalData() {
       if (this.checked) {
             ($(".col-md.print-personal")).removeClass("collapse");
+
+            for(let i=0; i<print_personal.length; i++){
+                  if((print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false) && print_personal[i].classList.contains("br")==false){
+                        print_personal[i].classList.add("br");
+                  }
+                  else
+                  if((print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true) && print_personal[i].classList.contains("br")==true){
+                        print_personal[i].classList.remove("br");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==false && print_career[i].classList.contains("br")==false){
+                        print_career[i].classList.add("br");
+                  }
+                  
+                  if(print_pass[i].classList.contains("collapse")==true){
+                        print_career[i].classList.remove("br");
+                  }
+            }
+            for(let i=0; i<print_children.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false){
+                        print_children[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true){
+                        print_children[i].classList.remove("bt");
+                  }
+                  
+            }
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       } else {
             $(".col-md.print-personal").addClass("collapse");
+            for(let i=0; i<print_personal.length; i++){
+                  if((print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false) && print_personal[i].classList.contains("br")==false){
+                        print_personal[i].classList.add("br");
+                  }
+                  else
+                  if((print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true) && print_personal[i].classList.contains("br")==true){
+                        print_personal[i].classList.remove("br");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==false && print_career[i].classList.contains("br")==false){
+                        print_career[i].classList.add("br");
+                  }
+                  
+                  if(print_pass[i].classList.contains("collapse")==true){
+                        print_career[i].classList.remove("br");
+                  }
+            }
+            for(let i=0; i<print_children.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false){
+                        print_children[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true){
+                        print_children[i].classList.remove("bt");
+                  }
+                  
+            }
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       }
 }
 function updateGeburtsdatumData() {
@@ -289,8 +388,84 @@ function updateTelefonData() {
 function updateCareer() {
       if (this.checked) {
             ($(".print-career")).removeClass("collapse");
+            for(let i=0; i<print_personal.length; i++){
+                  if((print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false) && print_personal[i].classList.contains("br")==false){
+                        print_personal[i].classList.add("br");
+                  }
+                  else
+                  if((print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true) && print_personal[i].classList.contains("br")==true){
+                        print_personal[i].classList.remove("br");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==false && print_career[i].classList.contains("br")==false){
+                        print_career[i].classList.add("br");
+                  }
+                  
+                  if(print_pass[i].classList.contains("collapse")==true){
+                        print_career[i].classList.remove("br");
+                  }
+            }
+            for(let i=0; i<print_children.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false){
+                        print_children[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true){
+                        print_children[i].classList.remove("bt");
+                  }
+                  
+            }
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       } else {
             $(".print-career").addClass("collapse");
+            for(let i=0; i<print_personal.length; i++){
+                  if((print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false) && print_personal[i].classList.contains("br")==false){
+                        print_personal[i].classList.add("br");
+                  }
+                  else
+                  if((print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true) && print_personal[i].classList.contains("br")==true){
+                        print_personal[i].classList.remove("br");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==false && print_career[i].classList.contains("br")==false){
+                        print_career[i].classList.add("br");
+                  }
+                  
+                  if(print_pass[i].classList.contains("collapse")==true){
+                        print_career[i].classList.remove("br");
+                  }
+            }
+            for(let i=0; i<print_children.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false){
+                        print_children[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true){
+                        print_children[i].classList.remove("bt");
+                  }
+                  
+            }
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       }
 }
 function updateEintrittsdatumData() {
@@ -348,8 +523,84 @@ function updateLohnData() {
 function updatePassportData() {
       if (this.checked) {
             ($(".print-pass")).removeClass("collapse");
+            for(let i=0; i<print_personal.length; i++){
+                  if((print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false) && print_personal[i].classList.contains("br")==false){
+                        print_personal[i].classList.add("br");
+                  }
+                  else
+                  if((print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true) && print_personal[i].classList.contains("br")==true){
+                        print_personal[i].classList.remove("br");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==false && print_career[i].classList.contains("br")==false){
+                        print_career[i].classList.add("br");
+                  }
+                  
+                  if(print_pass[i].classList.contains("collapse")==true){
+                        print_career[i].classList.remove("br");
+                  }
+            }
+            for(let i=0; i<print_children.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false){
+                        print_children[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true){
+                        print_children[i].classList.remove("bt");
+                  }
+                  
+            }
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       } else {
             $(".print-pass").addClass("collapse");
+            for(let i=0; i<print_personal.length; i++){
+                  if((print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false) && print_personal[i].classList.contains("br")==false){
+                        print_personal[i].classList.add("br");
+                  }
+                  else
+                  if((print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true) && print_personal[i].classList.contains("br")==true){
+                        print_personal[i].classList.remove("br");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==false && print_career[i].classList.contains("br")==false){
+                        print_career[i].classList.add("br");
+                  }
+                  
+                  if(print_pass[i].classList.contains("collapse")==true){
+                        print_career[i].classList.remove("br");
+                  }
+            }
+            for(let i=0; i<print_children.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false){
+                        print_children[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true){
+                        print_children[i].classList.remove("bt");
+                  }
+                  
+            }
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       }
 }
 function updatePassNameData() {
@@ -392,16 +643,82 @@ function updateGültigkeitData() {
 function updateChildrenData() {
       if (this.checked) {
             ($(".print-children")).removeClass("collapse");
+            for(let i=0; i<print_children.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false){
+                        print_children[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true){
+                        print_children[i].classList.remove("bt");
+                  }
+                  
+            }
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       } else {
             $(".print-children").addClass("collapse");
+            for(let i=0; i<print_children.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false){
+                        print_children[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true){
+                        print_children[i].classList.remove("bt");
+                  }
+                  
+            }
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       }
 }
 
 function updateVisitData() {
       if (this.checked) {
             ($(".print-visit")).removeClass("collapse");
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       } else {
             $(".print-visit").addClass("collapse");
+            for(let i=0; i<print_visit.length; i++){
+      
+    
+                  if(print_pass[i].classList.contains("collapse")==false || print_career[i].classList.contains("collapse")==false || print_personal[i].classList.contains("collapse")==false || print_children[i].classList.contains("collapse")==false){
+                        print_visit[i].classList.add("bt");
+                  }
+                  if(print_pass[i].classList.contains("collapse")==true && print_career[i].classList.contains("collapse")==true && print_personal[i].classList.contains("collapse")==true && print_children[i].classList.contains("collapse")==true){
+                        print_visit[i].classList.remove("bt");
+                  }
+                  
+            }
       }
 }
 

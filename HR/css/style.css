@@ -1680,12 +1680,15 @@ input.bio-value {
 .br{
     border-right: 1px solid #000;
 }
+.bt{
+    border-top: 1px solid #000;
+}
 /* .row.pdf-print-data .el:not(:last-child){
     border-right: 1px solid #000;
 } */
-.cont .row:not(:first-child){
+/* .cont .row:not(:first-child){
     border-top: 1px solid #000;
-}
+} */
 
 .row.pdf-print-data .col-md-2, .row.pdf-print-data .col-md-3{
     background:lightgreen;
