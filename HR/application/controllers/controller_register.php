@@ -24,8 +24,12 @@ class Controller_Register extends Controller
         if (!empty($_POST['password-confirm'])) {
             $password_confirm = trim($_POST['password-confirm']);
         }
+        if(strripos($user, "@") == false){
+            //$username_err = "Um sich zu registrieren, geben Sie die Mail ein!";
+        }
+        else{
 
-        $email_array = explode("@", $user);
+            $email_array = explode("@", $user);
             $domein = $email_array[1];
         
             if($domein =="global17.com" || $domein =="hhm.ch"){
@@ -33,6 +37,12 @@ class Controller_Register extends Controller
                 if ($password !== $password_confirm){
                     $password_err = "Passwörter stimmen nicht überein!";
                     $confirm_password_err = "Passwörter stimmen nicht überein!";
+                }
+                if ($password == ""){
+                    $password_err = "Passwort eingeben!";
+                }
+                if ($password_confirm == ""){
+                    $confirm_password_err = "Bestätigen Sie das Passwort!";
                 }
                 else{
                     $password= password_hash($password, PASSWORD_DEFAULT);
@@ -51,8 +61,13 @@ class Controller_Register extends Controller
             }
             else{
                 
-                $username_err = "Ungültiger Domainname!";
-            }   
+                //$username_err = "Ungültiger Domainname!";
+                
+            }  
+
+        }
+
+         
        
         $this->view->username_err = $username_err;
         $this->view->password_err = $password_err;

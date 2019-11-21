@@ -213,10 +213,10 @@ class Controller_Update extends Controller
                 //print_r($photo);
                 $Photo = $photo[count($photo) - 1];
             }
-            echo("fdgs;vju;erobvh/dfv/\dab");
+            /* echo("fdgs;vju;erobvh/dfv/\dab");
        echo ("<pre>");
         print_r($_POST);
-        echo ("<pre>"); 
+        echo ("<pre>");  */
 
             $BirthDate = $_POST["BirthDate"];
             $CivilState = $_POST["CivilState"];
@@ -298,28 +298,7 @@ class Controller_Update extends Controller
             $HHM_email = $_POST["HHM_email"];
             $HHM_initials = $_POST["HHM_initials"];
 
-            /* $ChildName1 = $_POST["ChildName1"];
-            $ChildLastName1 = $_POST["ChildLastName1"];
-            $ChildBirthday1 = $_POST["ChildBirthday1"];
-
-            $ChildName2 = $_POST["ChildName2"];
-            $ChildLastName2 = $_POST["ChildLastName2"];
-            $ChildBirthday2 = $_POST["ChildBirthday2"];
-
-            $ChildName3 = $_POST["ChildName3"];
-            $ChildLastName3 = $_POST["ChildLastName3"];
-            $ChildBirthday3 = $_POST["ChildBirthday3"];
- */
             
-            
-
-            
-            //$VisitStart = $_POST["VisitStart"];
-            //$VisitEnd = $_POST["VisitEnd"];
-            //$VisitLocation = $_POST["VisitLocation"];
-            //$VisitAccommodation = $_POST["VisitAccommodation"];
-            //$VisitGoal = $_POST["VisitGoal"];
-            //$VisitGroup = $_POST["VisitGroup"];
         }
 
         if(isset($_POST["visit"])){
@@ -446,26 +425,6 @@ class Controller_Update extends Controller
                 $HHM->execute();
 
 
-                /* $Children = $this->PDO->prepare("INSERT INTO `Children` VALUES( DEFAULT, :idParent1, :ChildName1, :ChildLastName1, :ChildBirthday1)");
-                $Children->bindParam(":idParent1", $id, PDO::PARAM_INT);
-                $Children->bindParam(":ChildName1", $ChildName1, PDO::PARAM_STR);
-                $Children->bindParam(":ChildLastName1", $ChildLastName1, PDO::PARAM_STR);
-                $Children->bindParam(":ChildBirthday1", $ChildBirthday1, PDO::PARAM_STR);
-                $Children->execute(); */
-
-                /* $Children = $this->PDO->prepare("INSERT INTO `Children` VALUES( DEFAULT, :idParent2, :ChildName2, :ChildLastName2, :ChildBirthday2)");
-                $Children->bindParam(":idParent2", $id, PDO::PARAM_INT);
-			    $Children->bindParam(":ChildName2", $ChildName2, PDO::PARAM_STR);
-                $Children->bindParam(":ChildLastName2", $ChildLastName2, PDO::PARAM_STR);
-                $Children->bindParam(":ChildBirthday2", $ChildBirthday2, PDO::PARAM_STR);
-                $Children->execute();
-
-                $Children = $this->PDO->prepare("INSERT INTO `Children` VALUES( DEFAULT, :idParent3, :ChildName3, :ChildLastName3, :ChildBirthday3)");
-                $Children->bindParam(":idParent3", $id, PDO::PARAM_INT);
-			    $Children->bindParam(":ChildName3", $ChildName3, PDO::PARAM_STR);
-                $Children->bindParam(":ChildLastName3", $ChildLastName3, PDO::PARAM_STR);
-                $Children->bindParam(":ChildBirthday3", $ChildBirthday3, PDO::PARAM_STR);
-                $Children->execute();  */
 
                 $this->PDO->commit();
                 //header('location: /HR/main');
@@ -601,7 +560,7 @@ class Controller_Update extends Controller
             $sqlUser->bindParam(":Photo", $Photo, PDO::PARAM_STR);
             $sqlUser->bindParam(":idRole", $idRole, PDO::PARAM_STR);
             $sqlUser->execute();
-           echo("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+          
             $PersonalData = $this->PDO->prepare("UPDATE `PersonalData` SET `BirthDate`= :BirthDate, `CivilState`=:CivilState , `Address`=:Address , `PLZ`= :PLZ, `idCity` = :idCity, `Phone`= :Phone WHERE `idEmployee` =:id ");
             $PersonalData->bindParam(":id", $id, PDO::PARAM_INT);
             $PersonalData->bindParam(":BirthDate", $BirthDate, PDO::PARAM_STR);

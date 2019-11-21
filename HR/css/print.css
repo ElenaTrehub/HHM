@@ -4,7 +4,7 @@
       }
 
       .pdf-preview {
-            width:100%;
+            min-width:90em;
             margin-left: 30mm;
             margin-right: 0;
             padding-right: 0;
@@ -29,9 +29,9 @@
 
       .print-children, .print-visit{
             border-top:1px solid black;
-      }
-
-
+            border-right:1px solid black;
+      } 
+      
 
 
 

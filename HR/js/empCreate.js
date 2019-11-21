@@ -35,6 +35,7 @@ $("#btnAddVisit").click(function () {
 
 
         inputList[index].setAttribute("name", inputList[index].name.substring(0, inputList[index].name.lastIndexOf('_')+1) + visitCounter+"]");
+        inputList[index].value = '';
         //inputList[index].name = inputList[index].name + visitCounter;
         console.log(inputList[index]);
     }
@@ -63,6 +64,7 @@ $("#btnAddChild").click(function () {
 
 
         inputList[index].setAttribute("name", inputList[index].name.substring(0, inputList[index].name.lastIndexOf('_')+1) + childCounter+"]");
+        inputList[index].value = '';
         //inputList[index].name = inputList[index].name + visitCounter;
         console.log(inputList[index]);
     }

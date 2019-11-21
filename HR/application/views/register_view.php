@@ -6,21 +6,21 @@
       
         <form action="/HR/register" method="post">
           
-            <div class="form-group <?php echo (!empty($this->username_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php /*echo $username; */?>" required>
-                <span class="help-block"><?php echo $this->username_err; ?></span>
+                <input type="text" id ="login" autocomplete="off" name="username" class="form-control" value="<?php /*echo $username; */?>" required>
+                <span class="help-block-login"><?php echo $this->username_err; ?></span>
             </div>    
 
-            <div class="form-group <?php echo (!empty($this->password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" value="<?php /*echo $password;*/ ?>" required>
+                <input type="password" autocomplete="off" name="password" class="form-control" value="<?php /*echo $password;*/ ?>" required>
                 <span class="help-block"><?php echo $this->password_err; ?></span>
             </div>
 
-            <div class="form-group <?php /*echo (!empty($confirm_password_err)) ? 'has-error' : ''; */?>">
+            <div class="form-group">
                 <label>Confirm Password</label>
-                <input type="password" name="password-confirm" class="form-control" value="<?php /*echo $confirm_password; */?>" required>
+                <input type="password" autocomplete="off" name="password-confirm" class="form-control" value="<?php /*echo $confirm_password; */?>" required>
                 <span class="help-block"><?php echo $this->confirm_password_err; ?></span>
             </div>
 
@@ -33,3 +33,4 @@
 
         </form>
     </div>    
+    <script src="js/register.js"></script>

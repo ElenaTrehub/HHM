@@ -1,6 +1,11 @@
 <div class="row" style="background: $fdfdfd; padding-top:15px; width:100%">
 
       <div class="col-md-3 pdf-filters" style="display:inline-block; width:100%">
+            <div class="pdf-header-preview">
+                  Einstellungen
+            </div>
+      <div class="pdf-nav-container">
+            
             <div class="pdf-parameter-card">
                   <div class="pdf-header">
                         Mitarbeiter
@@ -328,7 +333,7 @@
             <!--<input type="submit">-->
             </form>
       </div>
-
+      </div>
       <div class="col-md-9">
             <div class="pdf-header-preview">
                   Vorschau
@@ -347,22 +352,26 @@
        
                                           </div>
 
-                                          <?php print htmlentities($counter++ . ". " . $employee->Name . " " . $employee->LastName) ?><br><hr>
+                                          <?php print htmlentities($counter++ . ". " . $employee->Name . " " . $employee->LastName) ?><br><hr style="width:90%;margin-left:5%">
                                           <!-- <div style="text-align:center">
                                                 <?php print htmlentities($employee->Position) ?>
                                           </div> -->
                                           <div class="col-md print-mail">
                                                 <div class="col-md print-g17_mail">
-                                                      <?php print htmlentities("G17 E-Mail:" . " " . $employee->G17_email) ?><br>
+                                                      <span class="header-col">G17 E-Mail: </span>
+                                                      <?php print htmlentities($employee->G17_email) ?><br>
                                                 </div> 
-                                                <div class="col-md print-g17_kurz">   
-                                                      <?php print htmlentities("G17 Kürzel:" . " " . $employee->G17_initials) ?><br><hr>
+                                                <div class="col-md print-g17_kurz">
+                                                      <span class="header-col">G17 Kürzel: </span>   
+                                                      <?php print htmlentities($employee->G17_initials) ?><br><hr style="width:90%;margin-left:5%">
                                                 </div>
                                                 <div class="col-md print-hhm_mail">
-                                                      <?php print htmlentities("HHM E-Mail:" . " " . $employee->HHM_email) ?><br>
+                                                      <span class="header-col">HHM E-Mail: </span>
+                                                      <?php print htmlentities($employee->HHM_email) ?><br>
                                                 </div>
                                                 <div class="col-md print-hhm_kurz">
-                                                      <?php print htmlentities("HHM Kürzel:" . " " . $employee->HHM_initials) ?>
+                                                      <span class="header-col">HHM Kürzel: </span>
+                                                      <?php print htmlentities($employee->HHM_initials) ?>
                                                 </div>
                                           </div>
                                     </div>
@@ -374,87 +383,89 @@
                                           
                                           
                                           <div class="col-md print-personal el">
+                                                <span class="header-row">Personalien:</span>
                                                 <div class="col-md print-geburtsdatum">
-                                                      Geburtsdatum:
+                                                      <span class="header-col">Geburtsdatum:</span>
                                                       <?php print htmlentities(date("d-m-Y", strtotime($employee->BirthDate))) ?>
                                                 </div>
                                                 <div class="col-md print-zivilstand">
-                                                      Zivilstand:
+                                                <span class="header-col">Zivilstand:</span>
                                                       <?php print htmlentities($employee->CivilState) ?>
                                                 </div>
                                                 <div class="col-md print-wohnadresse">
-                                                      Wohnadresse: <?php print htmlentities($employee->Address) ?>
+                                                      <span class="header-col">Wohnadresse:</span> <?php print htmlentities($employee->Address) ?>
                                                 </div>
                                                 <div class="col-md print-PLZ">
-                                                      PLZ: <?php print htmlentities($employee->PLZ) ?>
+                                                      <span class="header-col">PLZ:</span> <?php print htmlentities($employee->PLZ) ?>
                                                 </div>
                                                 <div class="col-md print-ort">
-                                                      Ort: <?php print htmlentities($employee->Place) ?>
+                                                      <span class="header-col">Ort:</span> <?php print htmlentities($employee->Place) ?>
                                                 </div>
                                                 <div class="col-md print-tell">
-                                                      Telefon: <?php print htmlentities($employee->Phone) ?>
+                                                      <span class="header-col">Telefon:</span> <?php print htmlentities($employee->Phone) ?>
                                                 </div>
                                           </div>
                                           <div class="col-md print-career el">
-                                                Arbeit:
+                                                <span class="header-row">Arbeit:</span>
                                                 <div class="col-md print-eintrittsdatum">
-                                                      Eintrittsdatum:
+                                                <span class="header-col">Eintrittsdatum:</span>
                                                       <?php print htmlentities(date("d-m-Y", strtotime($employee->StartDate))) ?>
                                                 </div>
                                                 <div class="col-md print-comment1">
-                                                      Kommentar1: <?php print htmlentities($employee->Comment1) ?>
+                                                      <span class="header-col">Kommentar1:</span> <?php print htmlentities($employee->Comment1) ?>
                                                 </div>
                                                 <div class="col-md print-comment2">
-                                                      Kommentar2: <?php print htmlentities($employee->Comment2) ?>
+                                                      <span class="header-col">Kommentar2:</span> <?php print htmlentities($employee->Comment2) ?>
                                                 </div>
                                                 <div class="col-md print-comment3">
-                                                      Kommentar3: <?php print htmlentities($employee->Comment3) ?>
+                                                      <span class="header-col">Kommentar3:</span> <?php print htmlentities($employee->Comment3) ?>
                                                 </div>
                                                 <div class="col-md print-position">
-                                                      Position: <?php print htmlentities($employee->Position) ?>
+                                                      <span class="header-col">Position:</span> <?php print htmlentities($employee->Position) ?>
                                                 </div>
                                                 <div class="col-md print-lohn">
-                                                      Lohn: <?php print htmlentities($employee->Salary) ?>
+                                                      <span class="header-col">Lohn:</span> <?php print htmlentities($employee->Salary) ?>
                                                 </div>
                                                 <div class="col-md print-productive">
-                                                      Productive: <?php print htmlentities($employee->Productive) ?>
+                                                      <span class="header-col">Productive:</span> <?php print htmlentities($employee->Productive) ?>
                                                 </div>
                                                 <div class="col-md print-over_time">
-                                                      Überstunden: <?php print htmlentities($employee->OverTime) ?>
+                                                      <span class="header-col">Überstunden:</span> <?php print htmlentities($employee->OverTime) ?>
                                                 </div>
                                                 <div class="col-md print-w_end">
-                                                      W.End: <?php print htmlentities($employee->W_End) ?>
+                                                      <span class="header-col">W.End:</span> <?php print htmlentities($employee->W_End) ?>
                                                 </div>
 
 
 
                                           </div>
                                           <div class="col-md print-pass el">
+                                                <span class="header-row">Pass-Angaben:</span>
                                                 <div class="col-md print-pass_name">
-                                                      Pass Name: <?php print htmlentities($employee->Pass_Name) ?>
+                                                      <span class="header-col">Pass Name:</span> <?php print htmlentities($employee->Pass_Name) ?>
                                                 </div>
                                                 <div class="col-md print-vorname">
-                                                      Pass Vorname:
+                                                      <span class="header-col">Pass Vorname:</span>
                                                       <?php print htmlentities($employee->Pass_LastName) ?>
                                                 </div>
                                                 <div class="col-md print-pass_nummer">
-                                                      Passnummer:
+                                                      <span class="header-col">Passnummer:</span>
                                                       <?php print htmlentities($employee->Pass_Number) ?>
                                                 </div>
                                                 <div class="col-md print-gultig">
-                                                      Gültigkeit:
+                                                      <span class="header-col">Gültigkeit:</span>
                                                       <?php print htmlentities(date("d-m-Y", strtotime($employee->Pass_Expired))) ?>
                                                 </div>
                                           </div>
                                     </div>
-                                          <div class="row print-children">
-                                                Kinder:
-                                                <table class="table table-sm table-stripped">
+                                          <div class="row print-children" >
+                                                <span style="box-sizing:border-box; padding-left:15px;" class="header-row">Kinder:</span>
+                                                <table class="table table-sm table-stripped" style="box-sizing:border-box; margin-left:1px; width:98%">
                                                       <thead>
                                                             <tr>
-                                                                  <td>Name</td>
-                                                                  <td>Vorname</td>
-                                                                  <td>Geburtstag</td>
+                                                                  <td><span style="box-sizing:border-box; padding-left:25px;" class="header-col">Name</span></td>
+                                                                  <td><span style="box-sizing:border-box; padding-left:25px;" class="header-col">Vorname</span></td>
+                                                                  <td><span style="box-sizing:border-box; padding-left:25px;" class="header-col">Geburtstag</span></td>
                                                             </tr>
                                                       </thead>
                                                       <tbody>
@@ -462,9 +473,9 @@
                                                                         if (isset($child->Name)) {;
                                                                         } ?>
                                                                         <tr>
-                                                                              <td><?php print htmlentities($child->ChildName) ?></td>
-                                                                              <td><?php print htmlentities($child->ChildLastName) ?></td>
-                                                                              <td><?php print htmlentities(date("d.m.Y", strtotime($child->ChildBirthday))); ?></td>
+                                                                              <td style="box-sizing:border-box; padding-left:30px;"><?php print htmlentities($child->ChildName) ?></td>
+                                                                              <td style="box-sizing:border-box; padding-left:30px;"><?php print htmlentities($child->ChildLastName) ?></td>
+                                                                              <td style="box-sizing:border-box; padding-left:30px;"><?php print htmlentities(date("d.m.Y", strtotime($child->ChildBirthday))); ?></td>
                                                                         </tr>
                                                             <?php }
                                                       endforeach ?>
@@ -473,15 +484,15 @@
 
                                           </div>
                                           <div class="row print-visit">
-                                                Schweiz-Aufenthalte:
-                                                <table class="table table-sm table-stripped">
+                                                <span style="box-sizing:border-box; padding-left:15px;" class="header-row">Schweiz-Aufenthalte:</span>
+                                                <table class="table table-sm table-stripped" style="box-sizing:border-box; margin-left:1px; width:98%">
                                                       <thead>
                                                                         <tr>
-                                                                              <td>Datum</td>
-                                                                              <td>Standort</td>
-                                                                              <td>Unterkunft</td>
-                                                                              <td>Ziel</td>
-                                                                              <td>Gruppe</td>
+                                                                              <td style="box-sizing:border-box; padding-left:25px;"><span class="header-col">Datum</span></td>
+                                                                              <td style="box-sizing:border-box; padding-left:25px;"><span class="header-col">Standort</span></td>
+                                                                              <td style="box-sizing:border-box; padding-left:25px;"><span class="header-col">Unterkunft</span></td>
+                                                                              <td style="box-sizing:border-box; padding-left:25px;"><span class="header-col">Ziel</span></td>
+                                                                              <td style="box-sizing:border-box; padding-left:25px;"><span class="header-col">Gruppe</span></td>
                                                                         </tr>
                                                       </thead>
                                                       <tbody>
@@ -489,10 +500,10 @@
                                                       <tr>
                                                             <td> <?php print htmlentities(date("d-m-Y", strtotime($visit->StartDate))); ?>
                                                             <?php print htmlentities(date("d-m-Y", strtotime($visit->EndDate))); ?></td>
-                                                            <td><?php print htmlentities($visit->Location); ?></td>
-                                                            <td><?php print htmlentities($visit->Accommodation); ?></td>
-                                                            <td><?php print htmlentities($visit->Goal) ?></td>
-                                                            <td><?php print htmlentities($visit->Group) ?></td>
+                                                            <td style="box-sizing:border-box; padding-left:30px;"><?php print htmlentities($visit->Location); ?></td>
+                                                            <td style="box-sizing:border-box; padding-left:30px;"><?php print htmlentities($visit->Accommodation); ?></td>
+                                                            <td style="box-sizing:border-box; padding-left:30px;"><?php print htmlentities($visit->Goal) ?></td>
+                                                            <td style="box-sizing:border-box; padding-left:30px;"><?php print htmlentities($visit->Group) ?></td>
                                                       </tr>
                                                       <?php endforeach; ?>
 

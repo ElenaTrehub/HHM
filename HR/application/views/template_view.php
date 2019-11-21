@@ -45,7 +45,7 @@
                   <input class="searchbar" type="search" placeholder="Suche">
             </div>
             <div class="col-md-2">
-                  <div class="dropdown">
+                  <div class="dropdown" style="float:left;margin-right: 20px;">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <?php echo htmlspecialchars($_SESSION["username"]); ?>
@@ -56,7 +56,14 @@
                               <a class="dropdown-item" href="/HR/logout">Sign Out Account</a>
                         </div>
                   </div>
+                  <div>
+                        <a class="" href="/HR/adduser">
+                              <img src="/HR/images/add_user_database.svg" alt="">
+                        </a>
+                  </div>
             </div>
+            
+            
       </div>
       <div class="row" style="width: 100%">
             <div>

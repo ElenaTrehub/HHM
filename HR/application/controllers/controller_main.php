@@ -2,7 +2,8 @@
 session_start();
 
 include "application/models/Employee.php";
-
+include $_SERVER['DOCUMENT_ROOT'].'/HR/Twilio/twilio-php-master/src/Twilio/autoload.php';
+use Twilio\Rest\Client;
 class Controller_Main extends Controller
 {
     
@@ -31,6 +32,39 @@ class Controller_Main extends Controller
            
             $this->view->list = $res->emp;
             $this->view->cities = $res->cities;
+          
+            $birth_string = '';
+
+            
+
+
+
+
+
+            /* if(isset($res->birthday[0])){
+                foreach($res->birthday as $birth){
+                    $birth_string = $birth_string . " " . $birth->Name . " " . $birth->LastName . ";";
+                }
+                $account_sid = 'AC482c5a6a8403b82345ad633fdebf05bb';
+                $auth_token = '928b8c3561ff5232af7aaea2dadfc18e';
+
+                // In production, these should be environment variables. E.g.:
+                //$auth_token = $_ENV["TWILIO_ACCOUNT_SID"]
+                // A Twilio number you own with SMS capabilities
+
+                $twilio_number = "+19525294410";
+                $client = new Client($account_sid, $auth_token);
+                $client->messages->create(
+
+                    // Where to send a text message (your cell phone?)
+                    '+41792119207"',
+                    array(
+                        'from' => $twilio_number,
+                        'body' => 'They are birthday today:' . " " .  $birth_string
+                    )
+                ); 
+            } 
+            */
             $this->view->generate('main_view.php', 'template_view.php');
         } else {
             header('Location: /HR/login');
