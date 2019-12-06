@@ -13,3 +13,9 @@ function Confirm(){
     }
     
 }
+function DeleteClient(btn){
+    
+    $("#idDeleteClient")[0].value = btn.dataset.id;
+   
+    $("#bucketModalDelete").modal('show');
+}

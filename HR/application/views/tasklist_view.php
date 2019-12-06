@@ -10,13 +10,13 @@
                                 <form action="/HR/edit" method="post">
                                         <?php foreach ($this->empList as $emp) : ?>
                                             <?php foreach ($this->taskList as $task) : ?>
-                                                <?php if($emp->Id == $task->idEmployee && $task->Employee!="" && $task->Employee!="-1"){?>
+                                                <?php if($emp->Id == $task->idEmployee && $task->Info!="" && $task->Info!="-1"){?>
                                                     <div class="project-calendar" onclick="this.parentNode.submit()" data-id=<?php print htmlentities($task->idEmployee); ?>>
                                                         <input type="hidden" name="idEmployee" value=<?php print htmlentities($task->idEmployee); ?>>
                                                         <?php print htmlentities($task->Employee); ?>
                                                     </div>
                                                 <?php } ?>
-                                                <?php if($emp->Id == $task->idEmployee && $task->Employee==""){?>
+                                                <?php if($emp->Id == $task->idEmployee && $task->Info==""){?>
                                                     <div class="project-calendar-empty" onclick="this.parentNode.submit()" data-id=<?php print htmlentities($task->idEmployee);?> data-emptytaskid=<?php print htmlentities($task->idTask); ?>>
                                                         <input type="hidden" name="idEmployee" value=<?php print htmlentities($task->idEmployee); ?>>
                                                     </div>

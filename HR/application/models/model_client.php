@@ -105,7 +105,8 @@ class Client_Model extends Model{
     }//AddClient
 
     public function DeleteClient($id){
-        $sql = "DELETE FROM Client WHERE idClient = :idClient";
+        //var_dump($id);
+        $sql = "DELETE FROM Client WHERE idClient=:idClient";
         $query = $this->PDO->prepare($sql);
         $query->bindParam(':idClient', $id, PDO::PARAM_INT);
         $res = $query->execute();

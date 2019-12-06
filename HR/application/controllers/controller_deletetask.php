@@ -9,12 +9,12 @@ class Controller_DeleteTask extends Controller
         $this->PDO = $pdo;
 
         $id = $_POST['idTask'];
-        
+        //var_dump($_POST['idTask']);
         $currentTask = new Task_Model($this->PDO);
         $res = $currentTask->DeleteTask($id);
-        var_dump($res);
+        
         if($res == 1){
-            header('location: /HR/projectlist');
+            header('location: /HR/editproject');
         }
     }
 }

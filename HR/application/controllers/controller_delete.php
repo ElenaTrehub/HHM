@@ -7,7 +7,7 @@ class Controller_Delete extends Controller
 	{
         require_once "config.php";
         $id = $_POST['idEmployee'];
-        echo($id);
+        //var_dump($id);
       
         $sql="START TRANSACTION;
         

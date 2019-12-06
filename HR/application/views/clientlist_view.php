@@ -37,7 +37,7 @@
 
             <div class="row" style="margin-left:0px; margin-bottom:15px">
                 <div class="col-md-3" style="margin-left: 0px; padding-left:0px;">
-                    <button class="deleteClientButton" data-toggle="modal" data-target="#bucketModalDelete">Test
+                    <button class="deleteClientButton" data-id=<?php print htmlentities($client->idClient); ?> onclick="DeleteClient(this)">Test
                         <span class="tooltip-text"> Daten löschen </span></button>
                 </div>
             </div> 
@@ -120,7 +120,7 @@
             </div>
             <form action="/HR/deleteclient" method="post">
                 <div class="modal-body">
-                    <input type="hidden" name="idClient" value=<?php print htmlentities($client->idClient); ?>>
+                    <input type="hidden" id="idDeleteClient" name="idClient" value="">
                     <button type="submit" class="btn btn-danger">Ja</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Abbrechen</button>
                 </div>

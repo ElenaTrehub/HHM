@@ -1,3 +1,20 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $(".searchbar").on("change paste keyup", function () {
       var employee = $(".employee-name");
       var employeeArray = Array.from(employee);
@@ -21,7 +38,18 @@ $(document).ready(calculateExpirience);
 $(".employee-name").click(function(){
      /* console.log (this.parentNode.submit());*/
 });
-
+var isShow = false;
+$(".menu").click(function(){
+      
+      if(isShow == false){
+            $(".drop_down-menu")[0].style.opacity = 1;
+            isShow = true;
+      }
+      else{
+            $(".drop_down-menu")[0].style.opacity = 0;
+            isShow = false;
+      }
+ });
 function calculateExpirience() {
       var today = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
       var experienceDiv = Array.from($(".experience"));
@@ -64,16 +92,16 @@ function monthDiff(d1, d2) {
       return months <= 0 ? 0 : months;
 }
 
-for (let index = 0; index < $(".employee-name").length; index++) {
-     switch ($(".employee-name")[index].dataset.status) {
+for (let index = 0; index < $(".employee-main").length; index++) {
+     switch ($(".employee-main")[index].dataset.status) {
            case "Arbeitet":
-                  ($(".employee-name")[index].style.background = "#23588c");
+                  ($(".employee-main")[index].style.background = "#23588c");
                  break;
                  case "Ausgetreten":
-                 ($(".employee-name")[index].style.background = "#da3931");
+                 ($(".employee-main")[index].style.background = "#da3931");
                  break;
                  case "Mutterschlafsurlaub":
-                 ($(".employee-name")[index].style.background = "#e6530b");
+                 ($(".employee-main")[index].style.background = "#e6530b");
                  break;
            default:
                  break;

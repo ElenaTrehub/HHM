@@ -43,14 +43,14 @@ class Route
             include "application/controllers/" . $controller_file;
         } else {
             //TODO Exception
-            echo("Controller not found");
+            //echo("Controller not found");
             Route::ErrorPage404();
         }
-
         $controller = new $controller_name;
         $action = $action_name;
 
         if (method_exists($controller, $action)) {
+            //echo($controller_name);
             $controller->$action();
         } else {
             // TODO Exception

@@ -45,6 +45,9 @@ class Employee
     public $HHM_initials;
 
     public $SwissVisit = array();
+
+    public $Emp_Busy;
+    public $Is_Busy;
 }
 
 class Employee_Model extends Model{

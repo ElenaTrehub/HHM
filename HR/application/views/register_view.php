@@ -32,5 +32,6 @@
             <p>Already have an account? <a href="/HR/login">Login here</a>.</p>
 
         </form>
-    </div>    
+    </div>   
+    </div> 
     <script src="js/register.js"></script>

@@ -86,7 +86,7 @@ class Task_Model extends Model{
         $query->bindParam(":idCurator", $idCurator, PDO::PARAM_INT);
         $query->bindParam(":idProject", $idProject, PDO::PARAM_INT);
         $query->bindParam(":idStatus", $idStatus, PDO::PARAM_INT);
-
+        
         if ($query->execute()) {
             return 1;
         }
@@ -138,7 +138,8 @@ class Task_Model extends Model{
                     $task->idEmployee = $row['id'];
                     $task->Project = $row['ProjectNumber'];
                     $task->StatusTask = $row['StatusTasksTitle'];
-
+                    $task->Curator = $row['idCurator'];
+                    $task->Info = "exist";
                     $tasks[] = $task;
                 }
                     
@@ -162,11 +163,11 @@ class Task_Model extends Model{
                 && strtotime($tasks[$i-1]->TaskStart) < strtotime($tasks[$i]->TaskEnd)) || 
                 (strtotime($tasks[$i-1]->TaskEnd) > strtotime($tasks[$i]->TaskStart) && strtotime($tasks[$i-1]->TaskEnd) < strtotime($tasks[$i]->TaskEnd))){
     
-                    $tasks[$i]->Employee = '';
+                    $tasks[$i]->Info = '';
     
                 }
                 else{
-                    $tasks[$i]->Employee = '-1';
+                    $tasks[$i]->Info = '-1';
                 }
 
                 
@@ -198,5 +199,19 @@ class Task_Model extends Model{
 
         return 0;
     }//DeleteTask
+
+    public function DeleteEmployeeFromTask($idTask){
+        $a = null;
+        $sql = "UPDATE Task SET idEmployee = :idEmployee WHERE idTask = :id";
+        $query = $this->PDO->prepare($sql);
+        $query->bindParam(":id", $idTask, PDO::PARAM_INT);
+        $query->bindParam(":idEmployee", $a, PDO::PARAM_INT);
+        
+        if ($query->execute()) {
+            return 1;
+        }
+        return 0;
+
+    }//DeleteEmployeeFromTask
 
 }

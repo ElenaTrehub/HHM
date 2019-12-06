@@ -27,10 +27,151 @@
 </head>
 
 <body>
+
       <div id="header-main" class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                   <a id="title" href="/HR/main">HHM Mitarbeiter</a>
             </div>
+            <div class="menu">
+                  <img src="/HR/images/menu.png" alt="">
+            </div>
+           
+            <nav class="drop_down-menu">
+                  <ul>
+                        <li > 
+                              <form action="/HR/main/city" method="post">
+                                    <a href="/HR/main">
+                                          <div class="accordion">
+                                                <input id="accButton" type="checkbox" checked>
+                                                      <i></i>
+                                                <div class="drop_menu-item">
+                                                      
+                                                      <img src="/HR/images/all_employee.svg" alt="">
+                                                      Alle Mitarbeiter
+                                                </div>
+                                                <div class="msg">
+                                                      <ul>
+                                                            <?php if (isset($this->cities[0])){
+                                                                  foreach($this->cities as $city){
+                                                                        print '<li><button type="submit" name="cityID" value=' . $city->idCity . '>' . $city->titleCity . '</button></li>';
+                                                                  }
+                                                            } ?>
+                                                            <!-- <li><a>Kiev</a></li>
+                                                            <li><a>Dnjepr</a></li> -->
+                                                      </ul>
+                                                      
+                                                
+                                                </div>
+
+
+                                          </div>
+                                          
+                                    </a>
+                              </form>
+                        </li>
+                        <li> 
+                              <a href="/HR/sicklist">
+                                    <div class="drop_menu-item">
+                                          <img src="/HR/images/SickList.svg" alt="">
+                                          Krankenstand
+                                    </div>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="/HR/vacations">
+                                    <div class="drop_menu-item">
+                                          <img src="/HR/images/Vacations.svg" alt="">
+                                          <div class="btn-nav-text">Ferien</div>
+                                    </div>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="/HR/edit">
+                                    <div class="drop_menu-item">
+                                          <img src="/HR/images/add_employee.svg" alt="" />
+                                          <div class="btn-nav-text">Hinzufügen</div>
+                                    </div>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="/HR/PDF">
+                                    <div class="drop_menu-item">
+                                    <img src="/HR/images/PDF.svg" style="height:50px">
+                                          <div class="btn-nav-text">Druck</div>
+                                    </div>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <div class="drop_menu-item">
+                                          <img src="/HR/images/Salary.svg" style="width:42px;">
+                                          <div class="btn-nav-text">Lohn</div>
+                                    </div>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="/HR/ProjectList">
+                                    <div class="drop_menu-item">
+                                          <img src="/HR/images/projects.svg" style="width:42px;">
+                                          <div class="btn-nav-text">Projekts</div>
+                                    </div>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="/HR/EditProject">
+                                    <div class="drop_menu-item">
+                                          <img src="/HR/images/add_project.svg" style="width:42px;">
+                                          <div class="btn-nav-text">Hinzufügen projekt</div>
+                                    </div>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="/HR/EditTask">
+                                    <div class="drop_menu-item">
+                                          <img src="/HR/images/add_task.svg" style="width:42px;">
+                                          <div class="btn-nav-text">Aufgabe hinzufügen</div>
+                                    </div>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="/HR/ClientList">
+                                    <div class="drop_menu-item">
+                                          <img src="/HR/images/clients1.svg" style="width:42px;">
+                                          <div class="btn-nav-text">Kunden</div>
+                                    </div>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="/HR/EditClient">
+                                    <div class="drop_menu-item">
+                                          <img src="/HR/images/add_client.svg" style="width:42px;">
+                                          <div class="btn-nav-text">Kunden hinzufügen</div>
+                                    </div>
+                              </a>
+                        </li>
+                        
+
+                  </ul>
+                  <div class="col-md-3">
+                        <div class="dropdown-small" style="float:left;margin-right: 20px;">
+                              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left"
+                                    aria-labelledby="dropdownMenuButton">
+
+                                    <a class="dropdown-item" href="/HR/logout">Sign Out Account</a>
+                              </div>
+                        </div>
+                        <div>
+                              <a class="add_user-small" href="/HR/adduser">
+                                    <img src="/HR/images/add_user_database.svg" alt="">
+                              </a>
+                        </div>
+                  
+            </div>
+            </nav>
             <div class="col-md-2">
                   <select class="form-control filter" onchange="window.location.href=this.options[this.selectedIndex].value" id="exampleFormControlSelect1">
                         <option>Mitarbeiter sortieren</option>
@@ -41,11 +182,16 @@
                   </select>
                   
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 searchbar_div">
                   <input class="searchbar" type="search" placeholder="Suche">
             </div>
             <div class="col-md-2">
-                  <div class="dropdown" style="float:left;margin-right: 20px;">
+            <div class="add_user">
+                        <a  href="/HR/adduser">
+                              <img src="/HR/images/add_user_database.svg" alt="">
+                        </a>
+                  </div>
+                  <div class="dropdown" style="margin-right: 20px;">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <?php echo htmlspecialchars($_SESSION["username"]); ?>
@@ -56,11 +202,8 @@
                               <a class="dropdown-item" href="/HR/logout">Sign Out Account</a>
                         </div>
                   </div>
-                  <div>
-                        <a class="" href="/HR/adduser">
-                              <img src="/HR/images/add_user_database.svg" alt="">
-                        </a>
-                  </div>
+                  
+                  
             </div>
             
             
@@ -172,6 +315,7 @@
                         </div>
                   </div>
             </div>
+            
             <div id="content">
                   <?php include 'application/views/' . $content_view; ?>
             </div>

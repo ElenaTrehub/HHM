@@ -202,6 +202,7 @@ class Project_Model extends Model{
         
     }//GetProjectsForTask
     public function GetProjectIdFromNumber($number){
+        $id = "";
         $sql = "SELECT * FROM Project WHERE ProjectNumber = :number";
 
         if ($query = $this->PDO->prepare($sql)) {
@@ -215,4 +216,137 @@ class Project_Model extends Model{
 
         return $id;
     }//GetProjectIdFromNumber
+
+    public function UpdateEmployeesInProject($projectId, $idEmployees){
+        $res = 0;
+        try {
+            $this->PDO->beginTransaction();
+
+            if(count($idEmployees)>0){
+
+
+                $query = $this->PDO->prepare("DELETE FROM ProjectEmployee WHERE idProject = :id");
+                $query->bindParam(":id", $projectId, PDO::PARAM_INT);
+                $query->execute(); 
+
+
+        
+                for ($i=0; $i < count($idEmployees); $i++) { 
+                    
+                    $queryAddEmp = $this->PDO->prepare("INSERT INTO `ProjectEmployee` VALUES (DEFAULT, :idProject, :idEmployee)");
+    
+                    $queryAddEmp->bindParam(":idProject", $projectId, PDO::PARAM_INT);            
+                    $queryAddEmp->bindParam(":idEmployee", $idEmployees[$i], PDO::PARAM_INT);
+    
+                    $queryAddEmp->execute();    
+                }
+            }
+
+            $this->PDO->commit();
+            $res = 1;
+            return $res;
+        }
+        catch (Exception $e) {
+            $this->PDO->rollback();
+            $res = -1;
+            return $res;
+        } 
+
+    }//UpdateEmployeesInProject
+
+    public function GetEmployeesFromProject($id){
+        $employeeIds = array();
+        $sql = "SELECT * FROM ProjectEmployee WHERE idProject = :idProject";
+
+        if ($query = $this->PDO->prepare($sql)) {
+            $query->bindParam(":idProject", $id, PDO::PARAM_STR);
+            if ($query->execute()) {
+                while ($row = $query->fetch()) {
+                    $id = $row['idEmployee'];
+
+                    $employeeIds[] = $id;
+                }
+            }
+        }
+
+        $employees = array();
+
+        if(count($employeeIds)>0){
+
+            foreach($employeeIds as $id){
+
+                $sql = "SELECT * FROM Employee
+                LEFT JOIN Career ON Employee.id = Career.idEmployee
+                WHERE Employee.id = :id";
+
+                if ($query = $this->PDO->prepare($sql)) {
+                    $query->bindParam(":id", $id, PDO::PARAM_INT);
+                    if ($query->execute()) {
+                        while ($row = $query->fetch()) {
+                            $employee = new Employee;
+                            $employee->Id = $row['id'];
+                            $employee->Name = $row['Name'];
+                            $employee->LastName = $row['LastName'];
+                            $employee->Position = $row['Position'];
+
+                            $employees[] = $employee;
+                        }
+                    }
+                }
+            }
+
+        }
+        
+        foreach($employees as $emp){
+
+            $tasks = array();
+            $sql = "SELECT * FROM Task WHERE idEmployee = :id";
+            
+            if ($query = $this->PDO->prepare($sql)) {
+                $query->bindParam(":id", $emp->Id, PDO::PARAM_INT);
+                if ($query->execute()) {
+                    while ($row = $query->fetch()) {
+                        $task = new Task;
+                        $task->TaskStart = $row['TaskStart'];
+                        $task->TaskEnd = $row['TaskEnd'];
+                        
+                        $tasks[] = $task;
+
+                        
+                    }
+                }
+            }
+            if(count($tasks)==0){
+                $emp->Emp_Busy = "Ist frei";
+                $emp->Is_Busy = false;
+            }
+            else{
+                $Today = strtotime(date("Y-m-d"));
+                $maxDate = $Today;
+                foreach($tasks as $task){
+                    $Start = strtotime($task->TaskStart);
+                    $End = strtotime($task->TaskEnd); 
+                       
+                    if($Today > $Start && $Today < $End){
+                        if($End > $maxDate){
+                            $maxDate = $End;
+                            $date = $task->TaskEnd;
+                        }
+                        
+                        $emp->Emp_Busy = "Beschäftigt vor ".$date;
+                        $emp->Is_Busy = true;
+                    }
+                    else{
+                        $emp->Emp_Busy = "Ist frei";
+                        $emp->Is_Busy = false;
+                    }
+                }
+            }
+            
+
+        }
+
+        return $employees;
+
+    }//GetEmployeesFromProject
 }

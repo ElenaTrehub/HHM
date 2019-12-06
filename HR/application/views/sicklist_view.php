@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered table-light">
+<table class="table table-striped table-bordered table-light sick-table">
 
       <thead class="thead-dark">
             <tr class="vacationMonthHeader">
@@ -21,10 +21,10 @@
       <tbody>
 
             <?php foreach ($this->list as $employee): ?>
-            <tr>
-                  <td>
+            <tr class="sick">
+                  <td class="employeeInfo">
                         <form action="/HR/sick" method="post">
-                              <button class="employee-name" type="submit">
+                              <button class="employee-main" type="submit">
                                     <img class="employee-photo" src=<?php print htmlentities($employee->Photo);?>
                                           alt="">
                                     <div style="display:inline-block"><?php print htmlentities($employee->Name);?></div>

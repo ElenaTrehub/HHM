@@ -21,7 +21,7 @@
             <input class="input2" id="diplomButton" type="submit" value="Upload Diplom" name="diplom">
 
             <div class="row">
-                  <div class="col-md-3" style="top: 0">
+                  <div class="col-md-3 personal-edit">
                         <div id="personal-main" class="create-personal">
                               <div class="create-personal-header">Mitarbeiter</div>
 
@@ -101,7 +101,7 @@
                   <div id="personal-details" class="col-md-9">
                         <div id="personal-details-header" class="create-personal-header">Details</div>
                         <div class="row">
-                              <div class="col-md-6">
+                              <div class="col-md-6 personal-details_column">
                                     <div class="create-personal">
                                           <div class="create-personal-header">Personal</div>
 
@@ -240,7 +240,7 @@
                                     
                                     
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-6 personal-details_column">
                               <div class="create-personal-short">
                                           <div class="create-personal-header">Arbeit</div>
                                           <div>
@@ -486,6 +486,7 @@
             <input type="text" autocomplete="off" name="visit[VisitGroup_1]" class="bio-value">
       </div>
 </div>
+
 <div id="childTemplate" class="create-personal-child collapse">
       <div class="create-personal-header">Kinder
       <button id="btnVisitRemove" class="btn btn-danger" type="button" onclick="DeleteChild(this)" style="height:30px; line-height:10px; margin-top:5px; margin-right:15px; display:inline-block; float:right">Entfernen</button>

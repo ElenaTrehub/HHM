@@ -8,6 +8,7 @@ class Controller_UpdateTask extends Controller
 {
     public function action_index()
     {
+        session_start();
         require_once "config.php";
         $this->PDO = $pdo;
 
@@ -32,7 +33,7 @@ class Controller_UpdateTask extends Controller
             $EndDate = $_POST["EndDate"];
             
 
-            $EmployeeTask = $_POST["Employee"];
+            /* $EmployeeTask = $_POST["Employee"];
             $Employee = trim($EmployeeTask);
             $idEmployee = 0;
             
@@ -47,7 +48,7 @@ class Controller_UpdateTask extends Controller
                     
                 }
             }
-
+ */
             $CuratorTask = $_POST["Curator"];
             $Curator = trim($CuratorTask);
             $idCurator = "";
@@ -55,7 +56,7 @@ class Controller_UpdateTask extends Controller
 
             if($Curator!=""){
                 foreach($employees as $employee){
-                    $fullName = $employee->Name . " " . $employee->LastName . " - ". $employee->Position;
+                    $fullName = $employee->Name . " " . $employee->LastName;
                     if ($fullName == $Curator){
                         $idCurator = $employee->Id;
                         break;
@@ -64,21 +65,30 @@ class Controller_UpdateTask extends Controller
                 }
             }
 
-            $Project = $_POST["Project"];
-            $Project = trim($Project);
-            $idProject = "";
-            
-
-            if($Project!=""){
-                foreach($projects as $project){
-                    if ($Project == $project->Number){
-                        $idProject = $project->IdProject;
-                        break;
+            if(isset($_POST["Project"])){
+                $Project = $_POST["Project"];
+                $Project = trim($Project);
+                $idProject = "";
+                
+    
+                if($Project!=""){
+                    foreach($projects as $project){
+                        if ($Project == $project->Number){
+                            $idProject = $project->IdProject;
+                            break;
+                        }
+                        
                     }
-                    
                 }
-            }
 
+            }
+            
+            if(isset($_POST["idProject"])){
+                
+                $idProject = $_POST["idProject"];
+    
+            }
+            
             $Status = $_POST["Status"];
             $Status = trim($Status);
             $idStatus = "";
@@ -95,23 +105,25 @@ class Controller_UpdateTask extends Controller
             }
             $currentTask = new Task_Model($this->PDO);
 
-            if($_POST["id"] == ''){
+            if(isset($_POST["id"]) == false || $_POST["id"] == ""){
                 $res = $currentTask->addTask($Title, $Text, $StartDate, $EndDate, $idEmployee, $idCurator, $idProject, $idStatus);
+                
                 if($res == 1){
-                    header('location: /HR/projectlist');
+                    header('location: /HR/editproject');
                 }
                 else{
                     header('location: /HR/editproject');
                 }
             }
             else{
-
+                var_dump($res);
                 $res = $currentTask->updateTask($_POST["id"], $Title, $Text, $StartDate, $EndDate, $idEmployee, $idCurator, $idProject, $idStatus);
 
                 if($res == 1){
-                    header('location: /HR/projectlist');
+                    header('location: /HR/editproject');
                 }
                 else{
+                    $_SESSION["addTaskInProject"]="Fehler beim Hinzufügen einer Aufgabe zum Projekt!";
                     header('location: /HR/editproject');
                 }
 

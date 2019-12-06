@@ -63,15 +63,16 @@ function initializeCalendar(){
 
             var topPos = 0;
             const topBlock = proj_calendar_emptyArray.find(proj => (proj.dataset.id == element.dataset.id && proj.dataset.emptytaskid==element.dataset.task));
-            console.log(topBlock);
+            console.log(element);
             
             if(typeof topBlock != 'undefined'){
                   topPos = topBlock.offsetTop;
             }
             else{
                   const topBlock2 = proj_calendarArray.find(proj => proj.dataset.id == element.dataset.id);
-                  topPos = topBlock2.offsetTop;
                   console.log(topBlock2);
+                  topPos = topBlock2.offsetTop;
+                 
                   
             }
             

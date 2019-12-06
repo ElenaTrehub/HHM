@@ -7,14 +7,16 @@
                   <div class="row">
                         <div class="col-md-2" style="padding: 0;">
                             <div class="project-list">
-                                <form action="/HR/TaskList" method="post">
+                                
                                         <?php foreach ($this->projectList as $info) : ?>
-                                            <div class="project-calendar" onclick="this.parentNode.submit()" data-id=<?php print htmlentities($info->project->IdProject); ?>>
-                                                <input type="hidden" name="idProject" value=<?php print htmlentities($info->project->IdProject); ?>>
-                                                <?php print htmlentities($info->project->Number); ?>
-                                            </div>
+                                            <form action="/HR/TaskList" method="post">
+                                                <div class="project-calendar" onclick="this.parentNode.submit()" data-id=<?php print htmlentities($info->project->IdProject); ?>>
+                                                    <input type="hidden" name="idProject" value=<?php print htmlentities($info->project->IdProject); ?>>
+                                                    <?php print htmlentities($info->project->Number); ?>
+                                                </div>
+                                            </form>
                                         <?php endforeach; ?>
-                                </form>
+                                
                             </div>
                         </div>
                         <div class="col-md-10" style="padding: 0;">

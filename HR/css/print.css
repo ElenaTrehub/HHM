@@ -9,6 +9,8 @@
             margin-right: 0;
             padding-right: 0;
             font-size: 12pt;
+            -ms-min-width:100mm;
+            -ms-margin-left: 3%;
             
       }
 
@@ -29,10 +31,10 @@
 
       .print-children, .print-visit{
             border-top:1px solid black;
-            border-right:1px solid black;
+            /* border-right:1px solid black; */
       } 
       
-
+     
 
 
 

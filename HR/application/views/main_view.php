@@ -4,12 +4,11 @@
 
 
     <div class="row employee-card">
-        <div class="col-md">
-            <div class="employee-main">
+        <div class="col-md emp-info">
+            <div class="employee-main" data-status="<?php print htmlentities($employee->Status); ?>">
                 <form action="/HR/edit" method="post">
                     <input type="hidden" name="idEmployee" value=<?php print htmlentities($employee->Id); ?>>
-                    <div class="employee-name" data-status="<?php print htmlentities($employee->Status); ?>"
-                        onclick="this.parentNode.submit()">
+                    <div class="employee-name" onclick="this.parentNode.submit()">
                         <div style="display:inline-block; vertical-align:top">
                             <img class="employee-photo" src=<?php print htmlentities($employee->Photo); ?> alt="" />
                         </div>
@@ -61,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="row" style="margin-left:0px; margin-bottom:15px">
+            <div class="row button-block" style="margin-left:0px; margin-bottom:15px">
                 <!--
                   <div class="col-md-3">
                         
@@ -70,19 +69,19 @@
                               <input class="editButton" type="submit" title="Daten bearbeiten">
                         </form>
                   </div>-->
-                <div class="col-md-3" style="margin-left: 0px; padding-left:0px;">
+                <div  style="width: 65px; margin-left: 0px; padding-left:0px;">
                     <form action="/HR/calendar" method="post">
                         <input type="hidden" name="idEmployee" value=<?php print htmlentities($employee->Id); ?>>
                         <input class="vacationButton" type="submit" title="Urlaubskalender">
                     </form>
                 </div>
-                <div class="col-md-3" style="margin-left: 0px; padding-left:0px;">
+                <div  style="width: 65px; margin-left: 0px; padding-left:0px;">
                     <form action="/HR/sick" method="post">
                         <input type="hidden" name="idEmployee" value=<?php print htmlentities($employee->Id); ?>>
                         <input class="sickButton" type="submit" title="Krankheitsurlaub">
                     </form>
                 </div>
-                <div class="col-md-3" style="margin-left: 0px; padding-left:0px;">
+                <div  style="width: 65px; margin-left: 0px; padding-left:0px;">
                     <button class="deleteButton" data-toggle="modal" data-target="#bucketModalDelete">Test
                         <span class="tooltip-text"> Daten löschen </span></button>
                 </div>

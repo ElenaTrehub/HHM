@@ -17,9 +17,7 @@ html {
     line-height: 60px;
     margin-bottom: 10px;
 }
-.btn-nav-text{
-    
-}
+
 
 .btn-nav-panel:first {
     margin-top: 110px;
@@ -121,7 +119,6 @@ html {
     padding-left: 80px;
     text-decoration: none;
     color: white;
-    font-size: 24px;
 }
 
 #title:hover {
@@ -438,8 +435,7 @@ html {
     width: 100%;
     border-radius: 10px;
     background: #23588C;
-    color: white;
-    text-align: left;
+    
     border:0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     /* display: inline-block; */
@@ -626,7 +622,7 @@ html {
     margin-top: 10px;
     display: inline-block;
     background: white;
-    width: 90%;
+    width: 340px;
     height: 40px;
     vertical-align: middle;
     line-height: 38px;
@@ -676,7 +672,7 @@ html {
 }
 
 .personal-image {
-    width: 90%;
+    width: auto;
     height: auto;
     margin: auto;
     margin-bottom: 10px;
@@ -687,9 +683,6 @@ html {
     margin: auto;
     margin-top: 20px;
     display: block;
-    width: 90%;
-    height: auto;
-    border-radius: 100%;
 }
 
 .personal-image button {
@@ -699,7 +692,10 @@ html {
     background: dodgerblue
 }
 
-
+.personal-image img {
+    height: 240px;
+    border-radius: 100%;
+}
 
 
 .passport-image {
@@ -762,114 +758,25 @@ a.personal-categories-btn {
     color: white
 }
 
-
 .add-employee-btn{
     width: 40px;
     height: 40px;
-    position: relative;
+    text-align: center;
+    font-size: 36px;
     background: #99ced3;
+    color: white;
     margin-top: 5px;
-    margin-left: 20px;
     border: none;
     vertical-align: middle;
     border-radius: 20px;
     outline: 0;
     transition: 0.5s;
     display: inline-block;
+}
 
-}
-.add-employee-btn:active, .add-employee-btn:focus {
-    outline: none !important;
-  }
-  .add-employee-btn::-moz-focus-inner {
-    border: 0 !important;
-  }
-.add-employee-btn:before{
-    content:'+';
-    position: absolute;
-    top:-3px;
-    left: 8px;
-    font-size: 36px;
-    color: white;
-    text-align: center;
-    z-index: 10;
-}
-.button_choose-project{
-    width: 150px; 
-    margin-left: 20px; 
-    background: dodgerblue; 
-    color: #fff; 
-    border: none; 
-    border-radius: 20px; 
-    height: 40px; 
-    margin-top:5px;
-}
 .add-employee-btn:hover {
     box-shadow: 5px 5px 16px -5px rgba(0, 0, 0, 0.75);
     cursor: pointer;
-}
-#empInProjectPlaceholder{
-    width: 100%;
-    position: relative;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-.abs{
-    position: absolute;
-    z-index:2050;
-}
-.employee-label{
-    margin:20px;
-    font-size: 20px;
-    font-weight: 600;
-}
-.add-employee-project{
-    width: 350px;
-    background: rgb(182, 200, 218);
-    display: flex;
-    justify-content: space-between;
-    margin-left: 15px;
-    box-sizing: border-box;
-    height: 40px;
-    border-radius: 0 20px 20px 20px;
-    border: 1px solid #4F78A0;
-    margin-bottom: 30px;
-    padding-left: 15px;
-    z-index: 2000;
-    cursor: move;
-}
-.emp-in-project{
-    position: relative;
-}
-
-.emp-busy{
-    position:absolute;
-    left:15px;
-    top:-20px;
-    height:20px;
-    background: #EE7752;
-    color:#eee;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 0 10px;
-}
-.emp-free{
-    position:absolute;
-    top:-20px;
-    height:20px;
-    left:15px;
-    background: #19a719;
-    color:#eee;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 0 10px;
-}
-.add-employee-project input{
-    background: none;
-    border: none;
-    width: auto;
-    margin-top: 5px;
 }
 .add-project-btn {
     width: 200px;
@@ -888,33 +795,8 @@ a.personal-categories-btn {
     transition: 0.5s;
     display: inline-block;
 }
-#errorField{
-    margin-left: 20px;
-    color: #333333;
-    font-size: 24px;
 
-
-}
 .add-project-btn:hover {
-    box-shadow: 5px 5px 16px -5px rgba(0, 0, 0, 0.75);
-    cursor: pointer;
-}
-.add-emp-btn {
-    width: 200px;
-    height: 40px;
-    text-align: center;
-    font-size: 12pt;
-    background: #99ced3;
-    color: #333;
-    margin: 15px;
-    border: none;
-    border-radius: 20px;
-    outline: 0;
-    transition: 0.5s;
-    display: inline-block;
-}
-
-.add-emp-btn:hover {
     box-shadow: 5px 5px 16px -5px rgba(0, 0, 0, 0.75);
     cursor: pointer;
 }
@@ -924,7 +806,7 @@ a.personal-categories-btn {
 }
 
 .bio-description {
-    width: 45%;
+    width: 35%;
     min-width: min-content;
     height: 40px;
     margin: 5px;
@@ -946,7 +828,7 @@ a.personal-categories-btn {
 }
 
 .bio-value {
-    width: 50%;
+    width: 60%;
     height: 40px;
     margin-top: 5px;
     line-height: 40px;
@@ -969,7 +851,6 @@ a.personal-categories-btn {
     border: none;
     border-radius: 5px !important;
     display: inline-block;
-    
 }
 .choose-employee {
     width: 400px;
@@ -1051,6 +932,7 @@ input.bio-value {
     padding-right: 20px;
     padding-left: 20px;
     padding-top: 15px;
+
 }
 .button-container{
     width: 100%;
@@ -1059,13 +941,13 @@ input.bio-value {
 }
 .create-personal, .create-personal-short, .create-personal-child {
     width: 100%;
+    min-width: 360px;
     height: auto;
     vertical-align: top;
     background: #ccc;
     display: inline-block;
     margin: 5px 10px 10px 0px;
     box-shadow: 10px 10px 46px -10px rgba(0, 0, 0, 0.75);
-    box-sizing: border-box;
     
 }
 
@@ -1174,96 +1056,6 @@ input.bio-value {
 
 
 }
-.tasks{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    box-sizing: border-box;
-    height: auto;
-}
-.content-in-popup{
-    margin: 0 auto;
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-}
-.current-task{
-    width: 50%;
-    border-right: 1px solid #4F78A0;
-    height: inherit;
-    border-left: 1px solid #4F78A0;
-    border-bottom: 1px solid #4F78A0;
-    padding-bottom: 20px;
-}
-.finished-task{
-    width: 50%;
-    height: inherit;
-    border-right: 1px solid #4F78A0;
-    border-bottom: 1px solid #4F78A0;
-    padding-bottom: 20px;
-}
-.task-status-title{
-    font-size: 20px;
-    color: #eee;
-    font-weight: 600;
-    width: 100%;
-    background: #4F78A0;
-    height:40px;
-    padding-left: 20px;
-    line-height: 40px;
-    
-}
-
-
-
-.task-info{
-    width: 90%;
-    position: relative;
-    margin-top: 30px;
-    margin-left: 5%;
-    box-sizing: border-box;
-    border-top: 1px solid #4F78A0;
-    border-right: 1px solid #4F78A0;
-    border-bottom: 1px solid #4F78A0;
-    border-left: 15px solid #4F78A0;
-    background: #ddd;
-    border-radius: 0 20px 20px 0;
-    padding-bottom: 15px;
-}
-.task-title{
-    font-size: 20px;
-    font-weight: 600;
-    margin: 20px 0 0 20px;
-    color: #4F78A0;
-}
-.task-date{
-    font-size: 14px;
-    font-weight: 600;
-    margin: 5px 20px;
-    color: #333;
-}
-.task-description{
-    font-size: 16px;
-    margin: 15px 0 15px 20px;
-    color: #333;
-}
-#btnTaskRemove{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    line-height:10px;
-    font-size: 12px;
-    padding: 0;
-    border-radius: 15px;
-}
-
-
-
-
-
 .proj{
     position: absolute;
     height: 50px;
@@ -1504,7 +1296,6 @@ input.bio-value {
     transition: 1s;
 }
 #btn-project-delete {
-    width: 250px;
     background: #da3931;
     border: 1px solid #da3931;
     color:#222;
@@ -1583,25 +1374,11 @@ input.bio-value {
 }
 
 #personal-main {
-    height: auto;
+    height: 85vh;
     background: #5F6366;
-    padding-bottom: 10px;
 }
 
 #personal-details {
-    min-width: 50%;
-    height: auto;
-    padding: 0;
-    background: #ccc;
-    margin-top: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    max-width: 70%;
-   
-    
-}
-
-.personal-details-popup{
-    min-width: 90%;
     height: auto;
     padding: 0;
     background: #ccc;
@@ -2024,29 +1801,15 @@ input.bio-value {
     }
 }
 
-.add_user{
-    float: right;
-    right: 20px;
-}
-.dropdown{
-    float: right;
- 
-}
-.personal-edit{
-    top: 0; 
-    padding: 0; 
-    margin: 0 15px;
-}
 
-
- @media(min-width : 320px) and (max-width : 1000px) {
+ @media(min-width : 320px) and (max-width : 767px) {
     .employee-main {
-        display: block;        
+        display: inline-block;
+        
     }
     .main-personal-data{
-        min-width: 96%;
+        max-width: 96%;
         margin-left: 15px;
-	display: block;
        
     }
     .emp-info{
@@ -2065,7 +1828,7 @@ input.bio-value {
     #content {
         padding-left: 0;
     }
-    .searchbar_div{
+    .searchbar{
         display: none;
     }
     #exampleFormControlSelect1{
@@ -2083,7 +1846,6 @@ input.bio-value {
         width: 40px;
         right: 20px;
         top: -5px;
-z-index:10;
     }
     .menu:hover{
         cursor: pointer;
@@ -2098,14 +1860,12 @@ z-index:10;
     .drop_down-menu{
         display: block;
         position: absolute;
-        width: 650px;
+        width: 250px;
         top: 60px;
         right: 0;
         opacity: 0;
         background: #222;
         transition: all 0.7s;
-        max-height: 500px;
-        overflow-y: scroll;
     }
     .drop_down-menu ul{
         margin-left: -40px;
@@ -2116,7 +1876,7 @@ z-index:10;
         width: 100%;
         border-bottom: 1px solid #999;
         box-sizing: border-box;
-        padding: 20px;
+        padding: 0 10px 0 10px;
         transition: all 0.5s;
     }
     
@@ -2132,226 +1892,55 @@ z-index:10;
         display: flex;
         justify-content: flex-start;
         color: #fff;
-        font-size: 20px;
+        font-size: 16px;
     }
     .drop_menu-item img{
-        width: 60px;
+        width: 40px;
         height: auto;
         margin-right: 20px;
     }
-    .sick-table{
-        display: block; 
-        
-    }
-    .vacation-table{
-        display: block; 
-        
-    }
-    .sick-table thead {
-        display: block;
-    }
-    .vacation-table thead {
-        display: block;
-    }
-    .sick-table th {
-        display: block;
-    }
-    .vacation-table th {
-        display: block;
-    }
-    .sick-table td {
-        display: block;
-    }
-    .vacation-table td {
-        display: block;
-    }
-    .vacationMonthHeader { 
-        display: block;
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-    }
 
-    .sick-table tr { 
-        border: 1px solid #ccc; 
-        display: block;
-        float: left;
-        width: 32vw;
-        margin: 0 2px 20px 2px;
-    }
-    .vacation-table tr { 
-        border: 1px solid #ccc; 
-        display: block;
-        float: left;
-        width: 32vw;
-        margin: 0 2px 20px 2px;
-    }
-    .sick-table td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee; 
-		position: relative;
-        padding-left: 50%; 
-        height: 50px;
-	}
-	.vacation-table td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee; 
-		position: relative;
-        padding-left: 50%; 
-        height: 50px;
-	}
-	.sick-table td:before { 
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		min-width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-	}
-	.vacation-table td:before { 
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		min-width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-	}
-	/*
-	Label the data
-    */
-    .sick-table tbody{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .vacation-table tbody{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .vacationMonth, .vacationMonth-work, .vacationMonth-rest, .vacationMonthTotal {
-        color: white;
-        min-width: 60px;
-        text-align: right;
-        display: block;
-        line-height: 50px;
-        border-bottom: 1px solid #ccc;
-        width: 100%;
-        box-sizing: border-box;
-        margin-right: 50px;
-        font-size: 24px;
-        height: 50px;
-    }
-    
+   
 
-    .vacationMonth-work {
-        background: lightblue;
-    }
-	td.employeeInfo{
-        width: 100%;
-        height: auto;
-        padding: 0;
-        margin: 3px;
-    }
-    
-    
-	.sick td:nth-child(2):before { content: "Zusammen"; text-align: left; font-size: 20px; line-height: 50px;}
-	.sick td:nth-child(3):before { content: "Januar"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.sick td:nth-child(4):before { content: "Februar"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.sick td:nth-child(5):before { content: "März"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.sick td:nth-child(6):before { content: "April"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.sick td:nth-child(7):before { content: "Mai"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.sick td:nth-child(8):before { content: "Juni"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .sick td:nth-child(9):before { content: "Juli"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .sick td:nth-child(10):before { content: "August"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .sick td:nth-child(11):before { content: "September"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .sick td:nth-child(12):before { content: "Oktober"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .sick td:nth-child(13):before { content: "November"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .sick td:nth-child(14):before { content: "Dezember"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    
-
-    .vacation td:nth-child(2):before { content: "Zusammen"; text-align: left; font-size: 20px; line-height: 50px;}
-    .vacation td:nth-child(3):before { content: "Zugewiesen"; text-align: left; font-size: 20px; line-height: 50px;}
-    .vacation td:nth-child(4):before { content: "Nicht Zugewiesen"; text-align: left; font-size: 20px; line-height: 50px;}
-	.vacation td:nth-child(5):before { content: "Januar"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.vacation td:nth-child(6):before { content: "Februar"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.vacation td:nth-child(7):before { content: "März"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.vacation td:nth-child(8):before { content: "April"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.vacation td:nth-child(9):before { content: "Mai"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-	.vacation td:nth-child(10):before { content: "Juni"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .vacation td:nth-child(11):before { content: "Juli"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .vacation td:nth-child(12):before { content: "August"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .vacation td:nth-child(13):before { content: "September"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .vacation td:nth-child(14):before { content: "Oktober"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .vacation td:nth-child(15):before { content: "November"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    .vacation td:nth-child(16):before { content: "Dezember"; text-align: left; font-size: 20px; line-height: 50px; color: #444;}
-    
-
-    .personal-edit{
-        min-width: 90%;
-        margin: 0 -15px 0 5%;
-    }
-    #personal-main {
-        width: 100%;
-        margin: 0 auto;
-    }
-    
-    #personal-details {
-        min-width: 90%;
-        margin: 20px auto;
-        padding-bottom: 20px;
-    }
-
-    .personal-details_column{
-        min-width: 100%;
-    }
 }
 
 
-/* //@media (min-width : 800px) and (max-width : 1000px) {
-    //.employee-main {
-    //    display: inline-block;
+@media (min-width : 768px) and (max-width : 1000px) {
+    .employee-main {
+        display: inline-block;
         
-    //}
-    //.main-personal-data{
-        //min-width: 280px;
-        //max-height: 580px;
-    //}
+    }
+    .main-personal-data{
+        min-width: 280px;
+        max-height: 580px;
+    }
 
-    //.emp-info{
-        //min-width: 260px;
+    .emp-info{
+        min-width: 260px;
 
-    //}
-    //#nav-panel {
-       // padding-top: 60px;
-       // position: fixed;
-        //display: inline-block;
-        //width: 60px;
-       // background: #222;
-        //height: 100vh;
-        //color: white;
-        //z-index: 99;
-    //}
-    //#content {
-        //padding-left: 60px;
-    //}
-   // .menu{
-       // display: none;
-    //}
-    //.drop_down-menu{
-        //display: none;
-   // }
-//} */
+    }
+    #nav-panel {
+        padding-top: 60px;
+        position: fixed;
+        display: inline-block;
+        width: 60px;
+        background: #222;
+        height: 100vh;
+        color: white;
+        z-index: 99;
+    }
+    #content {
+        padding-left: 60px;
+    }
+    .menu{
+        display: none;
+    }
+    .drop_down-menu{
+        display: none;
+    }
+}
 
-@media(min-width : 1001px) and (max-width : 1500px) {
+@media(min-width : 1000px) and (max-width : 1500px) {
     .employee-main {
         display: inline-block;
        
@@ -2381,28 +1970,8 @@ z-index:10;
     .menu{
         display: none;
     }
- 
     .drop_down-menu{
         display: none;
-    }
-    .searchbar_div{
-        display: none;
-    }
-    #exampleFormControlSelect1{
-        display: none;
-    }
-    #header-main .col-md-3{
-       min-width: 30%;
-    }
-    #header-main .col-md-2{
-        min-width: 25%;
-        position: absolute;
-        right: 0;
-     }
-     .vacationMonthHeader th{ 
-        font-size: 12px;
-        font-weight: normal;
-        word-wrap: break-word;
     }
 }
 @media only screen and (min-width : 1500px){
