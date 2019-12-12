@@ -1,6 +1,6 @@
 <div class="create-body2">
     <form action="/HR/updatetask" method="post" enctype="multipart/form-data">
-        <div id="personal-details" class="col-md-12">
+        <div id="personal-details" class="col-md-12" style="margin: 0 auto;">
             <div id="personal-details-header" class="create-personal-header">Task Details</div>
             <div class="row">
                 <div class="col-md-12">
@@ -13,7 +13,7 @@
                     <div>                                                
                         <div class="bio-description">Task text</div>
                             <input type="text" name="Text" class="bio-value"
-                                value=<?php if($this->taskId!= ''){echo $this->task->TaskText;}else{echo '';} ?>>
+                                value="<?php if($this->taskId!= ''){echo $this->task->TaskText;}else{echo '';} ?>"">
                     </div>
                     <div>                                                
                         <div class="bio-description">Task start</div>
@@ -77,13 +77,13 @@
                                         echo $this->task->StatusTask; 
                                     }else{echo '';} 
                                     ?>">
-                            <datalist id="Statuses">
+                            <!-- <datalist id="Statuses">
                                 <?php if(isset($this->statuses[0])){
                                     foreach($this->statuses as $status){
                                         print '<option data-value=' . $status->idStatusTask . '>' . $status->statusTaskTitle .'</option>';
                                     }
                                 } ?>
-                            </datalist>
+                            </datalist> -->
                     </div>
                     <div class="button-container">
                         <input type="submit" id="btn-project-add" name="SaveButton" class="personal-categories-btn" value="Speichern">

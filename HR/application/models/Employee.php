@@ -48,6 +48,7 @@ class Employee
 
     public $Emp_Busy;
     public $Is_Busy;
+    public $Is_Busy_Current;
 }
 
 class Employee_Model extends Model{
@@ -210,10 +211,10 @@ class Employee_Model extends Model{
 
         $employees = array();
 
-        $sql = $sql = "SELECT * FROM Task 
-        LEFT JOIN Employee          ON Task.idEmployee = Employee.id
-        LEFT JOIN Career ON Task.idEmployee = Career.idEmployee
-        WHERE Task.idProject = :idProject";
+        $sql = $sql = "SELECT * FROM ProjectEmployee 
+        LEFT JOIN Employee          ON ProjectEmployee.idEmployee = Employee.id
+        LEFT JOIN Career ON ProjectEmployee.idEmployee = Career.idEmployee
+        WHERE ProjectEmployee.idProject = :idProject";
 
         if ($query = $this->PDO->prepare($sql)) {
             $query->bindParam(":idProject", $idProject, PDO::PARAM_INT);
@@ -244,6 +245,7 @@ class Employee_Model extends Model{
             }
 
         }
+        //var_dump($employeeList);
         
         return $employeeList;
         

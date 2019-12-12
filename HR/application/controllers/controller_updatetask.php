@@ -33,30 +33,36 @@ class Controller_UpdateTask extends Controller
             $EndDate = $_POST["EndDate"];
             
 
-            /* $EmployeeTask = $_POST["Employee"];
-            $Employee = trim($EmployeeTask);
-            $idEmployee = 0;
-            
-
-            if($Employee!=""){
-                foreach($employees as $employee){
-                    $fullName = $employee->Name . " " . $employee->LastName . " - ". $employee->Position;
-                    if ($fullName == $Employee){
-                        $idEmployee = $employee->Id;
-                        break;
+            if(isset($_POST["Employee"])){
+                $EmployeeTask = $_POST["Employee"];
+                $Employee = trim($EmployeeTask);
+                $idEmployee = 0;
+                
+    
+                if($Employee!=""){
+                    foreach($employees as $employee){
+                        $fullName = $employee->Name . " " . $employee->LastName . " - ". $employee->Position;
+                        if ($fullName == $Employee){
+                            $idEmployee = $employee->Id;
+                            break;
+                        }
+                        
                     }
-                    
                 }
+
             }
- */
+            else{
+                $idEmployee = null;
+            }
+
             $CuratorTask = $_POST["Curator"];
             $Curator = trim($CuratorTask);
-            $idCurator = "";
+            $idCurator = "0";
             
-
+            var_dump($_POST["Curator"]);
             if($Curator!=""){
                 foreach($employees as $employee){
-                    $fullName = $employee->Name . " " . $employee->LastName;
+                    $fullName = $employee->Name . " " . $employee->LastName . " - ". $employee->Position;
                     if ($fullName == $Curator){
                         $idCurator = $employee->Id;
                         break;
@@ -64,7 +70,7 @@ class Controller_UpdateTask extends Controller
                     
                 }
             }
-
+//var_dump($idCurator);
             if(isset($_POST["Project"])){
                 $Project = $_POST["Project"];
                 $Project = trim($Project);
@@ -82,6 +88,7 @@ class Controller_UpdateTask extends Controller
                 }
 
             }
+
             
             if(isset($_POST["idProject"])){
                 
@@ -116,10 +123,11 @@ class Controller_UpdateTask extends Controller
                 }
             }
             else{
-                var_dump($res);
+                //var_dump($res);
                 $res = $currentTask->updateTask($_POST["id"], $Title, $Text, $StartDate, $EndDate, $idEmployee, $idCurator, $idProject, $idStatus);
 
                 if($res == 1){
+                    $_SESSION["currentProject"] = $idProject;
                     header('location: /HR/editproject');
                 }
                 else{

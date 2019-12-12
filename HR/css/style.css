@@ -810,7 +810,7 @@ a.personal-categories-btn {
 }
 #empInProjectPlaceholder{
     width: 100%;
-    position: relative;
+    /* position: relative; */
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -842,7 +842,30 @@ a.personal-categories-btn {
 .emp-in-project{
     position: relative;
 }
-
+.task-past{
+    position:absolute;
+    left:200px;
+    top:45px;
+    height:20px;
+    background: #EE7752;
+    color:#eee;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 0 10px;
+    line-height: 20px;
+}
+.task-finish{
+    position:absolute;
+    left:200px;
+    top:45px;
+    height:20px;
+    background: #da3931;
+    color:#eee;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 0 10px;
+    line-height: 20px;
+}
 .emp-busy{
     position:absolute;
     left:15px;
@@ -850,10 +873,24 @@ a.personal-categories-btn {
     height:20px;
     background: #EE7752;
     color:#eee;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
+    font-weight: 600;
     padding: 0 10px;
+    line-height: 20px;
 }
+.emp-busy-current{
+    position:absolute;
+    left:15px;
+    top:-20px;
+    height:20px;
+    background: #4F78A0;
+    color:#eee;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 0 10px;
+    line-height: 20px;
+}
+
 .emp-free{
     position:absolute;
     top:-20px;
@@ -861,9 +898,30 @@ a.personal-categories-btn {
     left:15px;
     background: #19a719;
     color:#eee;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
+    font-weight: 600;
     padding: 0 10px;
+    line-height: 20px;
+}
+.task-details{
+    width: 180px;
+    height: 26px;
+    line-height: 26px;
+    background: #99ced3;
+    margin-right: 15px;
+    color: #777;
+    text-align: center;
+    border-radius: 13px;
+    float: right;
+    font-size: 14px;
+    transition: 0.5s;
+    margin-top: -40px;
+    
+}
+.task-details:hover{
+    box-shadow: 3px 3px 10px -3px rgba(0, 0, 0, 0.75);
+    color: #333;
+    cursor: pointer;
 }
 .add-employee-project input{
     background: none;
@@ -888,12 +946,33 @@ a.personal-categories-btn {
     transition: 0.5s;
     display: inline-block;
 }
+.diagramm-btn {
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    font-size: 12pt;
+    background: rgb(149, 156, 163);
+    color: #fff;
+
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: 0;
+    transition: 0.5s;
+    display: inline-block;
+}
 #errorField{
     margin-left: 20px;
     color: #333333;
     font-size: 24px;
 
 
+}
+.diagramm-btn:hover {
+    box-shadow: 5px 5px 16px -5px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
 }
 .add-project-btn:hover {
     box-shadow: 5px 5px 16px -5px rgba(0, 0, 0, 0.75);
@@ -913,8 +992,27 @@ a.personal-categories-btn {
     transition: 0.5s;
     display: inline-block;
 }
-
+.save-task-date {
+    width: 200px;
+    height: 25px;
+    text-align: center;
+    font-size: 12pt;
+    background: #EE7752;
+    color: #333;
+    margin: 7px 20px 0 0;
+    border: none;
+    border-radius: 12.5px;
+    outline: 0;
+    transition: 0.5s;
+    display: inline-block;
+    float: right;
+    color: #fff;
+}
 .add-emp-btn:hover {
+    box-shadow: 5px 5px 16px -5px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+}
+.save-task-date:hover {
     box-shadow: 5px 5px 16px -5px rgba(0, 0, 0, 0.75);
     cursor: pointer;
 }
@@ -1149,7 +1247,7 @@ input.bio-value {
     padding-left: 10px;
     margin-bottom: 15px;
     box-shadow: 0px 5px 20px -14px rgba(0, 0, 0, 0.95);
-    cursor: pointer;
+    cursor: default;
 }
 .project-calendar-empty{
     height: 50px;
@@ -1158,7 +1256,7 @@ input.bio-value {
     margin-bottom: 15px;
     margin-top: -15px;
     box-shadow: 0px 5px 20px -14px rgba(0, 0, 0, 0.95);
-    cursor: pointer;
+    cursor: default;
 }
 .calendar-year {
     display: block;
@@ -1171,7 +1269,7 @@ input.bio-value {
     margin: 0 auto 20px auto;
     flex-wrap: nowrap;
     overflow: scroll;
-
+    
 
 }
 .tasks{
@@ -1218,7 +1316,7 @@ input.bio-value {
 
 
 .task-info{
-    width: 90%;
+    width: 87%;
     position: relative;
     margin-top: 30px;
     margin-left: 5%;
@@ -1229,12 +1327,51 @@ input.bio-value {
     border-left: 15px solid #4F78A0;
     background: #ddd;
     border-radius: 0 20px 20px 0;
-    padding-bottom: 15px;
+    clear: both;
+    padding-bottom: 0px;
+}
+.moov-task-to-finish{
+    position: absolute;
+    right: -20px;
+    top: 70px;
+    background: #4F78A0;
+    height: 40px;
+    width: 20px;
+    font-size: 20px;
+    color: #eee;
+    font-weight: bolder;
+    text-align: center;
+    line-height: 35px;
+    border-radius: 0 20px 20px 0;
+    transition: 0.6s;
+}
+.moov-task-to-current{
+    position: absolute;
+    left: -35px;
+    top: 70px;
+    background: #4F78A0;
+    height: 40px;
+    width: 20px;
+    font-size: 20px;
+    color: #eee;
+    font-weight: bolder;
+    text-align: center;
+    line-height: 35px;
+    border-radius: 20px 0 0 20px;
+    transition: 0.6s;
+}
+.moov-task-to-finish:hover{
+    cursor: pointer;
+    box-shadow: 3px 3px 9px -3px rgba(0, 0, 0, 0.75);;
+}
+.moov-task-to-current:hover{
+    cursor: pointer;
+    box-shadow: -3px 1px 2px 1px rgba(0, 0, 0, 0.35);;
 }
 .task-title{
     font-size: 20px;
     font-weight: 600;
-    margin: 20px 0 0 20px;
+    margin: 10px 0 0 20px;
     color: #4F78A0;
 }
 .task-date{
@@ -1245,7 +1382,7 @@ input.bio-value {
 }
 .task-description{
     font-size: 16px;
-    margin: 15px 0 15px 20px;
+    margin: 8px 0 8px 20px;
     color: #333;
 }
 #btnTaskRemove{
@@ -1260,7 +1397,9 @@ input.bio-value {
     border-radius: 15px;
 }
 
-
+.btn-danger{
+    background: #cf5751;
+}
 
 
 
@@ -1276,6 +1415,7 @@ input.bio-value {
     cursor:pointer;
 }
 .task{
+    display: inline-block;
     position: absolute;
     height: 50px;
     box-sizing: border-box;
@@ -1283,8 +1423,70 @@ input.bio-value {
     line-height: 50px;
     font-size: 18px;
     padding-top: -10px;
-    padding-left: 20px;
-    cursor:pointer;
+    z-index: 100;
+
+    
+}
+.resize-left{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    bottom: 0;
+    left: 0;
+    font-size: 12px;
+    text-align: center;
+    line-height: 12px;
+    background: #eee;
+    color: #444;
+    opacity: 0.5;
+}
+.resize-rigth{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #eee;
+    bottom: 0;
+    right: 0;
+    font-size: 12px;
+    text-align: center;
+    line-height: 12px;
+    color: #444;
+    opacity: 0.5;
+}
+.resize-rigth:hover, .resize-left:hover{
+    cursor: grab;
+    opacity: 0.9;
+}
+.edit-task{
+    display: inline-block;
+    width: 40px;
+    height: 30px;
+    border: 1px solid rgb(141, 174, 185);
+    background: lightblue;
+    margin: 8px 20px 0 20px;
+    line-height: 22px;
+    opacity: 0.8;
+    transition: 0.7s;
+    cursor: pointer;
+    outline: none;
+    
+}
+.edit-task:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.edit-task button:hover, .edit-task:active, .edit-task:focus{
+    outline: none;
+    border: none;
+}
+.edit-task button{
+    border: none;
+    background: none;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    padding-left: -10px;
+    cursor: pointer;
 }
 .calendar-month {
     width: 10%;
@@ -1325,7 +1527,6 @@ input.bio-value {
     height: 85vh;
     border-right: 1px solid #999999;
     transition: 0.5s;
-    cursor: pointer;
     line-height: 20px;
     text-decoration: none;
     text-align: center;

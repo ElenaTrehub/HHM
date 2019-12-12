@@ -255,6 +255,8 @@ class Project_Model extends Model{
     }//UpdateEmployeesInProject
 
     public function GetEmployeesFromProject($id){
+        $idCurrentProject = $id;
+        
         $employeeIds = array();
         $sql = "SELECT * FROM ProjectEmployee WHERE idProject = :idProject";
 
@@ -300,6 +302,7 @@ class Project_Model extends Model{
         foreach($employees as $emp){
 
             $tasks = array();
+            $current_tasks = array();
             $sql = "SELECT * FROM Task WHERE idEmployee = :id";
             
             if ($query = $this->PDO->prepare($sql)) {
@@ -309,20 +312,84 @@ class Project_Model extends Model{
                         $task = new Task;
                         $task->TaskStart = $row['TaskStart'];
                         $task->TaskEnd = $row['TaskEnd'];
+                        $task->Project = $row['idProject'];
                         
-                        $tasks[] = $task;
-
-                        
+                        if($task->Project == $idCurrentProject){
+                            $current_tasks[] = $task;
+                        }
+                        else{
+                            $tasks[] = $task;
+                        }
                     }
                 }
             }
-            if(count($tasks)==0){
+
+            
+
+            if(count($tasks) == 0 && count($current_tasks) == 0){
+                
                 $emp->Emp_Busy = "Ist frei";
-                $emp->Is_Busy = false;
+                $emp->Is_Busy = 0;
+                $emp->Is_Busy_Current = 0;
             }
-            else{
+            else if(count($current_tasks)>0){
                 $Today = strtotime(date("Y-m-d"));
                 $maxDate = $Today;
+                foreach($current_tasks as $task){
+                    $Start = strtotime($task->TaskStart);
+                    $End = strtotime($task->TaskEnd); 
+                       
+                    if($Today > $Start && $Today < $End){
+                        if($End > $maxDate){
+                            $maxDate = $End;
+                            $date = $task->TaskEnd;
+                        }
+                        //var_dump($idCurrentProject);
+                        //var_dump($task->Project);
+                       
+                        $emp->Emp_Busy = "Beschäftigt im aktuellen Projekt vor ".$date;
+                        $emp->Is_Busy = 0;
+                        $emp->Is_Busy_Current = 1;
+                        
+                    }
+                    else{
+                        $emp->Emp_Busy = "Ist frei";
+                        $emp->Is_Busy = 0;
+                        $emp->Is_Busy_Current = 0;
+                    }
+                }
+                
+                if($emp->Is_Busy_Current == 0 && count($tasks)>0){
+                    $Today = strtotime(date("Y-m-d"));
+                    $maxDate = $Today;
+                    foreach($tasks as $task){
+                        $Start = strtotime($task->TaskStart);
+                        $End = strtotime($task->TaskEnd); 
+                        
+                        if($Today > $Start && $Today < $End){
+                            if($End > $maxDate){
+                                $maxDate = $End;
+                                $date = $task->TaskEnd;
+                            }
+                            var_dump($task);
+                            //var_dump($task->Project);
+                            
+                            $emp->Emp_Busy = "Beschäftigt in anderen Projekten vor ".$date;
+                            $emp->Is_Busy = 1;
+                            $emp->Is_Busy_Current = 0;
+                        }
+                        else{
+                            $emp->Emp_Busy = "Ist frei";
+                            $emp->Is_Busy = 0;
+                            $emp->Is_Busy_Current = 0;
+                        }
+                    }
+                }
+            } 
+            else if(count($tasks)>0){
+                $Today = strtotime(date("Y-m-d"));
+                $maxDate = $Today;
+                
                 foreach($tasks as $task){
                     $Start = strtotime($task->TaskStart);
                     $End = strtotime($task->TaskEnd); 
@@ -332,13 +399,19 @@ class Project_Model extends Model{
                             $maxDate = $End;
                             $date = $task->TaskEnd;
                         }
+                        //var_dump($idCurrentProject);
+                        //var_dump($task->Project);
                         
-                        $emp->Emp_Busy = "Beschäftigt vor ".$date;
-                        $emp->Is_Busy = true;
+                        $emp->Emp_Busy = "Beschäftigt in anderen Projekten vor ".$date;
+                        $emp->Is_Busy = 1;
+                        $emp->Is_Busy_Current = 0;
+                        
                     }
                     else{
                         $emp->Emp_Busy = "Ist frei";
-                        $emp->Is_Busy = false;
+                        $emp->Is_Busy = 0;
+                        $emp->Is_Busy_Current = 0;
+                        
                     }
                 }
             }
@@ -349,4 +422,34 @@ class Project_Model extends Model{
         return $employees;
 
     }//GetEmployeesFromProject
+
+    public function DeleteEmployeeFromProject($idProject, $idEmployee){
+        try {
+            $this->PDO->beginTransaction();
+
+            $query = $this->PDO->prepare("DELETE FROM ProjectEmployee WHERE idProject = :id AND idEmployee = :idEmployee");
+            $query->bindParam(":id", $idProject, PDO::PARAM_INT);
+            $query->bindParam(":idEmployee", $idEmployee, PDO::PARAM_INT);
+            $query->execute();
+
+            $id = null;
+
+            $query = $this->PDO->prepare("UPDATE Task SET idEmployee = :id WHERE idProject = :idProject AND idEmployee = :idEmployee");
+            $query->bindParam(":id", $id, PDO::PARAM_INT);
+            $query->bindParam(":idProject", $idProject, PDO::PARAM_INT);
+            $query->bindParam(":idEmployee", $idEmployee, PDO::PARAM_INT);
+            $query->execute();
+
+            $this->PDO->commit();
+            $res = 1;
+            //var_dump( $query->execute());
+            return $res;
+        }
+        catch (Exception $e) {
+            $this->PDO->rollback();
+            $res = -1;
+            return $res;
+        }
+
+    }//DeleteEmployeeFromProject
 }

@@ -83,10 +83,91 @@ $("#AddEmpButton").click(function () {
     $("#empInProjectInput")[0].value = "";
     
 });
-function DeleteEmployeeFro(btn) {
-    console.log($(btn).closest(".add-employee-project").remove());
+function DeleteEmployeeFro(btn, event) {
+    
+    
+    if(btn.dataset.current == 0){
+        
+        //document.onmousemove = null;
+        //document.onmouseup = null;
+        event.stopImmediatePropagation();
+        
+        $(btn).closest(".emp-in-project").remove();
+        
+    }
+    else{
+        //document.onmousemove = null;
+        //document.onmouseup = null;
+        event.stopImmediatePropagation();
+        document.getElementById("inputForDeleteEmpFromProject").value = btn.dataset.id;
+        $("#empFromProjModalDelete").modal('show');
+        
+    }
 
 }
+
+
+
+function TaskDetails(btn) {
+    
+    var taskId = btn.dataset.id;
+    console.log(taskId);
+
+    if(taskId){
+        
+        $('html').html("<form action='/HR/edittask' name='vote' method='post' style='display:none;'><input type='text' name='idTask' value=" + taskId + " /></form>");
+
+        document.forms['vote'].submit();
+        
+    }
+    else{
+        return; 
+    }
+
+}
+
+function MoovTaskToFinished(btn) {
+   
+    var elem = $(btn).closest('.task-info');
+    //console.log(elem[0]);
+    var button = elem[0].getElementsByClassName("moov-task-to-finish")[0];
+    //console.log(button);
+    button.remove();
+    var newButton = document.createElement("div");
+    newButton.innerHTML = "<div  onclick='MoovTaskToCurrent(this)'>&#171;</div>";
+    newButton.classList.add('moov-task-to-current');
+    
+
+
+    elem[0].appendChild(newButton);
+    
+    var input = elem[0].getElementsByClassName("status-input")[0];
+    input.value = 'Finished';
+
+    $(".finished-task").append(elem); 
+}//MoovTaskToFinished
+
+
+function MoovTaskToCurrent(btn) {
+   
+    var elem = $(btn).closest('.task-info');
+    //console.log(elem);
+    var button = elem[0].getElementsByClassName("moov-task-to-current")[0];
+    //console.log(button);
+    button.remove();
+    var newButton = document.createElement("div");
+    newButton.innerHTML = "<div onclick='MoovTaskToFinished(this)'>&#187;</div>";
+    
+    newButton.classList.add('moov-task-to-finish');
+     
+    elem[0].appendChild(newButton);
+
+    var input = elem[0].getElementsByClassName("status-input")[0];
+    input.value = 'Current';
+    $(".current-task").append(elem);
+}//MoovTaskToCurrent
+
+
 function DeleteTask(btn){
     $(btn).closest(".task-info").remove();
     /* $("#idTaskInput")[0].value = btn.dataset.id;
@@ -102,7 +183,7 @@ function DeleteEmployeeFromTask(btn){
     newInput.innerHTML = "<input type='hidden' name=taskInProj[Employee_"+ btn.dataset.counter + "] value='-'>";
                             
     $("#Employee_"+btn.dataset.counter).append(newInput);
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    
     /* }
     else{
         console.log(btn.dataset.id);
@@ -116,15 +197,21 @@ function DeleteEmployeeFromTask(btn){
 }
 
 function addEmployeeToTask(emp_block){
-   
+    
     var drop_block = emp_block.cloneNode(true);
     
     $("#empInProjectPlaceholder").append(drop_block);
     drop_block.classList.add("abs");
     //drop_block.event = null;
-    //console.log(drop_block.event);
-    drop_block.style.top = emp_block.top + "px";
-    drop_block.style.left = (emp_block.offsetLeft-15) + "px";
+    //console.log(emp_block.getBoundingClientRect().top);
+    //console.log(emp_block.getBoundingClientRect().left);
+    drop_block.style.top = (emp_block.getBoundingClientRect().top -150 + window.scrollY) + "px";
+    drop_block.style.left = (emp_block.getBoundingClientRect().left - 110 + window.scrollX) + "px";
+    //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+
+    //console.log(drop_block.style.top);
+    //console.log(drop_block.style.left);
     /* Определяем тип браузера */
     var ie = 0;
     var op = 0;
@@ -185,7 +272,7 @@ function addEmployeeToTask(emp_block){
     function clearXY() {
         
 
-        var listTask = document.getElementsByClassName("task-info");
+        var listTask = document.getElementsByClassName("current-task-item");
 
         if(listTask.length >0){
             for (let i = 0; i < listTask.length; i++) {
@@ -196,7 +283,7 @@ function addEmployeeToTask(emp_block){
                     ){
                         if(listTask[i].getElementsByClassName("add-employee-project").length != 0){
                             alert("Diese Aufgabe hat bereits einen Executor.");
-                            
+                            console.log(listTask[i]);
                             drop_block.remove();
                             document.onmouseup = null;
                             document.onmousemove = null; // При отпускании мыши убираем обработку события движения мыши

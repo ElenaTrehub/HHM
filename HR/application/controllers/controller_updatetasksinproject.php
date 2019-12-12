@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include "application/models/model_task.php";
 include "application/models/Employee.php";
 include "application/models/model_statustask.php";
@@ -9,7 +11,7 @@ class Controller_UpdateTasksInProject extends Controller
 	{
         require_once "config.php";
         $this->PDO = $pdo;
-        var_dump($_POST);
+        //var_dump($_POST);
         $employees = array();
         $employee = new Employee_Model($this->PDO);
         $employees = $employee->GetAllEmployeeForTask(); 
@@ -18,7 +20,8 @@ class Controller_UpdateTasksInProject extends Controller
         $status = new StatusTask_Model($this->PDO);
         $statuses = $status->GetAllTaskStatuses();
 
-        
+       //var_dump($_POST);
+
        $idProject = $_POST["idProject"];
         $tasks = array();
         if(isset($_POST["taskInProj"])){
@@ -40,7 +43,8 @@ class Controller_UpdateTasksInProject extends Controller
 
             if(count($tasks)>0){
                 $tasksArray = array_chunk($tasks, 8);
-                var_dump($tasksArray);
+                //echo("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                //var_dump($tasksArray);
                 for ($i=0; $i < count($tasksArray); $i++) { 
                     $idEmployee = null;
                     $employee_info = trim($tasksArray[$i][7]);
@@ -75,6 +79,7 @@ class Controller_UpdateTasksInProject extends Controller
                             if ($status == $stat->statusTaskTitle){
                 
                                 $idStatus = $stat->idStatusTask;
+                                
                                 break;
                             }
                             
@@ -93,13 +98,14 @@ class Controller_UpdateTasksInProject extends Controller
                     $query->bindParam(":idCurator",       $tasksArray[$i][5], PDO::PARAM_INT);
                     $query->bindParam(":idProject",       $idProject, PDO::PARAM_INT);
                     $query->bindParam(":idStatus",       $idStatus, PDO::PARAM_INT);
-                    $query->execute();    
+                    $query->execute();   
+                    //var_dump($query->execute()) ;
                 }
             }
 
 
             $this->PDO->commit();
-            
+            $_SESSION["currentProject"] = $idProject;
             header('location: /HR/editproject');
            
         } 

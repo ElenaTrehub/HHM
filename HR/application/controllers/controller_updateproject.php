@@ -141,7 +141,7 @@ class Controller_UpdateProject extends Controller
             if($_POST["id"] == ''){
                 $res = $currentProject->addProject($Title, $StartDate, $EndDate, $Destination, $Description, $idCurator, $idClient, $Number, $idStatus);
                 if($res == 1){
-                    header('location: /HR/projectlist');
+                    header('location: /HR/editproject');
                 }
                 
             }

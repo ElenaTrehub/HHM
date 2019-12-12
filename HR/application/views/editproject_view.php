@@ -50,13 +50,6 @@
                             <label class="employee-label">Arbeiter im Projekt</label>
                             <div id="empInProjectPlaceholder"> 
                                     <?php $employeeCounter = 0?>
-                                    
-
-                                    
-                                    
-
-
-
                                     <?php if (isset($this->employeesInProject[0])) : ?>
                                         
                                             <?php foreach($this->employeesInProject as $emp):?>
@@ -65,17 +58,18 @@
                                             <div onmousedown="addEmployeeToTask(this)"  class="add-employee-project exist-emp-proj">
                                             
                                                 <div>
-                                                        
-
                                                         <input type="text" name=<?php print htmlentities("employeeInProj[Info_".$employeeCounter."]")?>
                                                             value = "<?php echo($emp->Name .' '. $emp->LastName .' - '. $emp->Position); ?>">
                                                 </div>
                                                 
-                                                <button id="btnEmpFromProjRemove" class="btn btn-danger" type="button" onmousedown="DeleteEmployeeFro(this)" style="margin-top:4px; margin-right:5px; width: 30px; height: 30px; line-height:10px; font-size: 12px; padding: 0; border-radius: 15px; float:right">&#10006</button>
+                                                <button id="btnEmpFromProjRemove" data-id="<?php echo($emp->Id);?>" data-current="<?php echo($emp->Is_Busy_Current);?>" class="btn btn-danger" type="button"   onmousedown="DeleteEmployeeFro(this, event)" style="margin-top:4px; margin-right:5px; width: 30px; height: 30px; line-height:10px; font-size: 12px; padding: 0; border-radius: 15px; float:right;">&#10006</button>
                                             </div>
-                                            <?php if ($emp->Is_Busy == false){ ?>
+                                            <?php if ($emp->Is_Busy == 0 && $emp->Is_Busy_Current == 0){ ?>
                                                 <div class="emp-free"><?php echo $emp->Emp_Busy; ?></div>
-                                            <?php } else { ?>
+                                            <?php } else if ($emp->Is_Busy_Current == 1){ ?>
+                                                <div class="emp-busy-current"><?php echo $emp->Emp_Busy; ?></div>
+                                           
+                                            <?php } else if ($emp->Is_Busy == 1){ ?>
                                                 <div class="emp-busy"><?php echo $emp->Emp_Busy; ?></div>
                                             <?php }?>
                                             </div>
@@ -104,11 +98,16 @@
                     <div id="personal-details" class="col-md-12" style="max-width: 99%; margin-top: 30px;" class="col-md-12">
                         <div id="personal-details-header" class="create-personal-header">Projekt ziele</div>
                         <div class="row">
-                            <div class="button-container col-md-12">
+                            <div class="button-container col-md-2">
                                 <input data-toggle="modal" value="Aufgabe hinzufügen" data-target="#addModalTask" id="task-add" class="add-project-btn" >
-                        
-            
+                            </div>
+                            <div class="button-container col-md-10"> 
+                                <form  action="/HR/tasklist" method="post" enctype="multipart/form-data">
+                                    <input  type="hidden" name="idProject" value=<?php echo ($this->projectId); ?>>
+                                    <input value="Projekt diagramm" type="submit" class="diagramm-btn" >
+                                </form>
                             </div>   
+                            
                         </div>
                         <form  action="/HR/updatetasksinproject" method="post" enctype="multipart/form-data">
                         
@@ -124,29 +123,33 @@
                                     <input  type="hidden" name="idProject" value=<?php echo ($this->projectId); ?>>
                                         <?php foreach ($this->tasks as $task) : ?>
                                         
-                                            <?php $taskCounter++?>
+                                            
                                             <?php if($task->StatusTask == 'Current'){?>
 
-                                                
+                                                <?php $taskCounter++?>
 
 
 
 
-                                                <div class="task-info" data-id = <?php echo $task->idTask ?> data-employee ="<?php echo $task->Employee?>">
-                                                
+                                                <div class="task-info current-task-item" data-id = <?php echo $task->idTask ?> data-employee ="<?php echo $task->Employee?>">
+                                                    <?php if ($task->Is_Past != ""){ ?>
+                                                        <div class="task-past"><?php echo $task->Is_Past; ?></div>
+                                                    <?php } else if ($task->Is_Finish != ""){ ?>
+                                                        <div class="task-finish"><?php echo $task->Is_Finish; ?></div>
+                                                    <?php }?>
                                                     <input  type="hidden" name="<?php print htmlentities("taskInProj[idTask_".$taskCounter."]");?>" value="<?php echo ($task->idTask); ?>">
                                                     <input  type="hidden" name="<?php print htmlentities("taskInProj[TaskTitle_".$taskCounter."]");?>" value="<?php echo ($task->TaskTitle); ?>">
                                                     <input  type="hidden" value="<?php echo $task->TaskText ?>" name="<?php print htmlentities("taskInProj[TaskText_".$taskCounter."]");?>">
                                                     <input  type="hidden" name="<?php print htmlentities("taskInProj[TaskStart_".$taskCounter."]");?>" value="<?php echo ($task->TaskStart); ?>">
                                                     <input  type="hidden" name="<?php print htmlentities("taskInProj[TaskEnd_".$taskCounter."]");?>" value="<?php echo ($task->TaskEnd); ?>">
                                                     <input  type="hidden" name="<?php print htmlentities("taskInProj[Curator_".$taskCounter."]");?>" value="<?php echo ($task->Curator); ?>">
-                                                    <input  type="hidden" name="<?php print htmlentities("taskInProj[Status_".$taskCounter."]");?>" value="<?php echo ($task->StatusTask); ?>">
+                                                    <input class="status-input"  type="hidden" name="<?php print htmlentities("taskInProj[Status_".$taskCounter."]");?>" value="Current">
                                                     <div id="<?php print htmlentities("Employee_".$taskCounter);?>"></div>
 
 
                                                     <div class="task-title"><?php echo $task->TaskTitle?></div>
                                                     <div class="task-date"><?php echo $task->TaskStart . " - " . $task->TaskEnd?></div>
-                                                    <div class="task-description"><?php echo $task->TaskText?></div>
+                                                    <div class="task-description"><?php echo substr($task->TaskText, 0, 95)."..."?></div>
                                                     <?php if($task->idEmployee!=null){?>
 
 
@@ -167,6 +170,14 @@
 
                                                         <?php }?>
 
+
+                                                        <div data-id="<?php echo $task->idTask;?>" class="task-details" onclick="TaskDetails(this)">Details und Anpassung ...</div>
+                                                        <div class="moov-task-to-finish">
+                                                            <div  onclick="MoovTaskToFinished(this)">&#187;</div>
+                                                        </div>
+                                                       
+
+
                                                     <button id="btnTaskRemove" class="btn btn-danger" type="button" onclick="DeleteTask(this)" data-id = <?php echo $task->idTask ?> >&#10006</button>
                                                     
                                                 </div>
@@ -181,7 +192,9 @@
                                 <div class="task-status-title">Abgeschlossene Aufgaben</div>
                                     <div class="tasks-container">
                                         <?php foreach ($this->tasks as $task) : ?>
+                                            
                                             <?php if($task->StatusTask == 'Finished'){?>
+                                                <?php $taskCounter++?>
                                                 <div class="task-info">
                                                 <input  type="hidden" name="<?php print htmlentities("taskInProj[idTask_".$taskCounter."]");?>" value="<?php echo ($task->idTask); ?>">
                                                     <input  type="hidden" name="<?php print htmlentities("taskInProj[TaskTitle_".$taskCounter."]");?>" value="<?php echo ($task->TaskTitle); ?>">
@@ -189,12 +202,12 @@
                                                     <input  type="hidden" name="<?php print htmlentities("taskInProj[TaskStart_".$taskCounter."]");?>" value="<?php echo ($task->TaskStart); ?>">
                                                     <input  type="hidden" name="<?php print htmlentities("taskInProj[TaskEnd_".$taskCounter."]");?>" value="<?php echo ($task->TaskEnd); ?>">
                                                     <input  type="hidden" name="<?php print htmlentities("taskInProj[Curator_".$taskCounter."]");?>" value="<?php echo ($task->Curator); ?>">
-                                                    <input  type="hidden" name="<?php print htmlentities("taskInProj[Status_".$taskCounter."]");?>" value="<?php echo ($task->StatusTask); ?>">
+                                                    <input  class="status-input"type="hidden" name="<?php print htmlentities("taskInProj[Status_".$taskCounter."]");?>" value="Finished">
 
 
                                                         <div class="task-title"><?php echo $task->TaskTitle?></div>
                                                         <div class="task-date"><?php echo $task->TaskStart . " - " . $task->TaskEnd?></div>
-                                                        <div class="task-description"><?php echo $task->TaskText?></div>
+                                                        <div class="task-description"><?php echo substr($task->TaskText, 0, 95)."..."?></div>
                                                         <?php if($task->idEmployee!=null){?>
                                                             <div class="add-employee-project">
                                                                 <div>
@@ -209,7 +222,14 @@
 
 
                                                             <?php }?>
-                                                        <button id="btnTaskRemove" class="btn btn-danger" type="button" onclick="DeleteTask(this)" data-id = <?php echo $task->idTask ?> >&#10006</button>
+                                                            <div data-id="<?php echo $task->idTask;?>" class="task-details" onclick="TaskDetails(this)">Details und Anpassung ...</div>
+                                                            <div class="moov-task-to-current">
+                                                                <div  onclick="MoovTaskToCurrent(this)">&#171;</div>
+                                                            </div>
+                                                            
+                                                            
+                                                            
+                                                            <button id="btnTaskRemove" class="btn btn-danger" type="button" onclick="DeleteTask(this)" data-id = <?php echo $task->idTask ?> >&#10006</button>
                                                     </div>
 
                                             <?php }?>
@@ -217,7 +237,7 @@
                                     </div>   
                             </div>
                         </div>
-                        <input type="submit" value="Aufgaben aktualisieren"  id="emp-to-project-add" class="add-emp-btn" >
+                        <input type="submit" value="Aufgaben aktualisieren" name="emp-in-proj"  id="emp-to-project-add" class="add-emp-btn" >
                         </form>
                     </div>
                 </div>
@@ -457,14 +477,14 @@
                             
                                 <div>                       
                                     <div class="bio-description">Task status</div>
-                                        <input list="TaskStatuses" autocomplete="off" name="Status" class="bio-value">
-                                        <datalist id="TaskStatuses">
+                                        <input type="text" name="Status" class="bio-value" value="Current">
+                                        <!-- <datalist id="TaskStatuses">
                                             <?php if(isset($this->task_statuses[0])){
                                                 foreach($this->task_statuses as $status){
                                                     print '<option data-value=' . $status->idStatusTask . '>' . $status->statusTaskTitle .'</option>';
                                                 }
                                             } ?>
-                                        </datalist>
+                                        </datalist> -->
                                 </div>
 
                                 <div class="button-container">
@@ -487,7 +507,30 @@
     </div>
 </div>
 
-
+<div class="modal fade" id="empFromProjModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dieser Mitarbeiter hat noch offene Aufgaben im Projekt. Wenn Sie die Aufgabe löschen, 
+                    werden Sie ohne Executor zurückgelassen. Möchten Sie diesen Mitarbeiter wirklich aus dem Projekt entfernen?
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/HR/deleteemployeefromproject" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="idProject" value=<?php print htmlentities($this->projectId); ?>>
+                    <input id="inputForDeleteEmpFromProject" type="hidden" name="idEmployee" value="0">
+                    <button type="submit" class="btn btn-danger">Ja</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Abbrechen</button>
+                </div>
+                <div class="modal-footer"></div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <div id="empInProjectTemplate" class="add-employee-project collapse">

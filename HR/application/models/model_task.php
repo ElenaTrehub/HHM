@@ -12,6 +12,8 @@ class Task{
     public $Curator;
     public $Project;
     public $StatusTask;
+    public $Is_Past;
+    public $Is_Finish;
 }
 
 class Task_Model extends Model{
@@ -175,6 +177,26 @@ class Task_Model extends Model{
             }
         }
 
+        foreach($tasks as $task){
+            $Today = strtotime(date("Y-m-d"));
+            $Start = strtotime($task->TaskStart);
+            $End = strtotime($task->TaskEnd); 
+
+            $nextTwoWeeks  = $End - 14*86400;
+            if($Today > $End){
+                $task->Is_Past = "";
+                $task->Is_Finish = "Aufgabe abgelaufen" . $task->TaskEnd;
+            }
+
+            if($Today >= $nextTwoWeeks && $Today < $End){
+                $task->Is_Past = "Aufgabe läuft ab $task->TaskEnd";
+                $task->Is_Finish = "";
+            }
+
+        }
+
+        
+
        /*  echo("<pre>");
         var_dump($tasks);
         echo("</pre>"); */
@@ -213,5 +235,20 @@ class Task_Model extends Model{
         return 0;
 
     }//DeleteEmployeeFromTask
+
+    public function UpdateTaskDate($id, $startDate, $endDate){
+
+        $sql = "UPDATE Task SET TaskStart = :TaskStart, TaskEnd = :TaskEnd WHERE idTask = :id";
+        $query = $this->PDO->prepare($sql);
+        $query->bindParam(":id", $id, PDO::PARAM_INT);
+        $query->bindParam(":TaskStart", $startDate, PDO::PARAM_STR);
+        $query->bindParam(":TaskEnd", $endDate, PDO::PARAM_STR);
+
+        if ($query->execute()) {
+            return 1;
+        }
+        return 0;
+
+    }//UpdateTaskDate
 
 }

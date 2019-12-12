@@ -13,9 +13,36 @@ class Controller_Tasklist extends Controller{
         require_once "config.php";
         $this->PDO = $pdo;
 
-        if (isset($_POST['idProject'])) {
+        $configStr = "";
+        if(isset($_SESSION["updateDateTask"])){
+            if($_SESSION["updateDateTask"] == 1){
+                $configStr = "Termine wurden erfolgreich aktualisiert.";
+            }
+            else{
+                $configStr = "Datum konnte nicht aktualisiert werden.";
+            }
+            unset($_SESSION["updateDateTask"]);
+        }
+        else{
+            $configStr = "";
+        }
 
-            $idProject = $_POST['idProject'];
+
+        if (isset($_POST['idProject'])){
+            $idProject = $_POST['idProject'];                    
+        }
+        
+        else if(isset($_SESSION["currentProject"])){
+            $idProject = $_SESSION["currentProject"];
+            unset($_SESSION["currentProject"]);
+        }
+        else{
+            $idProject = '';
+        }
+
+        if ($idProject!="") {
+
+            
 
             $employees = array();
             $currentEmployee = new Employee_Model($this->PDO);
@@ -53,10 +80,11 @@ class Controller_Tasklist extends Controller{
             $currentCalendar = $calendar->CreateCalendar($minStartDate, $maxEndtDate);
 
             $this->view->empList = $employees;
-
+            $this->view->projectId = $idProject;
             $this->view->project = $project;
             $this->view->calendar = $currentCalendar;
             $this->view->taskList = $tasks;
+            $this->view->upload_err = $configStr;
             $this->view->generate('tasklist_view.php', 'template_view.php');
         }//if
 
