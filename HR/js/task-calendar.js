@@ -17,19 +17,20 @@ function initializeCalendar(){
             }
       
             if (element.dataset.weekday != 6 || element.dataset.weekday != 7) {
-                  element.classList.add = "cal-day-week";
+                  element.classList.add("cal-day-week");
                   //element.className = "calendar-day-weekend-vacation";
             }
       
             if (element.dataset.weekday == "6" || element.dataset.weekday == "7") {
-                  element.classList.add = "cal-day-weekend";
+                  element.classList.add("cal-day-weekend");
                   //element.className = "calendar-day-weekend-vacation";
             }
          
             
       
             if (element.dataset.holiday != "false"){
-                  //element.className = "calendar-day-weekend";
+                  element.classList.add("holiday-day-weekend");
+                  element.classList.remove("cal-day-week");
             }
 
 
@@ -121,9 +122,32 @@ function ResizeRightTask(btn){
     document.onmouseup = function(e){
       console.log("Up!!!!!!!");
       /* При отпускании кнопки мыши отключаем обработку движения курсора мыши */
+      var x = e.clientX - x_elem;
+      
+      if(x > 5){
+            
+            
+            block_r.style.width = block_r.clientWidth + (70 - x%70) + "px";
 
+      }
+      else if (x < -5){
+            
+            block_r.style.width = block_r.clientWidth + Math.abs(x)%70 + "px";
+            
+      }
+      else {
+
+            if(x<0){
+                  block_r.style.width = block_r.clientWidth + x + "px";
+            }
+            else{
+                  block_r.style.width = block_r.clientWidth - x + "px";
+            }
+            
+      }
       calendar_year.onmousemove = null;
       calendar_year.onmouseup = null;
+      document.onmouseup = null;
     }
     if (op || ff) document.addEventListener("onmousemove", resizeBlock, false);
     
@@ -167,9 +191,35 @@ function ResizeLeftTask(btn){
       document.onmouseup = function(e){
         //console.log("Up!!!!!!!");
         /* При отпускании кнопки мыши отключаем обработку движения курсора мыши */
-  
+        var x = e.clientX - x_elem;
+      console.log(x);
+      if(x > 5){
+            console.log(block_r.clientWidth);
+            
+            block_r.style.width = block_r.clientWidth + x%70 + "px";
+            block_r.style.left = start_left - x%70 + x + "px";
+      }
+      else if (x < -5){
+            
+            block_r.style.width = block_r.clientWidth + (70 - Math.abs(x)%70) +  "px";
+            block_r.style.left = start_left - (70 - Math.abs(x)%70) - Math.abs(x) + "px";
+            console.log(x);
+            
+      }
+      else{
+            if(x<0){
+                  block_r.style.width = block_r.clientWidth - Math.abs(x) + "px";
+                  block_r.style.left = start_left + Math.abs(x) + "px";
+                  console.log(x);
+            }
+            else{
+                  block_r.style.width = block_r.clientWidth + x + "px";
+                  block_r.style.left = start_left - x + "px";
+            }
+      }
         calendar_year.onmousemove = null;
         calendar_year.onmouseup = null;
+        document.onmouseup = null;
       }
       if (op || ff) document.addEventListener("onmousemove", resizeBlock, false);
       
@@ -201,7 +251,8 @@ function clientWidth() {
 function clientHeight() {
       return document.documentElement.clientHeight == 0 ? document.body.clientHeight : document.documentElement.clientHeight;
 }
-function SaveTaskDate(id){
+
+function GetTasks(){
       var day = document.getElementsByClassName('project-cal-day');
       var dayArray = Array.from(day);
       //console.log(dayArray);
@@ -211,7 +262,7 @@ function SaveTaskDate(id){
       tasks = [];
 
       taskArray.forEach(element => {
-//console.log(element);
+
             const startTaskCoord = element.offsetLeft;
             const endTaskCoord = element.offsetLeft + element.offsetWidth;
             //console.log(startTaskCoord);
@@ -235,8 +286,14 @@ function SaveTaskDate(id){
             }
             tasks.push(task);
             
-      }); 
+      });
 
+      return tasks;
+
+}
+function SaveTaskDate(id){
+       
+       let tasks = GetTasks();
        let content = JSON.stringify(tasks);
        let projectId = id;
        console.log(content);
@@ -249,5 +306,23 @@ function SaveTaskDate(id){
           
       
     
+
+}//SaveTaskDate
+
+function SaveEmployeeTaskDate(idEmployee){
+       
+      let tasks = GetTasks();
+      let content = JSON.stringify(tasks);
+      let id = idEmployee;
+      console.log(content);
+ 
+     
+         
+     $('html').html("<form action='/HR/editTasksDate' name='tasksdateChange' method='post' style='display:none;'><input type='text' name='tasksList' value=" + content + " /><input type='text' name='employeeId' value=" + id + " /></form>");
+ 
+     document.forms['tasksdateChange'].submit();
+         
+     
+   
 
 }//SaveTaskDate

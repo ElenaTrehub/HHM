@@ -50,8 +50,8 @@ class Controller_Birthday extends Controller
                 foreach($birth_emp as $birth){
                     $birth_string = $birth_string . " " . $birth->Name . " " . $birth->LastName . ";";
                 }
-                $account_sid = '';
-                $auth_token = '';
+                $account_sid = 'AC482c5a6a8403b82345ad633fdebf05bb';
+                $auth_token = '6f749f62408d31c700da8ed84f45d23c';
 
                 // In production, these should be environment variables. E.g.:
                 //$auth_token = $_ENV["TWILIO_ACCOUNT_SID"]

@@ -10,6 +10,7 @@ class Task{
     public $idEmployee;
     public $Employee;
     public $Curator;
+    public $idProject;
     public $Project;
     public $StatusTask;
     public $Is_Past;
@@ -250,5 +251,101 @@ class Task_Model extends Model{
         return 0;
 
     }//UpdateTaskDate
+
+    public function GetAllTasksFromEmployee($idEmployee){
+
+        $tasks = array();
+
+        $sql = $sql = "SELECT * FROM Task 
+        LEFT JOIN Employee          ON Task.idEmployee = Employee.id
+        LEFT JOIN Career ON Task.idEmployee = Career.idEmployee
+        LEFT JOIN Project      ON Task.idProject = Project.idProject
+        LEFT JOIN StatusTasks     ON Task.idStatusTasks = StatusTasks.idStatusTasks
+        WHERE Task.idEmployee = :idEmployee";
+
+        if ($query = $this->PDO->prepare($sql)) {
+            $query->bindParam(":idEmployee", $idEmployee, PDO::PARAM_INT);
+            if ($query->execute()) {
+                while ($row = $query->fetch()) {
+                    $task = new Task;
+                    $task->idTask = $row['idTask'];
+                    $task->TaskTitle = $row['TaskTitle'];
+                    $task->TaskText = $row['TaskText'];
+                    $task->TaskStart = $row['TaskStart'];
+                    $task->TaskEnd = $row['TaskEnd'];
+                    $task->Employee = $row['Name'] . " " . $row['LastName'] . " - ". $row['Position'];
+                    $task->idEmployee = $row['id'];
+                    $task->idProject = $row['idProject'];
+                    $task->Project = $row['ProjectNumber'];
+                    $task->StatusTask = $row['StatusTasksTitle'];
+                    $task->Curator = $row['idCurator'];
+                    $task->Info = "exist";
+                    $tasks[] = $task;
+                }
+                    
+            }
+        }
+       
+     
+        usort($tasks, array('Task_Model', 'cmpProject'));
+        
+        for($i=1; $i < count($tasks); $i++){
+
+            
+            if($tasks[$i]->idProject == $tasks[$i-1]->idProject){
+               
+                
+                
+                if((strtotime($tasks[$i]->TaskStart) > strtotime($tasks[$i-1]->TaskStart)
+                && strtotime($tasks[$i]->TaskStart) < strtotime($tasks[$i-1]->TaskEnd)) || 
+                (strtotime($tasks[$i]->TaskEnd) > strtotime($tasks[$i-1]->TaskStart) && strtotime($tasks[$i]->TaskEnd) < strtotime($tasks[$i-1]->TaskEnd))
+                || (strtotime($tasks[$i-1]->TaskStart) > strtotime($tasks[$i]->TaskStart)
+                && strtotime($tasks[$i-1]->TaskStart) < strtotime($tasks[$i]->TaskEnd)) || 
+                (strtotime($tasks[$i-1]->TaskEnd) > strtotime($tasks[$i]->TaskStart) && strtotime($tasks[$i-1]->TaskEnd) < strtotime($tasks[$i]->TaskEnd))){
+    
+                    $tasks[$i]->Info = '';
+    
+                }
+                else{
+                    $tasks[$i]->Info = '-1';
+                }
+
+                
+
+            }
+        }
+
+        foreach($tasks as $task){
+            $Today = strtotime(date("Y-m-d"));
+            $Start = strtotime($task->TaskStart);
+            $End = strtotime($task->TaskEnd); 
+
+            $nextTwoWeeks  = $End - 14*86400;
+            if($Today > $End){
+                $task->Is_Past = "";
+                $task->Is_Finish = "Aufgabe abgelaufen" . $task->TaskEnd;
+            }
+
+            if($Today >= $nextTwoWeeks && $Today < $End){
+                $task->Is_Past = "Aufgabe läuft ab $task->TaskEnd";
+                $task->Is_Finish = "";
+            }
+
+        }
+
+        
+
+       /* echo("<pre>");
+        var_dump($tasks);
+        echo("</pre>");  */
+
+        return $tasks;
+    }//GetAllTasksFromProject
+
+
+    private static function cmpProject($a, $b) {
+        return strcmp($a->idProject, $b->idProject);
+    }
+
 
 }

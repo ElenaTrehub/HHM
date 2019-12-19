@@ -67,10 +67,10 @@
                                             <?php if ($emp->Is_Busy == 0 && $emp->Is_Busy_Current == 0){ ?>
                                                 <div class="emp-free"><?php echo $emp->Emp_Busy; ?></div>
                                             <?php } else if ($emp->Is_Busy_Current == 1){ ?>
-                                                <div class="emp-busy-current"><?php echo $emp->Emp_Busy; ?></div>
+                                                <div class="emp-busy-current" onclick="EmployeeOccupation(this)" data-id="<?php echo $emp->Id;?>"><?php echo $emp->Emp_Busy; ?></div>
                                            
                                             <?php } else if ($emp->Is_Busy == 1){ ?>
-                                                <div class="emp-busy"><?php echo $emp->Emp_Busy; ?></div>
+                                                <div class="emp-busy " onclick="EmployeeOccupation(this)" data-id="<?php echo $emp->Id;?>"><?php echo $emp->Emp_Busy; ?></div>
                                             <?php }?>
                                             </div>
                                         <?php endforeach?>
@@ -127,9 +127,6 @@
                                             <?php if($task->StatusTask == 'Current'){?>
 
                                                 <?php $taskCounter++?>
-
-
-
 
                                                 <div class="task-info current-task-item" data-id = <?php echo $task->idTask ?> data-employee ="<?php echo $task->Employee?>">
                                                     <?php if ($task->Is_Past != ""){ ?>
@@ -248,8 +245,7 @@
     <?php } ?>
     
 
-    
-</div>
+
 
 <!-- <div class="modal fade" id="taskModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -547,4 +543,7 @@
     
 </div>
 
-<script src="/HR/js/projectDeleteConfirm.js"></script>
+<script src="js/projectDelete.js"></script>
+    
+</div>
+

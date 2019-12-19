@@ -16,6 +16,10 @@ class Controller_EditTasksDate extends Controller
             $projectId = $_POST['projectId'];
         }
 
+        $employeeId = "";
+        if (isset($_POST['employeeId'])) {
+            $employeeId = $_POST['employeeId'];
+        }
         if (isset($_POST['tasksList'])) {
             //var_dump($_POST['tasksList']);
 
@@ -24,9 +28,9 @@ class Controller_EditTasksDate extends Controller
             $currentTask = new Task_Model($this->PDO);
 
             foreach($response as $item){
-                var_dump($item['taskId']);
-                var_dump($item['startDate']);
-                var_dump($item['endDate']);
+                //var_dump($item['taskId']);
+                //var_dump($item['startDate']);
+                //var_dump($item['endDate']);
                 //echo("--------------------");
                 $result = $currentTask->UpdateTaskDate($item['taskId'], $item['startDate'], $item['endDate']);  
                 if($result == 1){
@@ -40,10 +44,17 @@ class Controller_EditTasksDate extends Controller
                 }
             }
 
-            $_SESSION["updateDateTask"] = 1;
-            $_SESSION["currentProject"] = $projectId;
-            header('location: /HR/tasklist');
-
+            if($projectId != ""){
+                $_SESSION["updateDateTask"] = 1;
+                $_SESSION["currentProject"] = $projectId;
+                header('location: /HR/tasklist');
+            }
+            
+            if($employeeId != ""){
+                $_SESSION["updateDateTask"] = 1;
+                $_SESSION["currentEmployee"] = $employeeId;
+                header('location: /HR/employeetasks');
+            }
             
         } 
     }

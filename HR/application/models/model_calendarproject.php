@@ -110,7 +110,7 @@ class CalendarProject_Model extends Model
                     $dayData->Today     = date("Y-m-d", strtotime((string) $day . "-" . (string) $currentMonth . "-" . (string) $currentYear));
                     $dayData->WeekDay   = $dayOfWeek;
                     $dayData->WeekDayName   = $WeekDayArray[$dayOfWeek-1];
-                    //$dayData->Holiday   = $this->checkHoliday($dayData->Today);
+                    $dayData->Holiday   = $this->checkHoliday($dayData->Today);
 
                     $dayToCompare = strtotime((string) $day . "-" . (string) $currentMonth . "-" . (string) $currentYear);
                     $dayToday     = strtotime("today");
@@ -153,4 +153,39 @@ class CalendarProject_Model extends Model
         }
         return ($d1->Date < $d2->Date) ? -1 : 1;
     }//compare
+
+    public function checkHoliday($date)
+    {
+        $d_date = DateTime::createFromFormat('Y-m-d', $date);
+
+        foreach ($this->get_Holidays() as $holiday) {
+            //var_dump($d_date->format('Y-m-d'));
+//var_dump($holiday->Date);
+            if ($holiday->Date == $d_date->format('Y-m-d') && $holiday->Public == true) {
+                return $holiday->Name;
+            }    
+        }
+        return "false";
+    }//checkHoliday
+
+    public function get_Holidays()
+    {
+        $jsonHolidays = file_get_contents("application/json/holidays.json", "r");
+        $holidays     = json_decode($jsonHolidays, true);
+        $holidayArray = array();
+
+        foreach ($holidays as $holiday) {
+            for ($i = 0; $i < sizeof($holiday); $i++) {
+                $h              = $holiday[$i];
+                $day            = new Holiday;
+                $day->Name      = $h['name'];
+                $day->Date      = $h['date'];
+                $day->Observed  = $h['observed'];
+                $day->Public    = $h['public'];
+                $holidayArray[] = $day;
+            }
+        }
+
+        return $holidayArray;
+    }//get_Holidays
 }

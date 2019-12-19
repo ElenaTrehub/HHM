@@ -108,6 +108,114 @@
                   "date": "2019-12-25",
                   "observed": "2019-12-25",
                   "public": true
+            },
+
+
+
+
+
+
+
+
+
+            {
+                  "name": "Neues_Jahr",
+                  "date": "2020-01-01",
+                  "observed": "2020-01-01",
+                  "public": true
+            },
+            {
+                  "name": "Orthodoxe Weihnachten",
+                  "date": "2020-01-07",
+                  "observed": "2020-01-07",
+                  "public": true
+            },
+            {
+                  "name": "Internationaler_Frauentag",
+                  "date": "2020-03-08",
+                  "observed": "2020-03-08",
+                  "public": true
+            },
+            {
+                  "name": "Internationaler_Frauentag",
+                  "date": "2020-03-09",
+                  "observed": "2020-03-09",
+                  "public": true
+            },
+            {
+                  "name": "Ostern",
+                  "date": "2020-04-19",
+                  "observed": "2020-04-19",
+                  "public": true
+            },
+            {
+                  "name": "Ostermontag",
+                  "date": "2020-04-20",
+                  "observed": "2020-04-20",
+                  "public": true
+            },
+            {
+                  "name": "Tag_der_Arbeit",
+                  "date": "2020-05-01",
+                  "observed": "2020-05-01",
+                  "public": true
+            },
+            {
+                  "name": "Tag_der_Befreiung",
+                  "date": "2020-05-09",
+                  "observed": "2020-05-09",
+                  "public": true
+            },
+            {
+                  "name": "Tag_der_Befreiung",
+                  "date": "2020-05-11",
+                  "observed": "2020-05-11",
+                  "public": true
+            },
+            {
+                  "name": "Pfingstmontag",
+                  "date": "2020-06-07",
+                  "observed": "2020-06-07",
+                  "public": true
+            },
+            {
+                  "name": "Pfingstmontag",
+                  "date": "2020-06-08",
+                  "observed": "2020-06-08",
+                  "public": true
+            },
+
+            {
+                  "name": "Tag_der_Verfassung",
+                  "date": "2020-06-28",
+                  "observed": "2020-06-28",
+                  "public": true
+            },
+            {
+                  "name": "Tag_der_Verfassung",
+                  "date": "2020-06-29",
+                  "observed": "2020-06-28",
+                  "public": true
+            },
+            {
+                  "name": "Tag_der_Unabhängigkeit_Montag",
+                  "date": "2020-08-24",
+                  "observed": "2020-08-24",
+                  "public": true
+            },
+            {
+                  "name": "Tag_des_Verteidigers_der_Ukraine",
+                  "date": "2020-10-14",
+                  "observed": "2020-10-14",
+                  "public": true
+            },
+            
+
+            {                  
+                  "name": "Weihnachten",
+                  "date": "2020-12-25",
+                  "observed": "2020-12-25",
+                  "public": true
             }
             
       ]
